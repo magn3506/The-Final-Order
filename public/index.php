@@ -9,5 +9,6 @@
     <h2>Hello world</h2>
     <p>Hej er det her rigtigt?</p>
     <p>Hej er det her rigtigt?</p>
+    <p>TEST AF MAGNUS</p>
 </body>
 </html>
