@@ -12,7 +12,7 @@ try{
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
     ];
-    $db = new PDO($db_connection, $db_user_name, $db_password);
+    $db = new PDO($db_connection, $db_user_name, $db_password, $db_options);
 
 }catch(PDOException $ex){
     echo $ex;
