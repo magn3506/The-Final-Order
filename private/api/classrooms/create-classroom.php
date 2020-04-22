@@ -4,16 +4,16 @@ try{
     $title = $_POST['title'];
     $description = $_POST['description'];
     $image = $_POST['image'];
-    $isPrivate = $_POST['isPrivate'];
+    $is_private = $_POST['is_private'];
 
     //Prepare SQL Query
-    $q = $db->prepare('INSERT INTO classrooms VALUES(null, :title, :description, :image, :isPrivate)');
+    $q = $db->prepare('INSERT INTO classrooms VALUES(null, :title, :description, :image, :is_private)');
 
     //BIND VALUES
     $q->bindValue(':title', $title);
     $q->bindValue(':description', $description);
     $q->bindValue(':image', $image);
-    $q->bindValue(':isPrivate', $isPrivate);
+    $q->bindValue(':is_private', $is_private);
 
     //Execute SQL query
     $q->execute();
