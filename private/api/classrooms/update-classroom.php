@@ -2,6 +2,9 @@
 require_once('../db-connection/root-connection.php');
 try{
     if(isset($_POST['classroom_id'])){
+        // ! #########################################
+        // TODO: CREATE VALIDATION -------------------
+        // ! #########################################
         //GET POST values & id
         $classroom_id = $_POST['classroom_id'];
         $title = $_POST['title'];
