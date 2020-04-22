@@ -1,10 +1,7 @@
 <?php
 require_once('../db-connection/root-connection.php');
 
-
-
 try{
-
     // TODO: ADD all data fields, when created in DB fx, description etc.
     // CHECK IF DATA IS PROVIDED VIA POST 
     if(isset($_POST['title']) && isset($_POST['classroom_id'])){
@@ -18,11 +15,11 @@ try{
     // TODO: WHITE description, etc. when created in DB
 
     //Prepare SQL query
-    $q = $db->prepare('INSERT INTO lectures VALUES(null, :title, :classroomID)');
+    $q = $db->prepare('INSERT INTO lectures VALUES(null, :title, :classroom_id)');
    
     //BIND VALUES TO POST
     $q->bindValue(':title', $title);
-    $q->bindValue(':classroomID', $classroom_id);
+    $q->bindValue(':classroom_id', $classroom_id);
     // TODO: WHITE description, etc. when created in DB
 
     //Execute SQL query
