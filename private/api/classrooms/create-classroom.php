@@ -19,7 +19,7 @@ try{
     $q->execute();
 
     http_response_code(200);
-    echo 'Classroom ID: '.$db->lastInsertId();
+    echo 'Created classroom with Classroom ID: '.$db->lastInsertId();
 }catch(PDOException $ex){
     echo $ex;
 }
