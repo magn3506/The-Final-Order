@@ -17,7 +17,7 @@ try{
         // Returns how many rows where deleted in db. If 0 handle error
         $deletedRows = $q->rowCount();
         if($deletedRows === 0){
-            echo "$deletedRows rows where deleted. Something went wrong. Maybe the lecture 'id' provided does not exist";
+            echo "$deletedRows rows where deleted. Something went wrong. Maybe the classroom 'id' provided does not exist";
         }else{
             echo "$deletedRows rows where deleted.";
         }
