@@ -26,7 +26,7 @@ if(isset($_GET['lecture_id'])){
         $j_steps_data = json_decode($s_steps_data);
         
         
-        //APPEND ANSWERS TO EACH STEP WITH MATCHING ID
+        //APPEND ANSWERS & SOURCES TO EACH STEP WITH MATCHING ID
         foreach($j_steps_data as $jStep){
             
             // GET ALL ANSWERS OF step_id
