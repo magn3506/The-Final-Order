@@ -5,9 +5,12 @@
   "version": "0.1.0",
   "author": "Mognas Vagn Jensen & Jakob Falkenberg",
   "dependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.21.22",
+    "gatsby-plugin-styled-components": "^3.3.1",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
