@@ -1,6 +1,15 @@
 export const colors = {
-    darkGrade: "linear-gradient(180deg, #232521 0%, #1A1A1A 100%)",
-    grey: "#e8e8e8",
-    dark: "#232521",
-    green: "#4B5844"
-  }
+  purple: "#8C4A6E",
+  dark_purple: "#443659",
+  dark_dark_purple: "#2D2835",
+  super_dark_purple: "#19161E",
+  orange: "#F2756A",
+  sand: "#F9C99E",
+  white: "#FFFFFF",
+  light_grey: "#F2F2F2",
+  light_grey_pruple: "#F3F0F5",
+  dark_grey: "#323232",
+  black: "#000000",
+  red_error: "#E71818",
+  green_succes: "#51E079",
+}
