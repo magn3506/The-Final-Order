@@ -23,6 +23,6 @@ export const Emoji = () => (
 
 export const Beer = () => (
   <Button onClick={action("clicked")}>
-    <FaBeer color="#b000b5" size="2em" />
+    <FaBeer color="#b000b5" size="3em" />
   </Button>
 )
