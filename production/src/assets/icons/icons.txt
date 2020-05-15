@@ -1,0 +1,10 @@
+## WE USE react-icons
+
+## SEE ALL AVAILEBLE ICONS HERE
+
+https://react-icons.github.io/react-icons/
+
+### EKSAMPLE USE
+
+import { FaBeer } from "react-icons/fa"
+<FaBeer color="#b000b5" size="3em" />
