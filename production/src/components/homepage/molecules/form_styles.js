@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {bodyText, headings} from "../../../styles/global/typography";
 import {colors} from "../../../styles/global/colors";
+import { IoIosCloseCircle } from "react-icons/io";
 
 export const Wrapper = styled.div`
 width: 100%;
@@ -9,6 +10,7 @@ justify-content: center;
 `;
 
 export const Form = styled.form`
+position: relative;
 width: 500px;
 background: ${colors.dark_dark_purple};
 display: flex;
@@ -57,5 +59,16 @@ transition: .3s;
 
 & .icon{
 
+}
+`;
+
+export const CloseIcon = styled(IoIosCloseCircle)`
+position:absolute;
+top: 10px;
+right: 10px;
+cursor: pointer;
+transition: .2s;
+&:hover {
+    opacity: .8;
 }
 `;
