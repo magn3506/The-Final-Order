@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {local_server_path} from "../../../global_variables";
+import { local_server_path } from "../../../global_variables"
 
 function MyComponent() {
   const [error, setError] = useState(null)
@@ -10,9 +10,7 @@ function MyComponent() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch(
-      `${local_server_path}/private/api/classrooms/get-classrooms.php`
-    )
+    fetch(`${local_server_path}/private/api/classrooms/get-classrooms.php`)
       .then(res => res.json())
       .then(
         result => {
