@@ -1,7 +1,7 @@
 import React from "react"
 import { action } from "@storybook/addon-actions"
 import { Button } from "@storybook/react/demo"
-import { FaBeer } from "react-icons/fa"
+import { FcGoogle } from "react-icons/fc"
 
 export default {
   title: "Button",
@@ -23,6 +23,6 @@ export const Emoji = () => (
 
 export const Beer = () => (
   <Button onClick={action("clicked")}>
-    <FaBeer color="#b000b5" size="3em" />
+    <FcGoogle color="#b000b5" size="3em" />
   </Button>
 )
