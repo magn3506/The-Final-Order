@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import {local_server_path} from "../../../global_variables";
 
 function MyComponent() {
   const [error, setError] = useState(null)
@@ -10,7 +11,7 @@ function MyComponent() {
   // similar to componentDidMount()
   useEffect(() => {
     fetch(
-      "http://192.168.64.2/the-final-order/private/api/classrooms/get-classrooms.php"
+      `${local_server_path}/private/api/classrooms/get-classrooms.php`
     )
       .then(res => res.json())
       .then(
