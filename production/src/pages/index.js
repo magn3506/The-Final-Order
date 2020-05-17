@@ -1,11 +1,11 @@
 import React from "react"
 
-import MyComponent from "../components/homepage/atoms/atoms"
+import Test from "../components/homepage/atoms/test"
 
 const IndexPage = () => (
   <div>
     <h1>Landing Pages</h1>
-    <MyComponent></MyComponent>
+    <Test></Test>
   </div>
 )
 
