@@ -38,8 +38,12 @@ const Layout = props => {
       <GlobalStyle />
       <Wrapper>
         <Top_container>
-          <div>
+          <div className="menu">
+            <Logo_con className="logo">
+              <Logo_2 />
+            </Logo_con>
             <RiMenu2Line
+              className="burger"
               onClick={e => toggleMenuOpen(e)}
               color={colors.orange}
               size="30px"

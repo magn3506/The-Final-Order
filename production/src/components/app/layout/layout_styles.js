@@ -13,20 +13,64 @@ export const Top_container = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0px 10px;
 
   /* ! MAKE EFFECTS GLOBALS*/
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: fixed;
 
+  @media ${breakpoints.minDog} {
+    background-color: ${colors.dark_dark_purple};
+  }
+
   & > div {
     align-self: center;
+    padding: 15px 15px;
+    height: 100%;
+    display: flex;
+
+    & > div {
+      align-self: center;
+    }
+  }
+
+  .menu {
+
+    @media ${breakpoints.minDog} {
+    background-color: ${colors.super_dark_purple};
+  }
+    .logo {
+      display: none;
+    }
+
+    .burger:hover {
+      cursor: pointer;
+      fill: ${colors.sand};
+    }
+
+    @media ${breakpoints.minDog} {
+      width: 260px;
+      display: flex;
+      justify-content: space-between;
+      background-color: ${colors.super_dark_purple}
+      position: relative;
+      /* ! MAKE EFFECTS GLOBALS*/
+      box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.75);
+
+      .logo {
+        display: block;
+      }
+      .burger {
+        transform: rotate(180deg);
+      }
+    }
   }
 `
 
 export const Page_title = styled.div`
   color: ${colors.sand};
-  ${bodyText.normalTextReg_16px}
+  @media ${breakpoints.minDog} {
+    ${bodyText.largeTextReg_24px}
+  }
 `
 export const Bottom_container = styled.div`
   padding-top: 60px;
@@ -127,6 +171,11 @@ export const Nav_head = styled.div`
             to {
               transform: translateX(0px);
             }
+          }
+
+          @media ${breakpoints.minDog} {
+            transform: translateX(0px);
+            animation: in 0s;
           }
         `
       : css``}
