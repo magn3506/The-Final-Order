@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button} from "./create_acc_button_styles";
+import {Button} from "./submit_button_styles";
 
-const create_acc_button = props => {
+const SubmitButton = props => {
     return (
         <div>
             <Button>{props.name}</Button>
@@ -9,4 +9,4 @@ const create_acc_button = props => {
     )
 }
 
-export default create_acc_button
+export default SubmitButton;
