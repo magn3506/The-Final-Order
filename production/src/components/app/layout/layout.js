@@ -1,8 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { GlobalStyle } from "../../../styles/global/globalstyles"
 import { Link } from "gatsby"
 import Logo_2 from "../../../assets/logo/logo_2"
 import Logo_3 from "../../../assets/logo/logo_3"
+// HOOKS
+import useWindowSize from "../../../hooks/useWindowSize"
 // GLOBALS
 import { size, breakpoints } from "../../../styles/global/breakpoints"
 import { colors } from "../../../styles/global/colors"
@@ -22,11 +24,33 @@ import {
   Nav,
   Nav_head,
   Logo_con,
+  Main_content,
 } from "./layout_styles"
 
 const Layout = props => {
   // STATE
   const [menuOpen, setMenuOpen] = useState(false)
+  const [firstLoad, setFirstLoad] = useState(true)
+
+  // CHANGE menuOpen DEPENDING ON SCREEN SIZE
+  // ! LOOOK INTO PERFORMANCE / REDUCER
+  useEffect(() => {
+    const s = 1024
+
+    if (window.innerWidth >= s && firstLoad === true) {
+      setMenuOpen(true)
+      setFirstLoad(false)
+    }
+    window.addEventListener("resize", handleResize)
+    function handleResize() {
+      if (window.innerWidth >= s) {
+        setMenuOpen(true)
+      }
+      if (window.innerWidth < s) {
+        setMenuOpen(false)
+      }
+    }
+  })
 
   const toggleMenuOpen = e => {
     e.preventDefault()
@@ -97,7 +121,7 @@ const Layout = props => {
               </li>
             </ul>
           </Nav>
-          <main>{props.children}</main>
+          <Main_content>{props.children}</Main_content>
         </Bottom_container>
       </Wrapper>
     </div>

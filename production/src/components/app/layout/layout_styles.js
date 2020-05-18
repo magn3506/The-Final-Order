@@ -34,10 +34,9 @@ export const Top_container = styled.div`
   }
 
   .menu {
-
     @media ${breakpoints.minDog} {
-    background-color: ${colors.super_dark_purple};
-  }
+      background-color: ${colors.super_dark_purple};
+    }
     .logo {
       display: none;
     }
@@ -51,7 +50,7 @@ export const Top_container = styled.div`
       width: 260px;
       display: flex;
       justify-content: space-between;
-      background-color: ${colors.super_dark_purple}
+      background-color: ${colors.super_dark_purple};
       position: relative;
       /* ! MAKE EFFECTS GLOBALS*/
       box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.75);
@@ -72,11 +71,6 @@ export const Page_title = styled.div`
     ${bodyText.largeTextReg_24px}
   }
 `
-export const Bottom_container = styled.div`
-  padding-top: 60px;
-  display: flex;
-  width: 100%;
-`
 
 export const Nav = styled.nav`
   margin-top: -60px;
@@ -86,6 +80,12 @@ export const Nav = styled.nav`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
   display: none;
+
+  @media ${breakpoints.minDog} {
+    position: relative;
+    width: 260px;
+    background-color: rgba(0, 0, 0, 0);
+  }
 
   ${props =>
     props.menuOpen
@@ -101,6 +101,11 @@ export const Nav = styled.nav`
     color: white;
     background-color: ${colors.super_dark_purple};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    @media ${breakpoints.minDog} {
+      position: fixed;
+      top: 60px;
+    }
 
     /* ANIMATION */
     ${props =>
@@ -157,6 +162,10 @@ export const Nav_head = styled.div`
   padding: 0px 15px;
   justify-content: space-between;
 
+  @media ${breakpoints.minDog} {
+    position: fixed;
+  }
+
   /* ANIMATION */
   ${props =>
     props.menuOpen
@@ -196,4 +205,17 @@ export const Nav_head = styled.div`
 export const Logo_con = styled.div`
   width: 150px;
   transform: translateY(6px);
+`
+
+export const Bottom_container = styled.div`
+  padding-top: 60px;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+`
+
+export const Main_content = styled.main`
+  border: 4px solid green;
+  max-width: 850px;
+  margin: 0 auto;
 `
