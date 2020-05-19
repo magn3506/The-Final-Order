@@ -15,7 +15,7 @@ const googleAlert = () => {
 const Login = ({isShowing, hide, showSignup}) => isShowing ? ReactDOM.createPortal(
     <React.Fragment>
         <Wrapper>
-            <Form action={local_server_path + "/private/api/users/login.php"} method="POST">
+            <Form onsubmit="event.preventDefault()" action={local_server_path + "/private/api/users/login.php"} method="POST">
             <Title>Login</Title>
             <GoogleButton onClick={googleAlert}>
                 <FcGoogle class="icon" color="#b000b5" size="1.5em" /> Sign up with Google
@@ -34,26 +34,3 @@ const Login = ({isShowing, hide, showSignup}) => isShowing ? ReactDOM.createPort
     ) : null;
 
 export default Login;
-
-
-/* // https://upmostly.com/tutorials/modal-components-react-custom-hooks - createPortal reference
-const Login = ({isShowing, hide}) => isShowing ? ReactDOM.createPortal(
-    <React.Fragment>
-        <Wrapper>
-            <Form>
-            <Title>Login</Title>
-            <GoogleButton onClick={googleAlert}>
-                <FcGoogle class="icon" color="#b000b5" size="1.5em" /> Sign up with Google
-            </GoogleButton>
-            <Text>Or</Text>
-            <Input placeholder="Email" name="email" type="text"></Input>
-            <Input placeholder="Password" name="password" type="password"></Input>
-            <Button name="Login"/>
-            <Link linkColor="#8C4A6E" href="www.google.com">Forgot your password?</Link>
-            <Text>Not a member yet? <Link href="www.google.com">Sign up</Link></Text>
-            <CloseIcon onClick={hide} color={colors.orange} size="1.5em"/>
-            </Form>
-        </Wrapper>   
-        <Overlay />      
-    </React.Fragment>, document.body
-    ) : null; */
