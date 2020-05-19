@@ -1,22 +1,20 @@
 import React from "react";
-
 import Test from "../components/homepage/atoms/test"
-import useModal from "../functions/useModal";
+import useToggleBool from "../hooks/useToggleBool";
 import Login from "../components/homepage/molecules/login_form";
 import Signup from "../components/homepage/molecules/signup_form";
 
-
 const IndexPage = () => {
-  const [isShowingSignup, toggleSignup] = useModal();
-  const [isShowingLogin, toggleLogin] = useModal();
+  const [isShowingSignup, toggleSignup] = useToggleBool(false);
+  const [isShowingLogin, toggleLogin] = useToggleBool(false);
 
   const showSignup = () => {
-    toggleSignup();
-    toggleLogin();
+    toggleSignup(true);
+    toggleLogin(false);
   }
   const showLogin = () => {
-    toggleLogin();
-    toggleSignup();
+    toggleLogin(true);
+    toggleSignup(false);
   }
 
   return(
@@ -31,4 +29,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default IndexPage;
