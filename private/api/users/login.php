@@ -8,11 +8,11 @@ if(isset($_POST['email']) && isset($_POST['password'])){
     foreach($jData as $jUser){ 
         if($jUser->email == $sUserEmail && $jUser->password == $sUserPassword){
              session_start();
-             $_SESSION['sEmail'] = $sUserEmail;
+             $cookie_name = "email";
+             $cookie_value = $sUserEmail;
+             setcookie($cookie_name, $cookie_value, "/");
+             //echo "Cookie: " . $_COOKIE['sEmail'];
              echo json_encode($jUser);
-             
         }
     }
-    // //not found a match
-    // header('Location: http://localhost:8000');
 }

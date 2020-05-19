@@ -27,7 +27,8 @@ try{
         $q->execute();
     
         http_response_code(200);
-        echo 'User ID: '.$db->lastInsertId();
+        //echo 'User ID: '.$db->lastInsertId();
+        header('Location: http://localhost:8000/');
     }else{
         echo "Missing fields";
     }

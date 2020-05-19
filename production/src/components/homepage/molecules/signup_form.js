@@ -19,7 +19,7 @@ const Signup = ({isShowing, hide, showLogin}) => isShowing ? ReactDOM.createPort
             <Form action={local_server_path + "/private/api/users/create-user.php"} method="POST">
                 <Title>Sign up for free</Title>
                 <GoogleButton onClick={googleAlert}>
-                    <FcGoogle class="icon" color="#b000b5" size="1.5em" /> Sign up with Google
+                    <FcGoogle className="icon" color="#b000b5" size="1.5em" /> Sign up with Google
                 </GoogleButton>
                 <Text>Or</Text>
                 <Input placeholder="Username" name="user_name" type="text"></Input>

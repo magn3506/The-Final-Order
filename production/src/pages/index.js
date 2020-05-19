@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Test from "../components/homepage/atoms/test"
 import useToggleBool from "../hooks/useToggleBool";
 import Login from "../components/homepage/molecules/login_form";
@@ -16,6 +16,11 @@ const IndexPage = () => {
     toggleLogin(true);
     toggleSignup(false);
   }
+
+  useEffect(() => {
+    let cookieValue = document.cookie;
+    console.log('Cookie: ' + cookieValue);
+  }, []);
 
   return(
     <div>
