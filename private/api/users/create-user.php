@@ -7,6 +7,14 @@ try{
         $password = $_POST['password'];
         $user_name = $_POST['user_name'];
     
+    //Validation
+    require_once('../validation/validation.php');  
+    if(!isStringValid($user_name, 2, 25)){
+        echo 'Validation Error';
+        exit();
+    }
+
+    
         //Prepare SQL query
         $q = $db->prepare('INSERT INTO users VALUES(null, :email, :password, :user_name)');
     

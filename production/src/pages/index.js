@@ -7,11 +7,8 @@ import Signup from "../components/homepage/molecules/signup_form";
 
 
 const IndexPage = () => {
-  const [isShowing, toggle] = useModal();
   const [isShowingSignup, toggleSignup] = useModal();
   const [isShowingLogin, toggleLogin] = useModal();
-
-  // const [isRegistered, setIsRegistered] = useState(false);
 
   const showSignup = () => {
     toggleSignup();
