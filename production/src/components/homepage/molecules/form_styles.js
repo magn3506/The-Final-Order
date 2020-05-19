@@ -51,7 +51,7 @@ export const Link = styled.a`
 color: ${props => props.linkColor || colors.sand};
 ${bodyText.normalTextBold_16px}
 text-decoration: none;
-/* padding: ${props => props.padding == 'true' ? '12px 0px 12px 0px' : '0'}; Find solution*/
+/* padding: ${props => props.padding === 'true' ? '12px 0px 12px 0px' : '0'}; Find solution*/
 padding: 12px 0 12px 0;
 cursor: pointer;
 &:hover {

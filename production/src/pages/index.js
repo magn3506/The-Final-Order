@@ -1,30 +1,35 @@
-import React, {useState} from "react";
+import React from "react";
 
 import MyComponent from "../components/homepage/atoms/atoms";
-import UserForm from "../components/homepage/molecules/userForm";
 import useModal from "../functions/useModal";
+import Login from "../components/homepage/molecules/login_form";
+import Signup from "../components/homepage/molecules/signup_form";
 
 
 const IndexPage = () => {
-  const {isShowing, toggle} = useModal();
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isShowing, toggle] = useModal();
+  const [isShowingSignup, toggleSignup] = useModal();
+  const [isShowingLogin, toggleLogin] = useModal();
 
-  const isRegisteredEventHandler = () => {
-    setIsRegistered(true);
-    toggle();
+  // const [isRegistered, setIsRegistered] = useState(false);
+
+  const showSignup = () => {
+    toggleSignup();
+    toggleLogin();
   }
-  const isNotRegisteredEventHandler = () => {
-    setIsRegistered(false);
-    toggle();
+  const showLogin = () => {
+    toggleLogin();
+    toggleSignup();
   }
 
   return(
     <div>
       <h1>Landing Pages</h1>
       <MyComponent></MyComponent>
-      <UserForm isRegisteredEventHandler={isRegisteredEventHandler} isNotRegisteredEventHandler={isNotRegisteredEventHandler} isRegistered={isRegistered} isShowing={isShowing} hide={toggle}/>
-      <button onClick={isRegisteredEventHandler}>Signup</button>
-      <button onClick={isNotRegisteredEventHandler}>Login</button>
+      <Login isShowing={isShowingLogin} showSignup={showSignup} hide={toggleLogin}/>
+      <Signup isShowing={isShowingSignup} showLogin={showLogin} hide={toggleSignup}/>
+      <button onClick={toggleSignup}>Signup</button>
+      <button onClick={toggleLogin}>Login</button>
     </div>
   )
 }
