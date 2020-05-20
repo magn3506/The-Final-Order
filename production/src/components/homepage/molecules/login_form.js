@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import ReactDOM from "react-dom";
+import { navigate } from "gatsby";
 
 import {colors} from "../../../styles/global/colors";
 import { FcGoogle } from "react-icons/fc";
@@ -12,7 +13,6 @@ const googleAlert = () => {
     alert("Not implemented yet :-)");
 }
 
-// https://upmostly.com/tutorials/modal-components-react-custom-hooks - createPortal reference
 const Login = ({isShowing, hide, showSignup}) => {
     const form = useRef(null);
 
@@ -27,14 +27,13 @@ const Login = ({isShowing, hide, showSignup}) => {
         .then(response => {
             console.log("Success:", response)
             document.cookie = "email=" + response.email;
-            document.cookie = "user=";
             let cookieValue = document.cookie;
             console.log('Cookie: ' + cookieValue);
-        }); 
+            navigate("/404");
+        });
     }
-    
+    // https://upmostly.com/tutorials/modal-components-react-custom-hooks - createPortal reference
     return (
-        
         isShowing ? ReactDOM.createPortal(
         <React.Fragment>
             <Wrapper>
@@ -51,7 +50,7 @@ const Login = ({isShowing, hide, showSignup}) => {
                 <Text>Not a member yet? <Link onClick={showSignup}>Sign up</Link></Text>
                 <CloseIcon onClick={hide} color={colors.orange} size="1.5em"/>
                 </Form>
-            </Wrapper> 
+            </Wrapper>
             <Overlay /> 
             </React.Fragment>, document.body
         ) : null

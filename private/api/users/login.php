@@ -7,11 +7,11 @@ if(isset($_POST['email']) && isset($_POST['password'])){
     $sUserPassword = $_POST['password'];
     foreach($jData as $jUser){ 
         if($jUser->email == $sUserEmail && $jUser->password == $sUserPassword){
-             session_start();
+             //Create cookie - currently does not work - fix needed
              $cookie_name = "email";
              $cookie_value = $sUserEmail;
              setcookie($cookie_name, $cookie_value, "/");
-             //echo "Cookie: " . $_COOKIE['sEmail'];
+             
              echo json_encode($jUser);
         }
     }

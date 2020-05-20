@@ -27,8 +27,17 @@ try{
         $q->execute();
     
         http_response_code(200);
-        //echo 'User ID: '.$db->lastInsertId();
-        header('Location: http://localhost:8000/');
+
+        //Create cookie - currently does not work - fix needed
+        $cookie_name = "email";
+        $cookie_value = $email;
+        setcookie($cookie_name, $cookie_value, 'http://localhost:8000/404');
+
+        $jUser = new stdClass();
+        $jUser->email = $email;
+        $jUser->userName = $user_name;
+        $jUser->password = $password;
+        echo json_encode($jUser);
     }else{
         echo "Missing fields";
     }
