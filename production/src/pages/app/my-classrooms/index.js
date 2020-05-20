@@ -13,8 +13,15 @@ const My_classrooms = () => {
   return (
     <Layout>
       <Box>
-        HELhaehrhaehrhaehrhaehrhafe eerhaherage kehrkjaeg
-        hrkjahekrhakehkhjarehrakjehrjkaehrkhakehrkajehrkjaehkrhaekhrkaehrkeahrkjaehkjLO
+        Maecenas dignissim, neque ut consequat consequat, nibh elit vulputate
+        velit, pulvinar tristique erat quam eget neque. Duis eget diam risus.
+        Maecenas ornare odio sit amet ultrices sagittis. Duis scelerisque ipsum
+        sit amet nisi lobortis, eu malesuada neque aliquam. Aenean nec pulvinar
+        odio, quis dapibus nisl. Proin porta blandit turpis at varius.
+        Pellentesque accumsan mauris ac sem imperdiet, a vestibulum ante
+        laoreet. Nam sed vehicula orci. Ut nec magna nec eros tincidunt
+        ultricies eget ac metus. Phasellus at justo in lacus accumsan pretium.
+        Vivamus non ligula leo.
       </Box>
     </Layout>
   )

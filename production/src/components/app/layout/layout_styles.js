@@ -219,3 +219,120 @@ export const Main_content = styled.main`
   max-width: 850px;
   margin: 0 auto;
 `
+
+export const Profile_image = styled.div`
+  width: 35px;
+  height: 35px;
+  background-color: ${colors.orange};
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s cubic-bezier(0.96, 0.04, 0.18, 1.04);
+
+  /* ANIMATION */
+  ${props =>
+    props.profileOpen
+      ? css`
+          transform: rotate(145deg);
+          img {
+            transform: rotate(-145deg);
+          }
+        `
+      : css`
+          transform: rotate(0deg);
+          img {
+            transform: rotate(0deg);
+          }
+        `}
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 2.5px 2.5px;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .triangle {
+    position: relative;
+    top: -9px;
+    left: 16px;
+    transform: rotate(-33deg);
+  }
+`
+
+export const Profile_menu = styled.div`
+  width: 150px;
+  height: 0px;
+  overflow: hidden;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  background-color: ${colors.super_dark_purple};
+
+  right: 0;
+  top: 60px;
+
+  ul {
+    width: 100%;
+    li {
+      width: 100%;
+      height: 50px;
+      background-color: ${colors.dark_dark_purple};
+      color: ${colors.white};
+      list-style-type: none;
+      padding: 10px 10px;
+      display: flex;
+      border-bottom: 1px solid ${colors.purple};
+      @media ${breakpoints.minDog} {
+        background-color: ${colors.super_dark_purple};
+      }
+      ${bodyText.normalTextReg_16px}
+
+      svg {
+        align-self: center;
+      }
+
+      .txt {
+        margin-left: 10px;
+        align-self: center;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: ${colors.sand};
+        color: ${colors.black};
+        svg {
+          fill: ${colors.black};
+        }
+      }
+    }
+  }
+
+  ${props =>
+    props.profileOpen
+      ? css`
+          animation: in 0.2s forwards cubic-bezier(0.96, 0.04, 0.18, 1.04);
+
+          @keyframes in {
+            from {
+              height: 0px;
+            }
+            to {
+              height: 100px;
+            }
+          }
+        `
+      : css`
+          animation: out 0.2s forwards cubic-bezier(0.96, 0.04, 0.18, 1.04);
+
+          @keyframes out {
+            from {
+              height: 100px;
+            }
+            to {
+              height: 0px;
+            }
+          }
+        `}
+`

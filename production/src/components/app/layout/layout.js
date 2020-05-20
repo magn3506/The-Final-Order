@@ -15,6 +15,9 @@ import { FaRegUserCircle } from "react-icons/fa"
 import { FiSearch } from "react-icons/fi"
 import { MdClose } from "react-icons/md"
 import { BsQuestionCircle } from "react-icons/bs"
+import { GoArrowSmallRight } from "react-icons/go"
+import { AiOutlineLogout } from "react-icons/ai"
+import { FaUserNinja } from "react-icons/fa"
 // IMPORT STYLED COMPONENTS
 import {
   Wrapper,
@@ -25,11 +28,15 @@ import {
   Nav_head,
   Logo_con,
   Main_content,
+  Profile_image,
+  Profile_menu,
 } from "./layout_styles"
 
 const Layout = props => {
   // STATE
   const [menuOpen, setMenuOpen] = useState(false)
+  const [profileOpen, setProfileOpen] = useState(false)
+
   const [firstLoad, setFirstLoad] = useState(true)
 
   // CHANGE menuOpen DEPENDING ON SCREEN SIZE
@@ -57,6 +64,11 @@ const Layout = props => {
     setMenuOpen(!menuOpen)
   }
 
+  const toggleProfileOpen = e => {
+    e.preventDefault()
+    setProfileOpen(!profileOpen)
+  }
+
   return (
     <div>
       <GlobalStyle />
@@ -76,8 +88,29 @@ const Layout = props => {
           <div>
             <Page_title>My ClassRooms</Page_title>
           </div>
-          <div>
-            <FaRegUserCircle color={colors.orange} size="30px" />
+          <div onClick={e => toggleProfileOpen(e)}>
+            <Profile_menu profileOpen={profileOpen}>
+              <ul>
+                <li>
+                  <FaUserNinja color={colors.orange} size="20px" />
+                  <div className="txt">Profile</div>
+                </li>
+
+                <li>
+                  <AiOutlineLogout color={colors.orange} size="25px" />
+                  <div className="txt">Log out</div>
+                </li>
+              </ul>
+            </Profile_menu>
+            <Profile_image profileOpen={profileOpen}>
+              <img
+                src="https://www.placecage.com/gif/30/30"
+                alt="profile image"
+              />
+              <div className="triangle">
+                <GoArrowSmallRight color={colors.orange} size="30px" />
+              </div>
+            </Profile_image>
           </div>
         </Top_container>
         <Bottom_container>
