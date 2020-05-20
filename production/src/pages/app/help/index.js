@@ -11,7 +11,7 @@ const Help_page = () => {
   `
 
   return (
-    <Layout>
+    <Layout page_title="Help">
       <Box>HELP PAGE</Box>
     </Layout>
   )

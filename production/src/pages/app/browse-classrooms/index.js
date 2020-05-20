@@ -11,7 +11,7 @@ const Browse_classrooms = () => {
   `
 
   return (
-    <Layout>
+    <Layout page_title="Browse ClassRooms">
       <Box>Browse Classooms</Box>
     </Layout>
   )

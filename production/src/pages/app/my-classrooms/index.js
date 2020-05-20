@@ -11,7 +11,7 @@ const My_classrooms = () => {
   `
 
   return (
-    <Layout>
+    <Layout page_title="My ClassRooms">
       <Box>
         Maecenas dignissim, neque ut consequat consequat, nibh elit vulputate
         velit, pulvinar tristique erat quam eget neque. Duis eget diam risus.

@@ -3,7 +3,7 @@
   "private": true,
   "description": "This is a concept prototype application for classrooms.com",
   "version": "0.1.0",
-  "author": "Mognas Vagn Jensen & Jakob Falkenberg",
+  "author": "Magnus Vagn Jensen & Jakob Falkenberg",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.21.22",
