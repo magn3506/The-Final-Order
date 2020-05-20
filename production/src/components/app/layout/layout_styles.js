@@ -1,10 +1,11 @@
 import styled, { css } from "styled-components"
 // GLOBALS
-import { size, breakpoints } from "../../../styles/global/breakpoints"
+import { breakpoints } from "../../../styles/global/breakpoints"
 import { colors } from "../../../styles/global/colors"
-import { headings, bodyText, caption } from "../../../styles/global/typography"
+import { bodyText } from "../../../styles/global/typography"
 
-// LAYOUT
+// TODO: CLEAN UP
+
 export const Wrapper = styled.div``
 
 export const Top_container = styled.div`

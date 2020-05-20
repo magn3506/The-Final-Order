@@ -41,16 +41,18 @@ const Layout = props => {
   useEffect(() => {
     const s = 1024
 
+    // Makes sure menu is OPEN when loading page > s vw.
     if (window.innerWidth >= s && firstLoad === true) {
       setMenuOpen(true)
       setFirstLoad(false)
     }
-
+    // Makes sure menu is OPEN when loading page < s vw.
     if (window.innerWidth < s && firstLoad === true) {
       setMenuOpen(false)
       setFirstLoad(false)
     }
 
+    // ON WINDOW RESIZE OPEN MENU IN LAOPTOP
     window.addEventListener("resize", handleResize)
     function handleResize() {
       if (window.innerWidth >= s) {
@@ -67,18 +69,20 @@ const Layout = props => {
     e.preventDefault()
     setMenuOpen(!menuOpen)
   }
-
   const toggleProfileOpen = e => {
     e.preventDefault()
     setProfileOpen(!profileOpen)
   }
 
+  // STYLED FOR ACTIVE LINKS
+  // TODO: SEE IF CAN BE MOVED INTO STYLES.js
   const active_link_style = {
     backgroundColor: `${colors.purple}`,
     borderLeft: `5px solid ${colors.sand}`,
     paddingLeft: "10px",
   }
 
+  // TODO: CLEAN UP. MOVE COMPONENT INTO SEPERATE FILES ? MAYBE
   return (
     <div>
       <GlobalStyle />
