@@ -6,6 +6,7 @@ import Login from "../components/homepage/molecules/login_form";
 import Signup from "../components/homepage/molecules/signup_form";
 import styled from "styled-components";
 import {colors} from "../styles/global/colors";
+import {breakpoints} from "../styles/global/breakpoints";
 import {headings, bodyText} from "../styles/global/typography";
 import { Helmet } from "react-helmet";
 import fav_icon from "../assets/logo/logo_3";
@@ -31,8 +32,12 @@ align-items: center;
 const TitleCon = styled.div`
 width: 100%;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 justify-content: center;
+
+@media ${breakpoints.minDog} {
+  flex-direction: row;
+}
 `;
 
 const TitlePart1 = styled.h1`
@@ -63,11 +68,15 @@ ${bodyText.normalTextBold_16px};
 `;
 
 const HeaderText = styled.p`
-width: 500px;
+width: 300px;
 text-align: center;
 margin: 25px;
 color: ${colors.sand};
 ${bodyText.normalTextReg_16px};
+
+@media ${breakpoints.minDog} {
+  width: 500px;
+}
 `;
 
 const IndexPage = () => {
