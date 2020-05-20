@@ -4,14 +4,10 @@ import { Link } from "gatsby"
 import Logo_2 from "../../../assets/logo/logo_2"
 import Logo_3 from "../../../assets/logo/logo_3"
 // HOOKS
-import useWindowSize from "../../../hooks/useWindowSize"
 // GLOBALS
-import { size, breakpoints } from "../../../styles/global/breakpoints"
 import { colors } from "../../../styles/global/colors"
-import { headings, bodyText, caption } from "../../../styles/global/typography"
 // ICONS
 import { RiMenu2Line } from "react-icons/ri"
-import { FaRegUserCircle } from "react-icons/fa"
 import { FiSearch } from "react-icons/fi"
 import { MdClose } from "react-icons/md"
 import { BsQuestionCircle } from "react-icons/bs"
@@ -34,11 +30,12 @@ import {
 
 const Layout = props => {
   // STATE
-  const [menuOpen, setMenuOpen] = useState(false)
+  // ! AFTER MERGE  USE JAKOBS HOOK
+  const [menuOpen, setMenuOpen] = useState(false) // IS MENU OPEN OR CLOSE
   const [profileOpen, setProfileOpen] = useState(false)
 
+  // WHEN FIRST LOADED MAKE SURE MENU IS OPEN WHEN VW > 1024
   const [firstLoad, setFirstLoad] = useState(true)
-
   // CHANGE menuOpen DEPENDING ON SCREEN SIZE
   // ! LOOOK INTO PERFORMANCE / REDUCER
   useEffect(() => {
@@ -59,6 +56,7 @@ const Layout = props => {
     }
   })
 
+  // TGGLE MENU OPEN / CLOSE
   const toggleMenuOpen = e => {
     e.preventDefault()
     setMenuOpen(!menuOpen)
@@ -129,7 +127,7 @@ const Layout = props => {
             </Nav_head>
             <ul>
               <li>
-                <Link to="#">
+                <Link to="app/my-classrooms/">
                   <div className="icon">
                     <Logo_3 />
                   </div>
@@ -137,7 +135,7 @@ const Layout = props => {
                 </Link>
               </li>
               <li>
-                <Link to="#">
+                <Link to="app/browse-classrooms/">
                   <div className="icon">
                     <FiSearch color={colors.orange} size="100%" />
                   </div>

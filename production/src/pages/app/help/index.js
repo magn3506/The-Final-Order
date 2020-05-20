@@ -2,7 +2,7 @@ import React from "react"
 import Layout from "../../../components/app/layout/layout"
 import styled from "styled-components"
 
-const Browse_classrooms = () => {
+const Help_page = () => {
   const Box = styled.div`
     height: 2000px;
     background-color: grey;
@@ -12,9 +12,9 @@ const Browse_classrooms = () => {
 
   return (
     <Layout>
-      <Box>Browse Classooms</Box>
+      <Box>HELP PAGE</Box>
     </Layout>
   )
 }
 
-export default Browse_classrooms
+export default Help_page
