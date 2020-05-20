@@ -31,7 +31,7 @@ import {
 const Layout = props => {
   // STATE
   // ! AFTER MERGE  USE JAKOBS HOOK
-  const [menuOpen, setMenuOpen] = useState(false) // IS MENU OPEN OR CLOSE
+  const [menuOpen, setMenuOpen] = useState(true) // IS MENU OPEN OR CLOSE
   const [profileOpen, setProfileOpen] = useState(false)
 
   // WHEN FIRST LOADED MAKE SURE MENU IS OPEN WHEN VW > 1024
@@ -45,6 +45,12 @@ const Layout = props => {
       setMenuOpen(true)
       setFirstLoad(false)
     }
+
+    if (window.innerWidth < s && firstLoad === true) {
+      setMenuOpen(false)
+      setFirstLoad(false)
+    }
+
     window.addEventListener("resize", handleResize)
     function handleResize() {
       if (window.innerWidth >= s) {
@@ -65,6 +71,12 @@ const Layout = props => {
   const toggleProfileOpen = e => {
     e.preventDefault()
     setProfileOpen(!profileOpen)
+  }
+
+  const active_link_style = {
+    backgroundColor: `${colors.purple}`,
+    borderLeft: `5px solid ${colors.sand}`,
+    paddingLeft: "10px",
   }
 
   return (
@@ -127,7 +139,7 @@ const Layout = props => {
             </Nav_head>
             <ul>
               <li>
-                <Link to="app/my-classrooms/">
+                <Link to="app/my-classrooms/" activeStyle={active_link_style}>
                   <div className="icon">
                     <Logo_3 />
                   </div>
@@ -135,7 +147,10 @@ const Layout = props => {
                 </Link>
               </li>
               <li>
-                <Link to="app/browse-classrooms/">
+                <Link
+                  to="app/browse-classrooms/"
+                  activeStyle={active_link_style}
+                >
                   <div className="icon">
                     <FiSearch color={colors.orange} size="100%" />
                   </div>
@@ -143,7 +158,7 @@ const Layout = props => {
                 </Link>
               </li>
               <li>
-                <Link to="#">
+                <Link to="app/help/" activeStyle={active_link_style}>
                   <div className="icon">
                     <BsQuestionCircle color={colors.orange} size="100%" />
                   </div>

@@ -75,24 +75,17 @@ export const Page_title = styled.div`
 export const Nav = styled.nav`
   margin-top: -60px;
   position: fixed;
-  z-index: 8888;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
-  display: none;
+
+  display: ${props => (props.menuOpen ? "block" : "none")};
 
   @media ${breakpoints.minDog} {
     position: relative;
     width: 260px;
     background-color: rgba(0, 0, 0, 0);
   }
-
-  ${props =>
-    props.menuOpen
-      ? css`
-          display: block;
-        `
-      : css``}
 
   ul {
     width: 260px;
@@ -107,24 +100,6 @@ export const Nav = styled.nav`
       top: 60px;
     }
 
-    /* ANIMATION */
-    ${props =>
-      props.menuOpen
-        ? css`
-            animation: in 0.3s ease-in-out;
-            animation-timing-function: cubic-bezier(1, 0.145, 0.26, 0.98);
-
-            @keyframes in {
-              from {
-                transform: translateX(-260px);
-              }
-              to {
-                transform: translateX(0px);
-              }
-            }
-          `
-        : css``}
-
     li {
       a {
         height: 50px;
@@ -137,6 +112,11 @@ export const Nav = styled.nav`
         &:hover {
           cursor: pointer;
           color: ${colors.sand};
+        }
+
+        .active {
+          background-color: yellow;
+          border: 1px solid red;
         }
 
         .icon {
@@ -165,29 +145,6 @@ export const Nav_head = styled.div`
   @media ${breakpoints.minDog} {
     position: fixed;
   }
-
-  /* ANIMATION */
-  ${props =>
-    props.menuOpen
-      ? css`
-          animation: in 0.3s ease-in-out;
-          animation-timing-function: cubic-bezier(1, 0.145, 0.26, 0.98);
-
-          @keyframes in {
-            from {
-              transform: translateX(-260px);
-            }
-            to {
-              transform: translateX(0px);
-            }
-          }
-
-          @media ${breakpoints.minDog} {
-            transform: translateX(0px);
-            animation: in 0s;
-          }
-        `
-      : css``}
 
   & > div {
     align-self: center;
@@ -264,7 +221,7 @@ export const Profile_image = styled.div`
 
 export const Profile_menu = styled.div`
   width: 150px;
-  height: 0px;
+  height: 100px;
   overflow: hidden;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -272,6 +229,8 @@ export const Profile_menu = styled.div`
 
   right: 0;
   top: 60px;
+
+  display: ${props => (props.profileOpen ? "block" : "none")};
 
   ul {
     width: 100%;
@@ -308,33 +267,4 @@ export const Profile_menu = styled.div`
       }
     }
   }
-
-  ${props =>
-    props.profileOpen
-      ? css`
-          animation: profile_In 0.2s forwards
-            cubic-bezier(0.96, 0.04, 0.18, 1.04);
-
-          @keyframes profile_In {
-            from {
-              height: 0px;
-            }
-            to {
-              height: 100px;
-            }
-          }
-        `
-      : css`
-          animation: profile_Out 0.2s forwards
-            cubic-bezier(0.96, 0.04, 0.18, 1.04);
-
-          @keyframes profile_Out {
-            from {
-              height: 100px;
-            }
-            to {
-              height: 0px;
-            }
-          }
-        `}
 `
