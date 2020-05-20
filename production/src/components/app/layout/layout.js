@@ -3,6 +3,9 @@ import { GlobalStyle } from "../../../styles/global/globalstyles"
 import { Link } from "gatsby"
 import Logo_2 from "../../../assets/logo/logo_2"
 import Logo_3 from "../../../assets/logo/logo_3"
+import fav_icon from "../../../assets/logo/logo_3.png"
+// REACT HELMET
+import { Helmet } from "react-helmet"
 // HOOKS
 // GLOBALS
 import { colors } from "../../../styles/global/colors"
@@ -85,6 +88,11 @@ const Layout = props => {
   // TODO: CLEAN UP. MOVE COMPONENT INTO SEPERATE FILES ? MAYBE
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{props.page_title}</title>
+        <link rel="icon" type="image/png" href={fav_icon} />
+      </Helmet>
       <GlobalStyle />
       <Wrapper>
         <Top_container>
