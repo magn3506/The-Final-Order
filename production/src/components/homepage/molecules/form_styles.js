@@ -7,7 +7,10 @@ export const Wrapper = styled.div`
 width: 100%;
 display: flex;
 justify-content: center;
-
+position: fixed;
+z-index: 3;
+top: 20%;
+left: 0;
 `;
 
 export const Overlay = styled.div`

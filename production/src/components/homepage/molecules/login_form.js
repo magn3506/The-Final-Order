@@ -29,7 +29,7 @@ const Login = ({isShowing, hide, showSignup}) => {
             document.cookie = "email=" + response.email;
             let cookieValue = document.cookie;
             console.log('Cookie: ' + cookieValue);
-            navigate("/404");
+            navigate("/app/my-classrooms");
         });
     }
     // https://upmostly.com/tutorials/modal-components-react-custom-hooks - createPortal reference
