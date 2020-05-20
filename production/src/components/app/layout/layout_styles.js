@@ -312,9 +312,10 @@ export const Profile_menu = styled.div`
   ${props =>
     props.profileOpen
       ? css`
-          animation: in 0.2s forwards cubic-bezier(0.96, 0.04, 0.18, 1.04);
+          animation: profile_In 0.2s forwards
+            cubic-bezier(0.96, 0.04, 0.18, 1.04);
 
-          @keyframes in {
+          @keyframes profile_In {
             from {
               height: 0px;
             }
@@ -324,9 +325,10 @@ export const Profile_menu = styled.div`
           }
         `
       : css`
-          animation: out 0.2s forwards cubic-bezier(0.96, 0.04, 0.18, 1.04);
+          animation: profile_Out 0.2s forwards
+            cubic-bezier(0.96, 0.04, 0.18, 1.04);
 
-          @keyframes out {
+          @keyframes profile_Out {
             from {
               height: 100px;
             }
