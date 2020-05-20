@@ -32,7 +32,7 @@ const Signup = ({isShowing, hide, showLogin}) => {
             document.cookie = "email=" + response.email;
             let cookieValue = document.cookie;
             console.log('Cookie: ' + cookieValue);
-              navigate('404');
+            navigate("/app/my-classrooms");
         });
     }
 

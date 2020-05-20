@@ -7,6 +7,10 @@ import fav_icon from "../../../assets/logo/logo_3.png"
 // REACT HELMET
 import { Helmet } from "react-helmet"
 // HOOKS
+
+// FUNCTIONS
+import {logoutUser} from "../../../functions/logout";
+import {verifyUser} from "../../../functions/verifyUser";
 // GLOBALS
 import { colors } from "../../../styles/global/colors"
 // ICONS
@@ -42,6 +46,7 @@ const Layout = props => {
   // CHANGE menuOpen DEPENDING ON SCREEN SIZE
   // ! LOOOK INTO PERFORMANCE / REDUCER
   useEffect(() => {
+    verifyUser();
     const s = 1024
 
     // Makes sure menu is OPEN when loading page > s vw.
@@ -118,7 +123,7 @@ const Layout = props => {
                   <div className="txt">Profile</div>
                 </li>
 
-                <li>
+                <li onClick={logoutUser}>
                   <AiOutlineLogout color={colors.orange} size="25px" />
                   <div className="txt">Log out</div>
                 </li>
