@@ -1,28 +1,82 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Layout from "../../../components/app/layout/layout"
-import styled from "styled-components"
+// ICONS
+import Create_classroom_icon from "../../../assets/icons/create_classroom_icon.png"
+
+// HOOKS
+
+// IMPORT STYLED COMPONENTS
+import {
+  Content_container,
+  Header,
+  List,
+  Btn,
+  Btn_con,
+  Create_CL_Btn_mobile,
+} from "./my_classrooms_styles"
 
 const My_classrooms = () => {
-  const Box = styled.div`
-    height: 2000px;
-    background-color: grey;
-    margin: 0 auto;
-    border: 1px solid red;
-  `
+  const [isFollowedRoomsActive, setIsFollowedRoomsActive] = useState(true)
+  const [isOwnedRoomsActive, setIsOwnedRoomsActive] = useState(false)
+
+  const handleSetFollowdActive = e => {
+    e.preventDefault()
+    setIsFollowedRoomsActive(true)
+    setIsOwnedRoomsActive(false)
+  }
+
+  const handleSetOwnedActive = e => {
+    e.preventDefault()
+    setIsOwnedRoomsActive(true)
+    setIsFollowedRoomsActive(false)
+  }
 
   return (
     <Layout page_title="My ClassRooms">
-      <Box>
-        Maecenas dignissim, neque ut consequat consequat, nibh elit vulputate
-        velit, pulvinar tristique erat quam eget neque. Duis eget diam risus.
-        Maecenas ornare odio sit amet ultrices sagittis. Duis scelerisque ipsum
-        sit amet nisi lobortis, eu malesuada neque aliquam. Aenean nec pulvinar
-        odio, quis dapibus nisl. Proin porta blandit turpis at varius.
-        Pellentesque accumsan mauris ac sem imperdiet, a vestibulum ante
-        laoreet. Nam sed vehicula orci. Ut nec magna nec eros tincidunt
-        ultricies eget ac metus. Phasellus at justo in lacus accumsan pretium.
-        Vivamus non ligula leo.
-      </Box>
+      <Content_container>
+        <Header>
+          <Btn_con>
+            <Btn
+              isActive={isFollowedRoomsActive}
+              onClick={e => handleSetFollowdActive(e)}
+            >
+              Followed Rooms
+            </Btn>
+            <Btn
+              isActive={isOwnedRoomsActive}
+              onClick={e => handleSetOwnedActive(e)}
+            >
+              Owned Rooms
+            </Btn>
+          </Btn_con>
+          <Create_CL_Btn_mobile>
+            <img src={Create_classroom_icon} alt="create classroom icon" />
+          </Create_CL_Btn_mobile>
+        </Header>
+        {isFollowedRoomsActive ? (
+          <List>
+            <li>THIS IS A FOLLOWED ROOM</li>
+            <li>THIS IS A FOLLOWED ROOM</li>
+            <li>THIS IS A FOLLOWED ROOM</li>
+            <li>THIS IS A FOLLOWED ROOM</li>
+            <li>THIS IS A FOLLOWED ROOM</li>
+            <li>THIS IS A FOLLOWED ROOM</li>
+            <li>THIS IS A FOLLOWED ROOM</li>
+            <li>THIS IS A FOLLOWED ROOM</li>
+          </List>
+        ) : (
+          <List>
+            <li>THIS IS An Owned ROOM</li>
+            <li>THIS IS An Owned ROOM</li>
+            <li>THIS IS An Owned ROOM</li>
+            <li>THIS IS An Owned ROOM</li>
+            <li>THIS IS An Owned ROOM</li>
+            <li>THIS IS An Owned ROOM</li>
+            <li>THIS IS An Owned ROOM</li>
+            <li>THIS IS An Owned ROOM</li>
+          </List>
+        )}
+      </Content_container>
     </Layout>
   )
 }
