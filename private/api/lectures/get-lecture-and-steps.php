@@ -1,4 +1,6 @@
 <?php
+// acces local_server variables
+include('../../local_server_path.php');
 
 // Check IF ID IS PROVIDED
 if(isset($_GET['lecture_id'])){
@@ -6,7 +8,7 @@ if(isset($_GET['lecture_id'])){
     $lecture_id = $_GET['lecture_id'];
 
     // GET lecture DATA
-    $get_lecture_api = 'http://127.0.0.1/the-Final-Order/private/api/lectures/get-lecture.php?lecture_id='.$lecture_id;
+    $get_lecture_api =  $local_server_path . '/private/api/lectures/get-lecture.php?lecture_id='.$lecture_id;
     $s_lecture_data = file_get_contents($get_lecture_api);
 
     // IF lecture EXISTS IT MUST BE AN OBJECT, IF NOT RETURN Error
@@ -18,7 +20,7 @@ if(isset($_GET['lecture_id'])){
     }else{
 
         // GET ALL STEPS OF lecture_id
-        $get_steps_api = 'http://127.0.0.1/the-Final-Order/private/api/steps/get-steps.php?lecture_id='.$lecture_id;
+        $get_steps_api = $local_server_path . '/private/api/steps/get-steps.php?lecture_id='.$lecture_id;
         $s_steps_data = file_get_contents($get_steps_api);
 
         // CONVERT STRING DATA TO JSON. SO WE CAN MANIPULATE IT
@@ -30,11 +32,11 @@ if(isset($_GET['lecture_id'])){
         foreach($j_steps_data as $jStep){
             
             // GET ALL ANSWERS OF step_id
-            $get_answers_api = 'http://127.0.0.1/the-Final-Order/private/api/answers/get-answers.php?step_id='.$jStep->id;
+            $get_answers_api = $local_server_path . '/private/api/answers/get-answers.php?step_id='.$jStep->id;
             $s_answers_data = file_get_contents($get_answers_api);
 
             // GET ALL SOURCES OF step_id
-            $get_sources_api = 'http://127.0.0.1/the-Final-Order/private/api/sources/get-sources.php?step_id='.$jStep->id;
+            $get_sources_api = $local_server_path . '/private/api/sources/get-sources.php?step_id='.$jStep->id;
             $s_sources_data = file_get_contents($get_sources_api);
             
             // CONVERT STRING DATA TO JSON. SO WE CAN MANIPULATE IT
