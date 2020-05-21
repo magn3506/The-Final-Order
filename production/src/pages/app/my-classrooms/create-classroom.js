@@ -4,6 +4,8 @@ import {colors} from "../../../styles/global/colors";
 import {headings, bodyText} from "../../../styles/global/typography";
 import Button from "../../../components/app/atoms/submit_button";
 import { local_server_path } from "../../../global_variables";
+import { navigate } from "gatsby";
+import Layout from "../../../components/app/layout/layout";
 
 const Wrapper = styled.div`
 width: 100%;
@@ -75,14 +77,18 @@ const CreateClassroom = () => {
         fetch(local_server_path + `/private/api/classrooms/create-classroom.php`, {
             method: 'POST',
             body: formData
-        }).then(res => res)
+        }).then(res => res.json())
         .catch(error => console.error("Error:", error))
         .then(response => {
-            console.log("Succes! ", response);
+            console.log("The id is:  ", response);
+            const id = response;
+            console.log(id);
+            navigate("/app/my-classrooms/classroom-edit", {state: {classroom_id: id}});
         });
     }
 
     return (
+        <Layout page_title="Edit Classroom">
         <Wrapper>
             <Container>
                 <InfoSection>
@@ -111,6 +117,7 @@ const CreateClassroom = () => {
                 </Form>
             </Container>
         </Wrapper>
+        </Layout>
     )
 }
 
