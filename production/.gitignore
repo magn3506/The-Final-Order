@@ -70,3 +70,4 @@ yarn-error.log
 
 #Global variables
 global_variables.js
+local_server_path.php
