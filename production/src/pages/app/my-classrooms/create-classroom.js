@@ -6,6 +6,8 @@ import Button from "../../../components/app/atoms/submit_button";
 import { local_server_path } from "../../../global_variables";
 import { navigate } from "gatsby";
 import Layout from "../../../components/app/layout/layout";
+import InfoSection from '../../../components/app/molecules/info_section';
+import IsPrivate from '../../../components/app/atoms/is_private/is_private';
 
 const Wrapper = styled.div`
 width: 100%;
@@ -18,25 +20,12 @@ display: flex;
 flex-direction: row;
 `;
 
-const InfoSection = styled.div`
-background: ${colors.super_dark_purple};
-width: 300px;
-padding: 15px;
-`;
-
-const Title = styled.h3`
-color: ${colors.sand};
-${headings.heading4_24px}
-`;
-
-const Text = styled.p`
-color: ${colors.white};
-${bodyText.normalTextReg_16px}
-`;
 
 const Form = styled.form`
 background: ${colors.dark_dark_purple};
 padding: 25px;
+border-radius: 0px 5px 5px 0;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const Label = styled.label`
@@ -46,26 +35,62 @@ flex-direction: column;
 ${bodyText.normalTextBold_16px}
 `;
 
+const TopInputCon = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin-bottom: 10px;
+`;
+
+const Input = styled.input`
+width: 300px;
+background: #FFFFFF;
+border-radius: 5px;
+border: none;
+padding: 15px 0 15px 0;
+${bodyText.normalTextReg_16px}
+outline: none;
+margin: 5px 0 5px 0;
+
+&:valid {
+  outline: 2px solid ${colors.green_succes};
+}
+
+&::placeholder{
+    padding-left: 15px;
+}
+`;
+
+const ImgInput = styled.input`
+width: 245px;
+height: 50px;
+background: #FFFFFF;
+border-radius: 5px;
+border: none;
+padding: 15px 0 15px 0;
+${bodyText.normalTextReg_16px}
+outline: none;
+margin: 5px 0 5px 0;
+align-self: flex-end;
+
+&::placeholder{
+    padding-left: 15px;
+}
+`;
+
+const TextArea = styled.textarea`
+margin-bottom: 10px;
+margin-top: 5px;
+${bodyText.normalTextReg_16px}
+padding: 5px 5px 5px 5px;
+width: 555px;
+outline: none;
+`;
+
 const SubmitContainer = styled.div`
 display: flex;
 flex-direction: row;
-`;
-
-const RadioButton = styled.input`
-
-`;
-
-const LabelRadioButton = styled.label`
-color: ${colors.white};
-`;
-
-const Description = styled.p`
-color: ${colors.sand};
-${bodyText.normalTextBold_16px}
-`;
-
-const RadioContainer = styled.div`
-padding: 0 15px 15px 0;
+justify-content: flex-end;
 `;
 
 const CreateClassroom = () => {
@@ -91,28 +116,24 @@ const CreateClassroom = () => {
         <Layout page_title="Edit Classroom">
         <Wrapper>
             <Container>
-                <InfoSection>
-                    <Title>What is a Classroom?</Title>
-                    <Text>A classroom is where your lectures live.An example of a classroom could be a classroom called Math and would teach you the fundamentals of mathematics.</Text>
-                </InfoSection>
+                <InfoSection 
+                title="What is a Classroom?"
+                description="A classroom is where your lectures live. An example of a classroom could be a classroom called Math and would teach you the fundamentals of mathematics."
+                />
                 <Form ref={form} onSubmit={e => onSubmit(e)}>
-                    <Label> Classroom Name *
-                        <input name="title" placeholder="Fx. Math for beginners (Required)"></input>
-                    </Label>
-                    <input name="image" placeholder="Upload image"></input>
+                    <TopInputCon>
+                        <Label> Classroom Name *
+                            <Input name="title" required placeholder="Fx. Math for beginners (Required)"></Input>
+                        </Label>
+                        <ImgInput name="image" placeholder="Upload image"></ImgInput>
+                    </TopInputCon>
                     <Label> Description *
-                    <textarea name="description" rows="10" cols="75" placeholder="fx. In this class we weil teach you the fundamentals of math. We will cover topics like multiplying and divition."/>
+                    <TextArea required name="description" rows="10" cols="75" placeholder="fx. In this class we weil teach you the fundamentals of math. We will cover topics like multiplying and divition."/>
                     </Label>
-                    <RadioContainer>
-                        <Description>Who can join your classroom?</Description>
-                        <RadioButton type="radio" name="is_private" value="0" />
-                        <LabelRadioButton htmlFor="public">Public (Anyone)</LabelRadioButton>
-                        <RadioButton type="radio" name="is_private" value="1" />
-                        <LabelRadioButton htmlFor="private">Private (Only invited members)</LabelRadioButton>
-                    </RadioContainer>
+                    <IsPrivate />
                     <SubmitContainer>
-                        <Button name="Cancel"/>
-                        <Button type="submit" name="Create"/>
+                        <Button border="true" name="Cancel"/>
+                        <Button border="false" type="submit" name="Create"/>
                     </SubmitContainer>
                 </Form>
             </Container>

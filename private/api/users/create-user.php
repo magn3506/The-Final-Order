@@ -37,7 +37,7 @@ try{
         $jUser->email = $email;
         $jUser->userName = $user_name;
         $jUser->password = $password;
-        echo json_encode($jUser);
+        echo json_encode($jUser->email);
     }else{
         echo "Missing fields";
     }

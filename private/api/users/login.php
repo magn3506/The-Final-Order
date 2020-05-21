@@ -12,7 +12,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
              $cookie_value = $sUserEmail;
              setcookie($cookie_name, $cookie_value, "/");
              
-             echo json_encode($jUser);
+             echo json_encode($jUser->email);
         }
     }
 }

@@ -4,7 +4,7 @@ import {Button} from "./submit_button_styles";
 const SubmitButton = props => {
     return (
         <div>
-            <Button>{props.name}</Button>
+            <Button border={props.border}>{props.name}</Button>
         </div>
     )
 }

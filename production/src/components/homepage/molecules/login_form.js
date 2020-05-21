@@ -26,7 +26,7 @@ const Login = ({isShowing, hide, showSignup}) => {
         .catch(error => console.error("Error:", error))
         .then(response => {
             console.log("Success:", response)
-            document.cookie = "email=" + response.email;
+            document.cookie = "email=" + response;
             let cookieValue = document.cookie;
             console.log('Cookie: ' + cookieValue);
             navigate("/app/my-classrooms");
