@@ -25,10 +25,11 @@ const Login = ({isShowing, hide, showSignup}) => {
         }).then(res => res.json())
         .catch(error => console.error("Error:", error))
         .then(response => {
-            console.log("Success:", response)
-            document.cookie = "email=" + response;
-            let cookieValue = document.cookie;
-            console.log('Cookie: ' + cookieValue);
+            console.log("Success:", response);
+            document.cookie = "email=" + response.email;
+            document.cookie = "userID=" + response.id;
+            let cookieValues = document.cookie;
+            console.log('Cookie: ' + cookieValues);
             navigate("/app/my-classrooms");
         });
     }

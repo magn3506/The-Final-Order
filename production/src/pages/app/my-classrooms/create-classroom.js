@@ -97,9 +97,11 @@ const CreateClassroom = () => {
     const form = useRef(null);
 
     const onSubmit = e => {
+        let cookieId = document.cookie.replace(/(?:(?:^|.*;\s*)userID\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        console.log(cookieId);
         e.preventDefault();
         const formData = new FormData(form.current);
-        fetch(local_server_path + `/private/api/classrooms/create-classroom.php`, {
+        fetch(local_server_path + `/private/api/classrooms/create-classroom.php?id=${cookieId}`, {
             method: 'POST',
             body: formData
         }).then(res => res.json())

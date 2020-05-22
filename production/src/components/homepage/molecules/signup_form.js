@@ -29,9 +29,10 @@ const Signup = ({isShowing, hide, showLogin}) => {
         .then(response => {
             console.log(formData);
             console.log("Success:", response)
-            document.cookie = "email=" + response;
-            let cookieValue = document.cookie;
-            console.log('Cookie: ' + cookieValue);
+            document.cookie = "email=" + response.email;
+            document.cookie = "userID=" + response.id;
+            let cookieValues = document.cookie;
+            console.log('Cookie: ' + cookieValues);
             navigate("/app/my-classrooms");
         });
     }
