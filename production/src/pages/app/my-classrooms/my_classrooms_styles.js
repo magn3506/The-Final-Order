@@ -15,7 +15,7 @@ export const Content_container = styled.div`
 `
 
 export const Header = styled.div`
-  margin-top: 50px;
+  margin-top: 15px;
   margin-bottom: 50px;
   display: flex;
   width: 100%;
@@ -23,6 +23,7 @@ export const Header = styled.div`
   @media ${breakpoints.minDog} {
     border-bottom: 1px solid ${colors.super_dark_purple};
     justify-content: space-between;
+    margin-top: 50px;
   }
 `
 
