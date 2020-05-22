@@ -3,12 +3,13 @@ import Layout from "../../../components/app/layout/layout"
 import { Link } from "gatsby"
 // COMPONENTS
 import Header from "./header"
+import Classroom_li from "../../../components/app/molecules/classroom_list_item/classroom_list_item_one"
 
 // HOOKS
 import useFetch from "../../../hooks/useFetch"
 
 // IMPORT STYLED COMPONENTS
-import { Content_container, List, Classroom } from "./my_classrooms_styles"
+import { Content_container, List } from "./my_classrooms_styles"
 
 const My_classrooms = () => {
   // STATE
@@ -16,12 +17,14 @@ const My_classrooms = () => {
   const [isOwnedRoomsActive, setIsOwnedRoomsActive] = useState(false)
 
   // FETCH DATA
-  const logged_in_user = "5" // TODO: GET lOGGED IN FROM COOKIES
+  const logged_in_user = "1" // TODO: GET lOGGED IN FROM COOKIES
   const owned_room_api =
     "/private/api/classrooms/get-owned-rooms-from-user.php?user_id=" +
     logged_in_user
   const owned_res = useFetch(owned_room_api, {})
   const owned_rooms_arr = owned_res.response
+  console.log("#######")
+  console.log(owned_rooms_arr)
 
   const followed_room_api =
     "/private/api/classrooms/get-followed-rooms-from-user.php?user_id=" +
@@ -45,8 +48,8 @@ const My_classrooms = () => {
     <Layout page_title="My ClassRooms">
       <Content_container>
         <Header
-          isFollowedActive={isFollowedRoomsActive}
-          isOwnedActive={isOwnedRoomsActive}
+          isFollowedRoomsActive={isFollowedRoomsActive}
+          isOwnedRoomsActive={isOwnedRoomsActive}
           handleSetFollowdActive={handleSetFollowdActive}
           handleSetOwnedActive={handleSetOwnedActive}
         />
@@ -61,16 +64,7 @@ const My_classrooms = () => {
               </div>
             ) : (
               followed_rooms_arr.map(e => {
-                const room = e.classroom
-                return (
-                  <Classroom>
-                    <h3>{room.title}</h3>
-                    <p>{room.description}</p>
-                    <Link to="app/classroom" state={{ classroom_id: room.id }}>
-                      see more
-                    </Link>
-                  </Classroom>
-                )
+                return <Classroom_li classroom={e.classroom} />
               })
             )}
           </List>
@@ -85,16 +79,7 @@ const My_classrooms = () => {
               </div>
             ) : (
               owned_rooms_arr.map(e => {
-                const room = e.classroom
-                return (
-                  <Classroom>
-                    <h3>{room.title}</h3>
-                    <p>{room.description}</p>
-                    <Link to="app/classroom" state={{ classroom_id: room.id }}>
-                      see more
-                    </Link>
-                  </Classroom>
-                )
+                return <Classroom_li classroom={e.classroom} />
               })
             )}
           </List>

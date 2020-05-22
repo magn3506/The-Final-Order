@@ -1,22 +1,32 @@
 import React from "react"
+import { Link } from "gatsby"
+// GLOBALS
+import { colors } from "../../../../styles/global/colors"
+// ICONS
+import { Li, Top, Bottom } from "./classroom_list_item_one_styles"
 
-const Classroom_list_item_one = () => {
+const Classroom_list_item_one = props => {
+  const { title, description, owner, id } = props.classroom
+
   return (
-    <li>
-      <div>
-        <img src="https://www.placecage.com/c/100/100" alt="classroom image" />
+    <Li>
+      <Top>
+        <img
+          src="https://picsum.photos/seed/picsum/70/70"
+          alt="classroom image"
+        />
         <div>
-          <h3>Database Design</h3>
-          <h4>By Magnus Jensen</h4>
+          <h3>{title}</h3>
+          <h4>By {owner}</h4>
         </div>
-      </div>
-      <div>
-        <p>
-          NASA scientists concur prolonged visual exposure to Chuck Norris can
-          result in blindness, nausea and partial para...
-        </p>
-      </div>
-    </li>
+      </Top>
+      <Bottom>
+        <p>{description}</p>
+        <Link to={"app/classroom"} state={{ classroom_id: id }}>
+          GO TO ROOM
+        </Link>
+      </Bottom>
+    </Li>
   )
 }
 
