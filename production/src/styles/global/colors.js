@@ -12,4 +12,5 @@ export const colors = {
   black: "#000000",
   red_error: "#E71818",
   green_succes: "#51E079",
+  grey: "#B2B2B2",
 }
