@@ -35,8 +35,7 @@ try{
 
         $jUser = new stdClass();
         $jUser->email = $email;
-        $jUser->userName = $user_name;
-        $jUser->password = $password;
+        $jUser->id = $db->lastInsertId();
         echo json_encode($jUser);
     }else{
         echo "Missing fields";
