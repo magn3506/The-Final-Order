@@ -8,11 +8,20 @@ import { navigate } from "gatsby";
 import Layout from "../../../components/app/layout/layout";
 import InfoSection from '../../../components/app/molecules/info_section';
 import IsPrivate from '../../../components/app/atoms/is_private/is_private';
+import BackButton from '../../../components/app/atoms/back_button/back_button';
 
 const Wrapper = styled.div`
 width: 100%;
 display: flex; 
 justify-content: center;
+flex-direction: column;
+`;
+
+const TopNav = styled.div`
+display: flex; 
+justify-content: space-between;
+flex-direction: row;
+align-items: flex-end;
 `;
 
 const Container = styled.div`
@@ -117,6 +126,10 @@ const CreateClassroom = () => {
     return (
         <Layout page_title="Edit Classroom">
         <Wrapper>
+        <TopNav>
+            <p>My ClassRooms / Create Classrooms</p>
+            <BackButton linkRoute="/app/my-classrooms" name="Back" />
+        </TopNav>
             <Container>
                 <InfoSection 
                 title="What is a Classroom?"
