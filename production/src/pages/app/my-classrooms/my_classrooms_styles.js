@@ -33,7 +33,6 @@ export const Btn_con = styled.div`
   background-color: ${colors.dark_dark_purple};
   border-radius: 5px 5px 0px 0px;
   overflow: hidden;
-
   margin: 0 auto;
 
   @media ${breakpoints.minDog} {
@@ -60,6 +59,9 @@ export const Btn = styled.button`
 `
 
 export const List = styled.ul``
+export const Classroom = styled.li`
+  color: red;
+`
 
 // ################################
 // #### CREATE CLASSROOM BTN #####

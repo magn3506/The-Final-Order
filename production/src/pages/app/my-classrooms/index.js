@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
 import Layout from "../../../components/app/layout/layout"
-import { colors } from "../../../styles/global/colors"
+import { Link } from "gatsby"
 // ICONS
 import Create_classroom_icon from "../../../assets/icons/create_classroom_icon.png"
 import { AiOutlinePlus } from "react-icons/ai"
 
 // HOOKS
+import useFetch from "../../../hooks/useFetch"
 
 // IMPORT STYLED COMPONENTS
 import {
@@ -16,12 +17,26 @@ import {
   Btn_con,
   Create_CL_Btn_mobile,
   Create_CL_Btn_laptop,
+  Classroom,
 } from "./my_classrooms_styles"
 
 const My_classrooms = () => {
+  // STATE
   const [isFollowedRoomsActive, setIsFollowedRoomsActive] = useState(true)
   const [isOwnedRoomsActive, setIsOwnedRoomsActive] = useState(false)
 
+  // FETCH DATA
+  const owned_room_api =
+    "/private/api/classrooms/get-owned-rooms-from-user.php?user_id=" + "1"
+  const owned_res = useFetch(owned_room_api, {})
+  const owned_rooms_arr = owned_res.response
+
+  const followed_room_api =
+    "/private/api/classrooms/get-followed-rooms-from-user.php?user_id=" + "1"
+  const followed_res = useFetch(followed_room_api, {})
+  const followed_rooms_arr = followed_res.response
+
+  // HANDELERS
   const handleSetFollowdActive = e => {
     e.preventDefault()
     setIsFollowedRoomsActive(true)
@@ -62,25 +77,32 @@ const My_classrooms = () => {
         </Header>
         {isFollowedRoomsActive ? (
           <List>
-            <li>THIS IS A FOLLOWED ROOM</li>
-            <li>THIS IS A FOLLOWED ROOM</li>
-            <li>THIS IS A FOLLOWED ROOM</li>
-            <li>THIS IS A FOLLOWED ROOM</li>
-            <li>THIS IS A FOLLOWED ROOM</li>
-            <li>THIS IS A FOLLOWED ROOM</li>
-            <li>THIS IS A FOLLOWED ROOM</li>
-            <li>THIS IS A FOLLOWED ROOM</li>
+            {!followed_rooms_arr ? (
+              <div>LOADING...</div>
+            ) : (
+              followed_rooms_arr.map(e => {
+                const room = e.classroom
+                return (
+                  <Classroom>
+                    <h3>{room.title}</h3>
+                    <p>{room.description}</p>
+                    <Link to="app/classroom" state={{ classroom_id: room.id }}>
+                      see more
+                    </Link>
+                  </Classroom>
+                )
+              })
+            )}
           </List>
         ) : (
           <List>
-            <li>THIS IS An Owned ROOM</li>
-            <li>THIS IS An Owned ROOM</li>
-            <li>THIS IS An Owned ROOM</li>
-            <li>THIS IS An Owned ROOM</li>
-            <li>THIS IS An Owned ROOM</li>
-            <li>THIS IS An Owned ROOM</li>
-            <li>THIS IS An Owned ROOM</li>
-            <li>THIS IS An Owned ROOM</li>
+            {!owned_rooms_arr ? (
+              <div>LOADING...</div>
+            ) : (
+              owned_rooms_arr.map(e => {
+                return <li>THIS IS A OWned ROOM</li>
+              })
+            )}
           </List>
         )}
       </Content_container>
