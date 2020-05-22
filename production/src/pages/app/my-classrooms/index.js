@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react"
 import Layout from "../../../components/app/layout/layout"
+import { colors } from "../../../styles/global/colors"
 // ICONS
 import Create_classroom_icon from "../../../assets/icons/create_classroom_icon.png"
+import { AiOutlinePlus } from "react-icons/ai"
 
 // HOOKS
 
@@ -13,6 +15,7 @@ import {
   Btn,
   Btn_con,
   Create_CL_Btn_mobile,
+  Create_CL_Btn_laptop,
 } from "./my_classrooms_styles"
 
 const My_classrooms = () => {
@@ -52,6 +55,10 @@ const My_classrooms = () => {
           <Create_CL_Btn_mobile>
             <img src={Create_classroom_icon} alt="create classroom icon" />
           </Create_CL_Btn_mobile>
+          <Create_CL_Btn_laptop>
+            <div>Create Classroom</div>
+            <AiOutlinePlus size="30px" />
+          </Create_CL_Btn_laptop>
         </Header>
         {isFollowedRoomsActive ? (
           <List>

@@ -15,10 +15,15 @@ export const Content_container = styled.div`
 `
 
 export const Header = styled.div`
-  margin-top: 20px;
+  margin-top: 50px;
   margin-bottom: 50px;
   display: flex;
   width: 100%;
+
+  @media ${breakpoints.minDog} {
+    border-bottom: 1px solid ${colors.super_dark_purple};
+    justify-content: space-between;
+  }
 `
 
 export const Btn_con = styled.div`
@@ -26,7 +31,7 @@ export const Btn_con = styled.div`
   max-width: 400px;
   display: flex;
   background-color: ${colors.dark_dark_purple};
-  border-radius: 3px 3px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
   overflow: hidden;
 
   margin: 0 auto;
@@ -76,6 +81,43 @@ export const Create_CL_Btn_mobile = styled.button`
   }
   @media ${breakpoints.minDog} {
     display: none;
+  }
+`
+
+export const Create_CL_Btn_laptop = styled.button`
+  display: none;
+  @media ${breakpoints.minDog} {
+    display: block;
+    display: flex;
+    height: 50px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid black;
+    background-color: transparent;
+    ${bodyText.normalTextReg_16px}
+    transform: translateY(-15px);
+
+    div {
+      align-self: center;
+      padding: 0px 20px;
+      transform: translateY(-2px);
+    }
+    svg {
+      border-left: 1px solid black;
+      height: 50px;
+      width: 50px;
+      padding: 10px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: ${colors.purple};
+      border: 1px solid ${colors.purple};
+      svg {
+        fill: ${colors.purple};
+        border-left: 1px solid ${colors.purple};
+      }
+    }
   }
 `
 
