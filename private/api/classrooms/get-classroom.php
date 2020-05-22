@@ -1,4 +1,7 @@
 <?php
+// acces local_server variables
+include('../../local_server_path.php'); 
+
 require_once('../db-connection/root-connection.php');
 try{
 
@@ -27,6 +30,18 @@ try{
             $j_classroom_obj->description = $jData[0]->description;
             $j_classroom_obj->image = $jData[0]->image;
             $j_classroom_obj->isPrivate = $jData[0]->isPrivate;
+             // FIND CLASSROOM OWNER
+            $get_owner_id_api = $local_server_path . '/private/api/classrooms/get-classroom-owner.php?classroom_id='.$classroom_id;
+            $s_owner_id = file_get_contents($get_owner_id_api);
+            $j_owner_id = json_decode($s_owner_id);
+            // FIND USER NAME 
+            $get_user_api = $local_server_path . '/private/api/users/get-user.php?user_id='.$j_owner_id->userID;
+            $s_user = file_get_contents($get_user_api);
+            $j_user = json_decode($s_user);
+            // ADD USER DETAILTS TO CLASROOM OBJ
+            $j_classroom_obj->owner = $j_user->userName;
+
+            // TODO: ADD FOLOWERS, LECTURES, AND RATING
 
             // RESPONSE CODE & HEADER
             http_response_code(200);

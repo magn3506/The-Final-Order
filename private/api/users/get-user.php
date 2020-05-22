@@ -3,19 +3,15 @@ require_once('../db-connection/root-connection.php');
 
 try{
 
-    $email = $_POST['email'];
-
+    $user_id = $_GET['user_id'];
     //Prepare SQL query
-    $q = $db->prepare('SELECT * FROM users WHERE email = :email');
-
-    //Bind Values
-    $q->bindValue(':email', $email);
+    $q = $db->prepare("SELECT * FROM users WHERE id = $user_id");
 
     //Execute SQL query
     $q->execute();
 
     //FETCH DATA
-    $jData = $q->fetchAll();
+    $jData = $q->fetch();
     
     http_response_code(200);
     header('Content-Type: application/json');
