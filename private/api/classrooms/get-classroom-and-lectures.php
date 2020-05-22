@@ -1,4 +1,6 @@
 <?php
+// acces local_server variables
+include('../../local_server_path.php'); 
 
 // TJEK IF id IS PROVIDED
 if(isset($_GET['classroom_id'])
@@ -7,7 +9,8 @@ if(isset($_GET['classroom_id'])
     $classroom_id = $_GET['classroom_id'];
     
     // GET CLASSROOM DATA
-    $get_classroom_api = 'http://127.0.0.1/The-Final-Order/private/api/classrooms/get-classroom.php?classroom_id='.$classroom_id;
+    $get_classroom_api = $local_server_path . '/private/api/classrooms/get-classroom.php?classroom_id='.$classroom_id;
+  
     $s_classroom_data = file_get_contents($get_classroom_api);
     
     // IF CLASSROOM EXISTS IT MUST BE AN OBJECT, IF NOT RETURN EROOR
@@ -19,7 +22,8 @@ if(isset($_GET['classroom_id'])
     }else{
 
         // GET ALL LECTURE OF CLASSROOM_ID
-        $get_lectures_api = 'http://127.0.0.1/The-Final-Order/private/api/lectures/get-lectures-from-classroom-id.php?classroom_id='.$classroom_id;
+        $get_lectures_api = $local_server_path . '/private/api/lectures/get-lectures-from-classroom-id.php?classroom_id='.$classroom_id;
+
         $s_lectures_data = file_get_contents($get_lectures_api);
 
         // CONVERT STRING DATA TO JSON. SO WHE CAN MANIPULATE IT

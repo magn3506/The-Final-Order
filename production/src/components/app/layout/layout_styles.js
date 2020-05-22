@@ -169,13 +169,15 @@ export const Bottom_container = styled.div`
   padding-top: 60px;
   display: flex;
   width: 100vw;
-  justify-content: center;
+  /* justify-content: center; */
 `
 
 export const Main_content = styled.main`
-  border: 4px solid green;
-  max-width: 850px;
+  /* border: 1px solid green; */
+  width: 100%;
+  max-width: 750px;
   margin: 0 auto;
+  display: flex;
 `
 
 export const Profile_image = styled.div`

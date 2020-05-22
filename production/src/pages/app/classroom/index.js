@@ -1,30 +1,48 @@
 import React from "react"
 import Layout from "../../../components/app/layout/layout"
 import styled from "styled-components"
+import { Link } from "gatsby"
 // HOOKS
 import useFetch from "../../../hooks/useFetch"
 
 const Classroom_page = ({ location }) => {
+  // TODO: WHAT HAPPENS IF LOCATION.state.classroom_id is på provided
+
+  // FETCH CLASSROOM
   const url =
     "/private/api/classrooms/get-classroom-and-lectures.php?classroom_id=" +
     location.state.classroom_id
-
   const res = useFetch(url, {})
 
-  if (!res.response) {
-    return <div>Loading...</div>
-  }
-
-  const Box = styled.div`
-    height: 2000px;
-    background-color: grey;
+  const List = styled.div`
+    width: 100px;
     margin: 0 auto;
-    border: 1px solid red;
+    display: flex;
+  `
+
+  const Item = styled.div`
+    list-style-type: none;
   `
 
   return (
-    <Layout page_title={res.response.title}>
-      <Box>HELP PAGE</Box>
+    <Layout page_title="this is a classroom">
+      {!res.response ? (
+        <div>LOADING...</div>
+      ) : (
+        res.response.lectures.map(e => {
+          return (
+            <List>
+              <Item key={e.id}>
+                <div>{e.title}</div>
+                <div>classroom id: {e.id}</div>
+                <Link to={"app/lecture"} state={{ lecture_id: e.id }}>
+                  BEGIN LECTURE
+                </Link>
+              </Item>
+            </List>
+          )
+        })
+      )}
     </Layout>
   )
 }

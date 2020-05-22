@@ -16,9 +16,16 @@ const useFetch = (url, options) => {
       try {
         // !! USES VARIBALE FROM LOCAL PATH. THIS MAIGHT NEED TO CHANGE
         const res = await fetch(local_server_path + url, options)
-        const json = await res.json()
-        setResponse(json)
-        setIsLoading(false)
+        const status = await res.status
+        if (status == 404) {
+          setResponse("404")
+          setIsLoading(false)
+        }
+        {
+          const json = await res.json()
+          setResponse(json)
+          setIsLoading(false)
+        }
       } catch (error) {
         setError(error)
       }
@@ -27,4 +34,4 @@ const useFetch = (url, options) => {
   }, [])
   return { response, error, isLoading }
 }
-export default useFetch;
+export default useFetch

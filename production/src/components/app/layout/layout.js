@@ -9,8 +9,8 @@ import { Helmet } from "react-helmet"
 // HOOKS
 
 // FUNCTIONS
-import {logoutUser} from "../../../functions/logout";
-import {verifyUser} from "../../../functions/verifyUser";
+import { logoutUser } from "../../../functions/logout"
+import { verifyUser } from "../../../functions/verifyUser"
 // GLOBALS
 import { colors } from "../../../styles/global/colors"
 // ICONS
@@ -45,8 +45,10 @@ const Layout = props => {
   const [firstLoad, setFirstLoad] = useState(true)
   // CHANGE menuOpen DEPENDING ON SCREEN SIZE
   // ! LOOOK INTO PERFORMANCE / REDUCER
+
   useEffect(() => {
-    verifyUser();
+    verifyUser()
+
     const s = 1024
 
     // Makes sure menu is OPEN when loading page > s vw.

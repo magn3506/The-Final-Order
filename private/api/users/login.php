@@ -1,7 +1,9 @@
 <?php
+include('../../local_server_path.php'); 
+
 
 if(isset($_POST['email']) && isset($_POST['password'])){
-    $sData = file_get_contents('http://127.0.0.1/The-Final-Order/private/api/users/get-users.php');
+    $sData = file_get_contents($local_server_path . '/private/api/users/get-users.php');
     $jData = json_decode($sData);
     $sUserEmail = $_POST['email'];
     $sUserPassword = $_POST['password'];
@@ -17,6 +19,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
              $jCookieInfo->id = $jUser->id;
              
              echo json_encode($jCookieInfo);
+
         }
     }
 }
