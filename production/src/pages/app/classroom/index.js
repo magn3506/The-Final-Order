@@ -14,17 +14,14 @@ const Classroom_page = ({ location }) => {
     location.state.classroom_id
   const res = useFetch(url, {})
 
-  const List = styled.ul`
-    max-width: 800px;
-    border: 1px solid red;
-    display: grid;
-    grid-template-columns: 1fr;
+  const List = styled.div`
+    width: 100px;
+    margin: 0 auto;
+    display: flex;
   `
-  const Item = styled.li`
-    width: 300px;
-    height: 300px;
-    background-color: red;
-    margin: 10px;
+
+  const Item = styled.div`
+    list-style-type: none;
   `
 
   return (

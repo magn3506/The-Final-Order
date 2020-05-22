@@ -38,6 +38,7 @@ if(isset($_GET['user_id'])
             header('Content-Type: application/json');
             echo json_encode($jFollowedRooms);
         }else{
+            http_response_code(404);
             echo 'users followed rooms could not be found.';
         }
     

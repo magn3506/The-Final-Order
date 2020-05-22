@@ -15,7 +15,7 @@ export const Content_container = styled.div`
 `
 
 export const Header = styled.div`
-  margin-top: 50px;
+  margin-top: 15px;
   margin-bottom: 50px;
   display: flex;
   width: 100%;
@@ -23,6 +23,7 @@ export const Header = styled.div`
   @media ${breakpoints.minDog} {
     border-bottom: 1px solid ${colors.super_dark_purple};
     justify-content: space-between;
+    margin-top: 50px;
   }
 `
 
@@ -33,7 +34,6 @@ export const Btn_con = styled.div`
   background-color: ${colors.dark_dark_purple};
   border-radius: 5px 5px 0px 0px;
   overflow: hidden;
-
   margin: 0 auto;
 
   @media ${breakpoints.minDog} {
@@ -60,6 +60,9 @@ export const Btn = styled.button`
 `
 
 export const List = styled.ul``
+export const Classroom = styled.li`
+  color: red;
+`
 
 // ################################
 // #### CREATE CLASSROOM BTN #####
