@@ -1,7 +1,8 @@
 import React, {useRef} from 'react';
 import styled from "styled-components";
 import {colors} from "../../../styles/global/colors";
-import {headings, bodyText} from "../../../styles/global/typography";
+import {breakpoints} from "../../../styles/global/breakpoints";
+import {bodyText} from "../../../styles/global/typography";
 import Button from "../../../components/app/atoms/submit_button";
 import { local_server_path } from "../../../global_variables";
 import { navigate } from "gatsby";
@@ -22,19 +23,40 @@ display: flex;
 justify-content: space-between;
 flex-direction: row;
 align-items: flex-end;
+margin-top: 5px;
+margin-bottom: 5px;
+`;
+
+const BreadCrumbs = styled.p`
+margin-bottom: 10px;
+color: ${colors.dark_grey};
+${bodyText.smallTextReg_13px}
+
+@media ${breakpoints.minDog} {
+${bodyText.normalTextReg_16px}
+}
 `;
 
 const Container = styled.div`
 display: flex;
-flex-direction: row;
+flex-direction: column;
+
+@media ${breakpoints.minDog} {
+  flex-direction: row;
+}
 `;
 
 
 const Form = styled.form`
 background: ${colors.dark_dark_purple};
+padding: 15px;
+border-radius: 0;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+@media ${breakpoints.minDog} {
 padding: 25px;
 border-radius: 0px 5px 5px 0;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 `;
 
 const Label = styled.label`
@@ -46,13 +68,18 @@ ${bodyText.normalTextBold_16px}
 
 const TopInputCon = styled.div`
 display: flex;
+flex-direction: column;
+justify-content: center;
+margin-bottom: 10px;
+
+@media ${breakpoints.minDog} {
 flex-direction: row;
 justify-content: space-between;
-margin-bottom: 10px;
+}
 `;
 
 const Input = styled.input`
-width: 300px;
+width: 100%;
 background: #FFFFFF;
 border-radius: 5px;
 border: none;
@@ -68,10 +95,14 @@ margin: 5px 0 5px 0;
 &::placeholder{
     padding-left: 15px;
 }
+
+@media ${breakpoints.minDog} {
+width: 300px;
+}
 `;
 
 const ImgInput = styled.input`
-width: 245px;
+width: 100%;
 height: 50px;
 background: #FFFFFF;
 border-radius: 5px;
@@ -80,10 +111,15 @@ padding: 15px 0 15px 0;
 ${bodyText.normalTextReg_16px}
 outline: none;
 margin: 5px 0 5px 0;
-align-self: flex-end;
+align-self: inherit;
 
 &::placeholder{
     padding-left: 15px;
+}
+
+@media ${breakpoints.minDog} {
+align-self: flex-end;
+width: 245px;
 }
 `;
 
@@ -92,14 +128,21 @@ margin-bottom: 10px;
 margin-top: 5px;
 ${bodyText.normalTextReg_16px}
 padding: 5px 5px 5px 5px;
-width: 555px;
+width: 100%;
 outline: none;
+
+@media ${breakpoints.minDog} {
+    width: 555px;
+}
 `;
 
 const SubmitContainer = styled.div`
 display: flex;
 flex-direction: row;
+justify-content: center;
+@media ${breakpoints.minDog} {
 justify-content: flex-end;
+}
 `;
 
 const CreateClassroom = () => {
@@ -127,7 +170,7 @@ const CreateClassroom = () => {
         <Layout page_title="Edit Classroom">
         <Wrapper>
         <TopNav>
-            <p>My ClassRooms / Create Classrooms</p>
+            <BreadCrumbs>My ClassRooms / Create Classrooms</BreadCrumbs>
             <BackButton linkRoute="/app/my-classrooms" name="Back" />
         </TopNav>
             <Container>
@@ -147,7 +190,7 @@ const CreateClassroom = () => {
                     </Label>
                     <IsPrivate />
                     <SubmitContainer>
-                        <Button border="true" name="Cancel"/>
+                        <Button type="button" onClick={() => navigate("/app/my-classrooms")} border="true" name="Cancel"/>
                         <Button border="false" type="submit" name="Create"/>
                     </SubmitContainer>
                 </Form>
