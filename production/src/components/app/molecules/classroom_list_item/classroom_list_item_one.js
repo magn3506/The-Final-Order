@@ -7,14 +7,13 @@ import { Li, Top, Bottom } from "./classroom_list_item_one_styles"
 
 const Classroom_list_item_one = props => {
   const { title, description, owner, id } = props.classroom
-
+  const dim = Math.floor(Math.random() * 200)
+  console.log(dim)
+  const image = `http://placeimg.com/${dim}/${dim}/any`
   return (
     <Li>
       <Top>
-        <img
-          src="https://picsum.photos/seed/picsum/70/70"
-          alt="classroom image"
-        />
+        <img src={image} alt="classroom image" />
         <div>
           <h3>{title}</h3>
           <h4>By {owner}</h4>
