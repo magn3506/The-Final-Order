@@ -1,0 +1,138 @@
+import styled from "styled-components";
+import {breakpoints} from "../../../styles/global/breakpoints";
+import {bodyText} from "../../../styles/global/typography";
+import {colors} from "../../../styles/global/colors";
+import { IoIosCloseCircle } from "react-icons/io";
+
+export const Wrapper = styled.div`
+width: 100%;
+height: 100vh;
+display: flex; 
+justify-content: center;
+flex-direction: column;
+`;
+
+export const Container = styled.div`
+display: flex;
+flex-direction: column;
+margin: 0 auto;
+
+@media ${breakpoints.minDog} {
+  flex-direction: row;
+}
+`;
+
+export const CloseIcon = styled(IoIosCloseCircle)`
+position:absolute;
+top: 10px;
+right: 10px;
+cursor: pointer;
+transition: .2s;
+&:hover {
+    opacity: .8;
+}
+`;
+
+
+export const Form = styled.form`
+position: relative;
+background: ${colors.dark_dark_purple};
+padding: 15px;
+border-radius: 0;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+@media ${breakpoints.minDog} {
+padding: 25px;
+border-radius: 0px 5px 5px 0;
+}
+`;
+
+export const Label = styled.label`
+color: ${colors.sand};
+display: flex;
+flex-direction: column;
+${bodyText.normalTextBold_16px}
+width: 100%;
+`;
+
+export const TopInputCon = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+margin-bottom: 10px;
+
+@media ${breakpoints.minDog} {
+flex-direction: row;
+justify-content: space-between;
+}
+`;
+
+export const Input = styled.input`
+width: 100%;
+height: 50px;
+background: #FFFFFF;
+border-radius: 5px;
+border: none;
+padding: 15px 0 15px 0;
+${bodyText.normalTextReg_16px}
+outline: none;
+margin: 5px 0 5px 0;
+
+&:valid {
+  outline: 2px solid ${colors.green_succes};
+}
+
+&::placeholder{
+    padding-left: 15px;
+}
+
+@media ${breakpoints.minDog} {
+width: 100%;
+}
+`;
+
+export const ImgInput = styled.input`
+width: 100%;
+height: 50px;
+background: #FFFFFF;
+border-radius: 5px;
+border: none;
+padding: 15px 0 15px 0;
+${bodyText.normalTextReg_16px}
+outline: none;
+margin: 5px 0 5px 0;
+align-self: inherit;
+
+&::placeholder{
+    padding-left: 15px;
+}
+
+@media ${breakpoints.minDog} {
+align-self: flex-end;
+width: 150px;
+margin-left: 5px;
+}
+`;
+
+export const TextArea = styled.textarea`
+margin-bottom: 10px;
+margin-top: 5px;
+${bodyText.normalTextReg_16px}
+padding: 5px 5px 5px 5px;
+width: 100%;
+outline: none;
+border-radius: 5px;
+
+@media ${breakpoints.minDog} {
+    width: 100%;
+}
+`;
+
+export const SubmitContainer = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+@media ${breakpoints.minDog} {
+justify-content: flex-end;
+}
+`;

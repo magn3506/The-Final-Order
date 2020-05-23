@@ -1,149 +1,13 @@
 import React, {useRef} from 'react';
-import styled from "styled-components";
-import {colors} from "../../../styles/global/colors";
-import {breakpoints} from "../../../styles/global/breakpoints";
-import {bodyText} from "../../../styles/global/typography";
 import Button from "../../../components/app/atoms/submit_button";
+import {colors} from "../../../styles/global/colors";
 import { local_server_path } from "../../../global_variables";
 import { navigate } from "gatsby";
 import Layout from "../../../components/app/layout/layout";
 import InfoSection from '../../../components/app/molecules/info_section';
 import IsPrivate from '../../../components/app/atoms/is_private/is_private';
-import BackButton from '../../../components/app/atoms/back_button/back_button';
+import {Wrapper, Container, CloseIcon, Form, Label, TopInputCon, Input, ImgInput, TextArea, SubmitContainer} from './create_classroom_styles';
 
-const Wrapper = styled.div`
-width: 100%;
-display: flex; 
-justify-content: center;
-flex-direction: column;
-`;
-
-const TopNav = styled.div`
-display: flex; 
-justify-content: space-between;
-flex-direction: row;
-align-items: flex-end;
-margin-top: 5px;
-margin-bottom: 5px;
-`;
-
-const BreadCrumbs = styled.p`
-margin-bottom: 10px;
-color: ${colors.dark_grey};
-${bodyText.smallTextReg_13px}
-
-@media ${breakpoints.minDog} {
-${bodyText.normalTextReg_16px}
-}
-`;
-
-const Container = styled.div`
-display: flex;
-flex-direction: column;
-
-@media ${breakpoints.minDog} {
-  flex-direction: row;
-}
-`;
-
-
-const Form = styled.form`
-background: ${colors.dark_dark_purple};
-padding: 15px;
-border-radius: 0;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-@media ${breakpoints.minDog} {
-padding: 25px;
-border-radius: 0px 5px 5px 0;
-}
-`;
-
-const Label = styled.label`
-color: ${colors.sand};
-display: flex;
-flex-direction: column;
-${bodyText.normalTextBold_16px}
-`;
-
-const TopInputCon = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-margin-bottom: 10px;
-
-@media ${breakpoints.minDog} {
-flex-direction: row;
-justify-content: space-between;
-}
-`;
-
-const Input = styled.input`
-width: 100%;
-background: #FFFFFF;
-border-radius: 5px;
-border: none;
-padding: 15px 0 15px 0;
-${bodyText.normalTextReg_16px}
-outline: none;
-margin: 5px 0 5px 0;
-
-&:valid {
-  outline: 2px solid ${colors.green_succes};
-}
-
-&::placeholder{
-    padding-left: 15px;
-}
-
-@media ${breakpoints.minDog} {
-width: 300px;
-}
-`;
-
-const ImgInput = styled.input`
-width: 100%;
-height: 50px;
-background: #FFFFFF;
-border-radius: 5px;
-border: none;
-padding: 15px 0 15px 0;
-${bodyText.normalTextReg_16px}
-outline: none;
-margin: 5px 0 5px 0;
-align-self: inherit;
-
-&::placeholder{
-    padding-left: 15px;
-}
-
-@media ${breakpoints.minDog} {
-align-self: flex-end;
-width: 245px;
-}
-`;
-
-const TextArea = styled.textarea`
-margin-bottom: 10px;
-margin-top: 5px;
-${bodyText.normalTextReg_16px}
-padding: 5px 5px 5px 5px;
-width: 100%;
-outline: none;
-
-@media ${breakpoints.minDog} {
-    width: 555px;
-}
-`;
-
-const SubmitContainer = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: center;
-@media ${breakpoints.minDog} {
-justify-content: flex-end;
-}
-`;
 
 const CreateClassroom = () => {
     const form = useRef(null);
@@ -169,10 +33,6 @@ const CreateClassroom = () => {
     return (
         <Layout page_title="Edit Classroom">
         <Wrapper>
-        <TopNav>
-            <BreadCrumbs>My ClassRooms / Create Classrooms</BreadCrumbs>
-            <BackButton linkRoute="/app/my-classrooms" name="Back" />
-        </TopNav>
             <Container>
                 <InfoSection 
                 title="What is a Classroom?"
@@ -193,6 +53,7 @@ const CreateClassroom = () => {
                         <Button type="button" onClick={() => navigate("/app/my-classrooms")} border="true" name="Cancel"/>
                         <Button border="false" type="submit" name="Create"/>
                     </SubmitContainer>
+                    <CloseIcon onClick={() => navigate('/app/my-classrooms')} color={colors.orange} size="1.5em"/>
                 </Form>
             </Container>
         </Wrapper>
