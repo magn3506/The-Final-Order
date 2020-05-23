@@ -32,13 +32,7 @@ const Classroom_page = ({ location }) => {
         res.response.lectures.map(e => {
           return (
             <List>
-              <Item key={e.id}>
-                <div>{e.title}</div>
-                <div>classroom id: {e.id}</div>
-                <Link to={"app/lecture"} state={{ lecture_id: e.id }}>
-                  BEGIN LECTURE
-                </Link>
-              </Item>
+              <li>Lecures</li>
             </List>
           )
         })
