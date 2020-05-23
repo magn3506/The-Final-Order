@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {breakpoints} from "../../../styles/global/breakpoints";
-import {bodyText} from "../../../styles/global/typography";
-import {colors} from "../../../styles/global/colors";
+import {breakpoints} from "../../../../styles/global/breakpoints";
+import {bodyText} from "../../../../styles/global/typography";
+import {colors} from "../../../../styles/global/colors";
 import { IoIosClose } from "react-icons/io";
 
 export const Wrapper = styled.div`
@@ -44,12 +44,10 @@ border-radius: 0px 3px 0px 3px;
 export const Form = styled.form`
 position: relative;
 background: ${colors.dark_dark_purple};
-padding: 15px;
 border-radius: 0;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 @media ${breakpoints.minDog} {
-padding: 25px;
 border-radius: 0px 5px 5px 0;
 }
 `;
