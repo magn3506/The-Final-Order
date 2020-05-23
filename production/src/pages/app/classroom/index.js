@@ -4,6 +4,18 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 // HOOKS
 import useFetch from "../../../hooks/useFetch"
+// COMPONENTS
+import Classroom_container from "../../../components/app/organisms/classroom-details/classroom_details"
+// ICONS
+import { MdPlayCircleOutline } from "react-icons/md"
+
+import {
+  Heading,
+  Content_container,
+  Content_wrapper,
+  List,
+  Item,
+} from "./index_styles"
 
 const Classroom_page = ({ location }) => {
   // TODO: WHAT HAPPENS IF LOCATION.state.classroom_id is på provided
@@ -14,29 +26,44 @@ const Classroom_page = ({ location }) => {
     location.state.classroom_id
   const res = useFetch(url, {})
 
-  const List = styled.div`
-    width: 100px;
-    margin: 0 auto;
-    display: flex;
-  `
-
-  const Item = styled.div`
-    list-style-type: none;
-  `
-
   return (
     <Layout page_title="this is a classroom">
-      {!res.response ? (
-        <div>LOADING...</div>
-      ) : (
-        res.response.lectures.map(e => {
-          return (
+      <Content_wrapper>
+        <Heading>BREAD CRUMS AND BACK BUTTON</Heading>
+        {!res.response ? (
+          <div>LOADING...</div>
+        ) : (
+          <Content_container>
+            <Classroom_container
+              classroomData={{
+                title: res.response.title,
+                description: res.response.description,
+                owner: res.response.owner,
+              }}
+            />
             <List>
-              <li>Lecures</li>
+              <h2>
+                Lectures: <span>0{res.response.lectures.length}</span>
+              </h2>
+              {res.response.lectures.map((e, i) => {
+                return (
+                  <Item>
+                    <div className="index">{i + 1}</div>
+                    <div className="card">
+                      <h4 className="title">{e.title}</h4>
+                      <div className="progress">100%</div>
+                      <Link to="#">
+                        <MdPlayCircleOutline size="20px" color="white" />
+                        <div>Begin</div>
+                      </Link>
+                    </div>
+                  </Item>
+                )
+              })}
             </List>
-          )
-        })
-      )}
+          </Content_container>
+        )}
+      </Content_wrapper>
     </Layout>
   )
 }
