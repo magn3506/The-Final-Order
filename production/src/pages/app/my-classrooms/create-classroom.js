@@ -6,7 +6,7 @@ import { navigate } from "gatsby";
 import Layout from "../../../components/app/layout/layout";
 import InfoSection from '../../../components/app/molecules/info_section';
 import IsPrivate from '../../../components/app/atoms/is_private/is_private';
-import {Wrapper, Container, CloseIcon, Form, Label, TopInputCon, Input, ImgInput, TextArea, SubmitContainer} from './create_classroom_styles';
+import {Wrapper, Container, CloseIcon, Form, Label, TopInputCon, Input, ImgInput, TextArea, SubmitContainer, CloseIconCon, LabelDescription} from './create_classroom_styles';
 
 
 const CreateClassroom = () => {
@@ -26,7 +26,7 @@ const CreateClassroom = () => {
             console.log("The id is:  ", response);
             const id = response;
             console.log(id);
-            //navigate("/app/my-classrooms/classroom-edit", {state: {classroom_id: id}});
+            navigate("/app/my-classrooms/classroom-edit", {state: {classroom_id: id}});
         });
     }
 
@@ -46,14 +46,17 @@ const CreateClassroom = () => {
                         <ImgInput name="image" placeholder="Upload image"></ImgInput>
                     </TopInputCon>
                     <Label> Description *
-                    <TextArea required name="description" rows="10" cols="75" placeholder="fx. In this class we weil teach you the fundamentals of math. We will cover topics like multiplying and divition."/>
+                    <LabelDescription>What can your students expect to learn in your classroom.</LabelDescription>
+                    <TextArea required name="description" rows="7" cols="75" placeholder="fx. In this class we weil teach you the fundamentals of math. We will cover topics like multiplying and divition."/>
                     </Label>
                     <IsPrivate />
                     <SubmitContainer>
                         <Button type="button" onClick={() => navigate("/app/my-classrooms")} border="true" name="Cancel"/>
                         <Button border="false" type="submit" name="Create"/>
                     </SubmitContainer>
-                    <CloseIcon onClick={() => navigate('/app/my-classrooms')} color={colors.orange} size="1.5em"/>
+                    <CloseIconCon>
+                        <CloseIcon onClick={() => navigate('/app/my-classrooms')} color={colors.white} size="1.5em"/>
+                    </CloseIconCon>
                 </Form>
             </Container>
         </Wrapper>
