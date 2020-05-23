@@ -26,7 +26,7 @@ const CreateClassroom = () => {
             console.log("The id is:  ", response);
             const id = response;
             console.log(id);
-            navigate("/app/my-classrooms/classroom-edit", {state: {classroom_id: id}});
+            //navigate("/app/my-classrooms/classroom-edit", {state: {classroom_id: id}});
         });
     }
 

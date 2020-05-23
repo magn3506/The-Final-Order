@@ -1,47 +1,30 @@
 <?php
 require_once('../db-connection/root-connection.php');
 try{
-    //https://www.youtube.com/watch?v=6jWzMnmGsvk - REFERENCE
-    //BEGIN TRANSACTION
-    $db->beginTransaction();
-    //CREATE CLASSROOM QUERY
+    //VARIABLES OF POST AND GET
     $title = $_POST['title'];
     $description = $_POST['description'];
     $image = $_POST['image'];
     $is_private = $_POST['is_private'];
 
     $userID = $_GET['id'];
+    //SET @p0=':title'; SET @p1=':description'; SET @p2=':image'; SET @p3=':is_private'; SET @p4=':userID'; 
 
-    //Prepare SQL Query
-    $q1 = $db->prepare('INSERT INTO classrooms VALUES(null, :title, :description, :image, :is_private)');
-
-    //BIND VALUES
-    $q1->bindValue(':title', $title);
-    $q1->bindValue(':description', $description);
-    $q1->bindValue(':image', $image);
-    $q1->bindValue(':is_private', $is_private);
-
-    //Execute SQL query
-    $q1->execute();
-
-    //Get classroom id
-    $classroomID = $db->lastInsertId();
-
-    //CONNECT CLASSROOM TO USER QUERY
-    $q2 = $db->prepare('INSERT INTO `classroomownedandowners` (`userID`, `classroomID`) VALUES (:userID, :classroomID)');
+    //Prepare SQL Query - STORED PROCEDURE TRANSACTION
+    $q = $db->prepare('CALL `createClassrooms`(:title, :description, :image, :is_private, :userID);');
 
     //BIND VALUES
-    $q2->bindValue(':userID', $userID);
-    $q2->bindValue(':classroomID', $classroomID);
+    $q->bindParam(':title', $title);
+    $q->bindParam(':description', $description);
+    $q->bindParam(':image', $image);
+    $q->bindParam(':is_private', $is_private);
+    $q->bindParam(':userID', $userID);
 
     //Execute SQL query
-    $q2->execute();
-
-    //COMMIT TRANSACTION
-    $db->commit();
+    $q->execute();
 
     http_response_code(200);
-    echo $classroomID;
+    echo 2;
     
 }catch(PDOException $ex){
     //ROLL BACK TRANSACTION
