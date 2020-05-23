@@ -4,6 +4,8 @@ import { breakpoints } from "../../../styles/global/breakpoints"
 import { colors } from "../../../styles/global/colors"
 import { bodyText } from "../../../styles/global/typography"
 
+import { Link } from "gatsby"
+
 // ############################################################
 
 export const Content_container = styled.div`
@@ -68,7 +70,9 @@ export const Classroom = styled.li`
 // #### CREATE CLASSROOM BTN #####
 // ################################
 
-export const Create_CL_Btn_mobile = styled.button`
+export const Create_CL_Btn_mobile = styled(Link)`
+  text-decoration: none;
+  color: ${colors.super_dark_purple};
   position: fixed;
   bottom: 10px;
   right: 10px;
@@ -87,7 +91,10 @@ export const Create_CL_Btn_mobile = styled.button`
   }
 `
 
-export const Create_CL_Btn_laptop = styled.button`
+export const Create_CL_Btn_laptop = styled(Link)`
+  text-decoration: none;
+  color: ${colors.super_dark_purple};
+
   display: none;
   @media ${breakpoints.minDog} {
     display: block;

@@ -29,10 +29,10 @@ const Header_my_clasrooms = props => {
             Owned Rooms
           </Btn>
         </Btn_con>
-        <Create_CL_Btn_mobile>
+        <Create_CL_Btn_mobile to={"app/my-classrooms/create-classroom"}>
           <img src={Create_classroom_icon} alt="create classroom icon" />
         </Create_CL_Btn_mobile>
-        <Create_CL_Btn_laptop>
+        <Create_CL_Btn_laptop to={"app/my-classrooms/create-classroom"}>
           <div>Create Classroom</div>
           <AiOutlinePlus size="30px" />
         </Create_CL_Btn_laptop>

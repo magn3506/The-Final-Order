@@ -17,14 +17,16 @@ const My_classrooms = () => {
   const [isOwnedRoomsActive, setIsOwnedRoomsActive] = useState(false)
 
   // FETCH DATA
-  const logged_in_user = "1" // TODO: GET lOGGED IN FROM COOKIES
+  let cookieId = document.cookie.replace(
+    /(?:(?:^|.*;\s*)userID\s*\=\s*([^;]*).*$)|^.*$/,
+    "$1"
+  )
+  const logged_in_user = cookieId
   const owned_room_api =
     "/private/api/classrooms/get-owned-rooms-from-user.php?user_id=" +
     logged_in_user
   const owned_res = useFetch(owned_room_api, {})
   const owned_rooms_arr = owned_res.response
-  console.log("#######")
-  console.log(owned_rooms_arr)
 
   const followed_room_api =
     "/private/api/classrooms/get-followed-rooms-from-user.php?user_id=" +
