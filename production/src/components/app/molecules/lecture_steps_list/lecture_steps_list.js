@@ -25,7 +25,7 @@ ${headings.heading4_24px}
 padding: 15px;
 `;
 
-const LectureStepsList = () => {
+const LectureStepsList = ({showStep}) => {
     return (
         <Wrapper>
             <StepItemCon>
@@ -34,7 +34,7 @@ const LectureStepsList = () => {
             </StepItemCon>
             <StepItemCon>
                 <StepNumber>2</StepNumber>
-                <StepListCreateItem />
+                <StepListCreateItem showStep={showStep}/>
             </StepItemCon>
         </Wrapper>
     )

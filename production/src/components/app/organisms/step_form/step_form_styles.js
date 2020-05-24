@@ -19,6 +19,7 @@ margin: 0 auto;
 
 @media ${breakpoints.minDog} {
   flex-direction: row;
+  height: 75vh;
 }
 `;
 
@@ -49,6 +50,30 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 @media ${breakpoints.minDog} {
 border-radius: 0px 5px 5px 0;
+overflow: scroll;
+overflow-x: hidden;
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+ background: white;
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: ${colors.orange}; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
 }
 `;
 
