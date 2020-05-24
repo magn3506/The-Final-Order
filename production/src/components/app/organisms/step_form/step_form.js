@@ -15,8 +15,19 @@ const StepForm = ({isShowing, hide, showLecture, AddSteps}) => {
         e.preventDefault();
         console.log("submit");
 
+        const dataOBJ = {}
+        const formData = new FormData(form.current);
+        for (let name of formData.keys()) {
+          const input = name;
+          const value = formData.get(name);
+          console.log('value:',input,": ", value);
+          dataOBJ[input] = value;
+        }
+
+        console.log(dataOBJ);
+
         //ADD STEP
-        AddSteps();
+        AddSteps(dataOBJ);
 
         //GO BACK TO LECTURE FORM
         showLecture();
@@ -36,7 +47,7 @@ const StepForm = ({isShowing, hide, showLecture, AddSteps}) => {
                     <StepQuizSection />
                     <SubmitContainer>
                         <Button type="button" onClick={hide} border="true" name="Cancel"/>
-                        <Button border="false" type="button" name="Create"/>
+                        <Button border="false" type="submit" name="Create"/>
                     </SubmitContainer>
                     <CloseIconCon>
                         <CloseIcon onClick={showLecture} color={colors.white} size="1.5em"/>

@@ -6,7 +6,7 @@ import InfoSection from '../../molecules/info_section';
 import {Wrapper, Container, CloseIcon, Form, Label, Input, TextArea, SubmitContainer, CloseIconCon, LabelDescription} from '../../../../pages/app/lecture/create_lecture_styles';
 import LectureStepsList from "../../molecules/lecture_steps_list/lecture_steps_list";
 
-const LectureForm = ({isShowing, showStep, onSubmit}) => {
+const LectureForm = ({isShowing, showStep, onSubmit, steps}) => {
     const form = useRef(null);
 
     return (
@@ -28,7 +28,7 @@ const LectureForm = ({isShowing, showStep, onSubmit}) => {
                 <Label> Create steps 
                 <LabelDescription>You’ll need to create steps in order to complete your lecture.</LabelDescription>
                 </Label>
-                <LectureStepsList showStep={showStep}/>
+                <LectureStepsList steps={steps} showStep={showStep}/>
                 <SubmitContainer>
                     <Button type="button" onClick={() => navigate("/app/my-classrooms")} border="true" name="Cancel"/>
                     <Button onClick={e => onSubmit(e)} border="false" type="submit" name="Create"/>

@@ -25,15 +25,23 @@ ${headings.heading4_24px}
 padding: 15px;
 `;
 
-const LectureStepsList = ({showStep}) => {
+const LectureStepsList = ({showStep, steps}) => {
+    console.log("LISTED STEPS: ", steps);
+    const lastIndex = steps.length - 1;
     return (
         <Wrapper>
+            {
+               steps === [] ? null : steps.map((step, index) => {
+                    return (
+                    <StepItemCon key={index}>
+                        <StepNumber>{index + 1}</StepNumber>
+                        <StepListItem title={step.title} />
+                    </StepItemCon>
+                    )
+                })
+            }
             <StepItemCon>
-                <StepNumber>1</StepNumber>
-                <StepListItem title="Arrays &amp; Loops" />
-            </StepItemCon>
-            <StepItemCon>
-                <StepNumber>2</StepNumber>
+                <StepNumber>{lastIndex + 2}</StepNumber>
                 <StepListCreateItem showStep={showStep}/>
             </StepItemCon>
         </Wrapper>

@@ -14,10 +14,10 @@ const StepQuizSection = () => {
             </Label>
             <Label> Type answer options &amp; choose a right answer 
                 <LabelDescription>Here you need to type different answer options for the above question. One must be the correct answer.</LabelDescription>
-                <Input name="question" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
-                <Input name="question" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
-                <Input name="question" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
-                <Input name="question" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
+                <Input name="option1" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
+                <Input name="option2" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
+                <Input name="option3" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
+                <Input name="option4" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
             </Label>
         </Container>
     )

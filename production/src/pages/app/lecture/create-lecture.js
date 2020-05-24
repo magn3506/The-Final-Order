@@ -1,17 +1,17 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState} from 'react';
 import Layout from "../../../components/app/layout/layout";
 import useToggleBool from '../../../hooks/useToggleBool';
 import StepForm from '../../../components/app/organisms/step_form/step_form';
 import LectureForm from '../../../components/app/organisms/lecture_form/lecture_form';
 
-const CreateLecture = ({ location }) => {
+const CreateLecture = ({ location}) => {
     const [steps, setSteps] = useState([]);
-    console.log("STEPS: ", steps[0]);
-
 
     //FOR TOGGELING BETWEEN FORMS
     const [isShowingStep, toggleStep] = useToggleBool(false);
     const [isShowingLecture, toggleLecture] = useToggleBool(true);
+
+    console.log("Classroom_ID", location.state.classroom_id);
 
     const showStep = () => {
         toggleStep(true);
@@ -22,17 +22,24 @@ const CreateLecture = ({ location }) => {
         toggleStep(false);
     }
 
-    const AddSteps = () => {
+      const AddSteps = (formData) => {
         setSteps([
             ...steps,
             {
-              id: steps.length,
-              value: Math.random() * 100
+              title: formData.title,
+              theoryText: formData.theoryText,
+              question: formData.question,
+              option1: formData.option1,
+              option2: formData.option2,
+              option3: formData.option3,
+              option4: formData.option4,
+              stepOrder: steps.length + 1
             }
           ]);
-    }
+
+          console.log("STEPS: ", steps);
+      }
     
-    console.log("Classroom_ID", location.state.classroom_id);
 
     const onSubmit = e => {
         e.preventDefault();
@@ -48,6 +55,7 @@ const CreateLecture = ({ location }) => {
             AddSteps={AddSteps}
             />
             <LectureForm 
+            steps={steps}
             onSubmit 
             isShowing={isShowingLecture} 
             showStep={showStep} 
