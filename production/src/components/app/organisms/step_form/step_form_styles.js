@@ -61,7 +61,6 @@ overflow-x: hidden;
 /* Track */
 ::-webkit-scrollbar-track {
  background: white;
-  border-radius: 10px;
 }
  
 /* Handle */

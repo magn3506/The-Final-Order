@@ -13,12 +13,7 @@ try{
     $title = $_POST['title'];
     $classroom_id = $_POST['classroom_id'];
     $description = $_POST['description'];
-
-    //REAL WAY THROUGH FRONTEND POST 
-        //$parsed_steps_array = json_decode($_POST['items']);
-    //FAKING BEFORE FRONTEND IMPLEMETATION
-    $parsed_steps_array = file_get_contents('steps.json');
-    $stepsArray = json_decode($parsed_steps_array);
+    $stepsArray = json_decode($_POST['steps']);
 
     // TODO: WHITE description, etc. when created in DB
 
@@ -57,7 +52,6 @@ try{
 
     // RESPONSE SUCCES
     http_response_code(200);
-    echo "Created lecture in classroom with id $classroom_id";
 
     } else {
         echo 'error: correct payload must be provided';

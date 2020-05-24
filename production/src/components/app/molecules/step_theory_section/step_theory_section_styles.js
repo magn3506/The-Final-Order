@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {colors} from '../../../../styles/global/colors';
 import {headings, bodyText} from '../../../../styles/global/typography';
 import {breakpoints} from '../../../../styles/global/breakpoints';
+import { IoIosCloseCircle } from "react-icons/io";
 
 export const Container = styled.div`
 width: 100%;
@@ -79,5 +80,40 @@ border-radius: 5px;
 
 @media ${breakpoints.minDog} {
     width: 100%;
+}
+`;
+
+export const SourceCon = styled.div`
+width: 100%;
+margin: 20px 0 0 10px;
+display: flex;
+flex-direction: row;
+`;
+
+export const SourceTextCon = styled.div`
+
+`;
+
+export const SourceTitle = styled.h3`
+color: ${colors.white};
+${bodyText.normalTextBold_16px};
+`;
+
+export const SourceURL = styled.p`
+color: ${colors.white};
+${bodyText.normalTextReg_16px};
+`;
+
+export const CloseIcon = styled(IoIosCloseCircle)`
+
+`;
+
+export const CloseIconCon = styled.div`
+cursor: pointer;
+transition: .2s;
+padding: 5px;
+border-radius: 0px 3px 0px 3px;
+&:hover {
+    opacity: .8;
 }
 `;

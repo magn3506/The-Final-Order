@@ -6,6 +6,9 @@ import LectureForm from '../../../components/app/organisms/lecture_form/lecture_
 
 const CreateLecture = ({ location}) => {
     const [steps, setSteps] = useState([]);
+    const [title, settitle] = useState("");
+    const [description, setdescription] = useState("");
+    
 
     //FOR TOGGELING BETWEEN FORMS
     const [isShowingStep, toggleStep] = useToggleBool(false);
@@ -33,6 +36,8 @@ const CreateLecture = ({ location}) => {
               option2: formData.option2,
               option3: formData.option3,
               option4: formData.option4,
+              isCorrect: formData.isCorrect,
+              source: formData.sources,
               stepOrder: steps.length + 1
             }
           ]);
@@ -40,11 +45,14 @@ const CreateLecture = ({ location}) => {
           console.log("STEPS: ", steps);
       }
     
-
-    const onSubmit = e => {
-        e.preventDefault();
-        console.log("submit");
+      const handleTitleChange = (e) => {
+        settitle({title: e.target.value});
     }
+
+      const handleDescriptionChange = (e) => {
+        setdescription({description: e.target.value});
+    }
+
 
     return (
         <Layout page_title="Create Lecture">
@@ -55,6 +63,11 @@ const CreateLecture = ({ location}) => {
             AddSteps={AddSteps}
             />
             <LectureForm 
+            classroomID={location.state.classroom_id}
+            title={title}
+            description={description}
+            handleTitleChange={handleTitleChange}
+            handleDescriptionChange={handleDescriptionChange}
             steps={steps}
             onSubmit 
             isShowing={isShowingLecture} 

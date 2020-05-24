@@ -1,7 +1,7 @@
 import React from 'react';
 import {Label, LabelDescription, AddSourcesCon, Input, TitleInputTitle, TitleInputURL, InputCon, Button} from './step_sources_styles';
 
-const StepSources = () => {
+const StepSources = ({AddSources, handleChangeSourceTitle, handleChangeSourceURL, sourceTitle, URL}) => {
     return (
         <div>
             <Label> Sources 
@@ -10,13 +10,13 @@ const StepSources = () => {
             <AddSourcesCon>
                 <InputCon>
                     <TitleInputTitle>Title</TitleInputTitle>
-                    <Input placeholder="Wikipedia" />
+                    <Input value={sourceTitle.title} onChange={e => handleChangeSourceTitle(e)} placeholder="Wikipedia" />
                 </InputCon>
                 <InputCon>
                     <TitleInputURL>Url</TitleInputURL>
-                    <Input placeholder="www.wikipedia.com" />
+                    <Input value={URL.url} onChange={e => handleChangeSourceURL(e)} placeholder="www.wikipedia.com" />
                 </InputCon>
-                <Button type="button">Add</Button>
+                <Button onClick={AddSources} type="button">Add</Button>
             </AddSourcesCon>
         </div>
     )

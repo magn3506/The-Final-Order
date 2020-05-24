@@ -65,3 +65,14 @@ export const LabelDescription = styled.p`
 color: ${colors.white};
 ${bodyText.normalTextReg_16px}
 `;
+
+export const OptionCon = styled.div`
+position: relative;
+width: 100%;
+`;
+
+export const RadioButton = styled.input`
+position: absolute;
+top: 25px;
+right: 10px;
+`;
