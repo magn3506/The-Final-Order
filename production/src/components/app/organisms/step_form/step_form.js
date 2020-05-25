@@ -15,19 +15,28 @@ const StepForm = ({isShowing, hide, showLecture, AddSteps}) => {
         e.preventDefault();
         console.log("submit");
 
-        const dataOBJ = {}
+        const dataOBJ = {};
+        const answerARR = [];
         const formData = new FormData(form.current);
         for (let name of formData.keys()) {
           const input = name;
           const value = formData.get(name);
-          console.log('value:',input,": ", value);
+          console.log(input,": ", value);
+          //FIND CORRECT ANSWER AND MAKE ANSWER ARR
+          if(formData.get("isCorrect") == input){
+                console.log("FOUND MATCH", formData.get("isCorrect"), input);
+                answerARR.push({answerValue: formData.get(input), isCorrect: 1});
+            }else if((!formData.get("isCorrect") == input) || input == "option1" || input == "option2" || input == "option3" || input == "option4"){
+                answerARR.push({answerValue: formData.get(input), isCorrect: 0});
+          }
           dataOBJ[input] = value;
         }
+        console.log(answerARR);
 
         console.log(dataOBJ);
 
         //ADD STEP
-        AddSteps(dataOBJ);
+        AddSteps(dataOBJ, answerARR);
 
         //GO BACK TO LECTURE FORM
         showLecture();

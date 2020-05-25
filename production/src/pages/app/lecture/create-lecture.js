@@ -25,18 +25,14 @@ const CreateLecture = ({ location}) => {
         toggleStep(false);
     }
 
-      const AddSteps = (formData) => {
+      const AddSteps = (formData, answerARR) => {
         setSteps([
             ...steps,
             {
               title: formData.title,
               theoryText: formData.theoryText,
               question: formData.question,
-              option1: formData.option1,
-              option2: formData.option2,
-              option3: formData.option3,
-              option4: formData.option4,
-              isCorrect: formData.isCorrect,
+              answers: answerARR,
               source: formData.sources,
               stepOrder: steps.length + 1
             }

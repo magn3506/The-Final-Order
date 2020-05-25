@@ -13,8 +13,12 @@ try{
     $title = $_POST['title'];
     $classroom_id = $_POST['classroom_id'];
     $description = $_POST['description'];
+    $stepsArray = json_decode($_POST['steps']);
 
     // TODO: WHITE description, etc. when created in DB
+
+    //BEGIN TRANSACTION
+    $db->beginTransaction();
 
     //Prepare SQL query
     $q = $db->prepare('INSERT INTO lectures VALUES(null, :title, :_description, :classroom_id)');
@@ -28,14 +32,32 @@ try{
     //Execute SQL query
     $q->execute();
 
+    //GET Lecture id
+    $lectureID = $db->lastInsertId();
+
+    //LOOP THROUGH STEPS ARRAY AND INSERT INTO STEPS TABLE WITH SQL QUERY
+    foreach($stepsArray as $i => $step) {
+        
+        $i = $db->prepare('INSERT INTO `steps` (`id`, `title`, `theoryText`, `question`, `lectureID`, `stepOrder`) VALUES (NULL, :title, :theoryText, :question, :lectureID, :stepOrder);');
+        $i->bindValue(':title', $step->title);
+        $i->bindValue(':theoryText', $step->theoryText);
+        $i->bindValue(':question', $step->question);
+        $i->bindValue(':lectureID', $lectureID);
+        $i->bindValue(':stepOrder', $step->stepOrder);
+        $i->execute();
+    }
+
+    //COMMIT TRANSACTION
+    $db->commit();
+
     // RESPONSE SUCCES
     http_response_code(200);
-    echo 'Created lecture with id '.$db->lastInsertId()." in classroom with id $classroom_id";
 
     } else {
         echo 'error: correct payload must be provided';
     };
 
 }catch(PDOException $ex){
+    $db->rollback();
     echo 'Connection failed: ' . $ex->getMessage();
 }

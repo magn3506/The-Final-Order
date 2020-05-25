@@ -15,19 +15,19 @@ const StepQuizSection = () => {
             <Label> Type answer options &amp; choose a right answer 
                 <LabelDescription>Here you need to type different answer options for the above question. One must be the correct answer.</LabelDescription>
                 <OptionCon>
-                    <RadioButton type="radio" name="isCorrect" value="option1" />
+                    <RadioButton type="radio" required name="isCorrect" value="option1" />
                     <Input name="option1" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
                 </OptionCon>
                 <OptionCon>
-                    <RadioButton type="radio" name="isCorrect" value="option2" />
+                    <RadioButton type="radio" required name="isCorrect" value="option2" />
                     <Input name="option2" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
                 </OptionCon>
                 <OptionCon>
-                    <RadioButton type="radio" name="isCorrect" value="option3" />
+                    <RadioButton type="radio" required name="isCorrect" value="option3" />
                     <Input name="option3" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
                 </OptionCon>
                 <OptionCon>
-                    <RadioButton type="radio" name="isCorrect" value="option4" />
+                    <RadioButton type="radio" required name="isCorrect" value="option4" />
                     <Input name="option4" required placeholder="Type an answer option here. Fx. 2 plus 2 is four."></Input>
                 </OptionCon>
             </Label>

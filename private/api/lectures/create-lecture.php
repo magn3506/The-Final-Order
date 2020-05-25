@@ -45,6 +45,18 @@ try{
         $i->bindValue(':lectureID', $lectureID);
         $i->bindValue(':stepOrder', $step->stepOrder);
         $i->execute();
+
+        //GET STEP ID
+        $stepID = $db->lastInsertId();
+
+        //LOOP THROUGH ANSWERS ARRAY AND INSERT INTO ANSWERS TABLE WITH SQL QUERY
+        foreach($step->answers as $j => $answer){
+            $j = $db->prepare('INSERT INTO `answers` (`id`, `isCorrect`, `answerValue`, `stepID`) VALUES (NULL, :isCorrect, :answerValue, :stepID);');
+            $j->bindValue(':isCorrect', $answer->isCorrect);
+            $j->bindValue(':answerValue', $answer->answerValue);
+            $j->bindValue(':stepID', $stepID);
+            $j->execute();
+        }
     }
 
     //COMMIT TRANSACTION
