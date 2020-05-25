@@ -59,12 +59,17 @@ const Lecture_page = ({ location }) => {
   }
 
   // STEP DATA
+
   const { theoryText, question, title, sources, answers } = lecture.steps[
     step - 1
   ]
   // PROGRESS
   const nr_of_steps = lecture.steps.length
   const progress = (tq / 2 / nr_of_steps) * 100
+  //
+  if (step == nr_of_steps) {
+    console.log("THE END")
+  }
   return (
     <Layout page_title="this is a lecture">
       <Lecture_container>
