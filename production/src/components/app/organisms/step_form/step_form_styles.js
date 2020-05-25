@@ -16,6 +16,7 @@ export const Container = styled.div`
 display: flex;
 flex-direction: column;
 margin: 0 auto;
+height: 100%;
 
 @media ${breakpoints.minDog} {
   flex-direction: row;
@@ -44,7 +45,8 @@ border-radius: 0px 3px 0px 3px;
 
 export const Form = styled.form`
 position: relative;
-background: ${colors.dark_dark_purple};
+z-index: 0;
+background: #25212C;
 border-radius: 0;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 

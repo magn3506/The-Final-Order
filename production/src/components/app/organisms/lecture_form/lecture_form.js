@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import { navigate } from "gatsby";
 import { local_server_path } from '../../../../global_variables'
 import Button from "../../atoms/submit_button";
@@ -6,25 +6,37 @@ import {colors} from "../../../../styles/global/colors";
 import InfoSection from '../../molecules/info_section';
 import {Wrapper, Container, CloseIcon, Form, Label, Input, TextArea, SubmitContainer, CloseIconCon, LabelDescription} from '../../../../pages/app/lecture/create_lecture_styles';
 import LectureStepsList from "../../molecules/lecture_steps_list/lecture_steps_list";
+import ErrorModal from '../../atoms/error_modal/error_modal';
 
 const LectureForm = ({isShowing, showStep, steps, handleTitleChange, handleDescriptionChange, description, title, classroomID}) => {
     const form = useRef(null);
+    const [error, setError] = useState(false);
 
     //Trasnform steps array into string
     const stepsStringARR = JSON.stringify(steps);
 
     const onSubmit = e => {
         e.preventDefault();
-        const formData = new FormData(form.current);
-        fetch(local_server_path + `/private/api/lectures/create-lecture.php`, {
-            method: 'POST',
-            body: formData
-        }).then(res => res)
-        .catch(error => console.error("Error:", error))
-        .then(response => {
-            console.log(formData);
-            console.log("Success:", response);
-        });
+        if(steps.length === 0){
+            console.log("NO STEPS ADDED");
+            setError(!error);
+        }else{
+            console.log("STEPS ADDED", steps);
+            const formData = new FormData(form.current);
+            fetch(local_server_path + `/private/api/lectures/create-lecture.php`, {
+                method: 'POST',
+                body: formData
+            }).then(res => res)
+            .catch(error => console.error("Error:", error))
+            .then(response => {
+                console.log(formData);
+                console.log("Success:", response);
+            });
+        }
+    }
+
+    const closeErrorMsg = () => {
+        setError(!error);
     }
 
     return (
@@ -56,6 +68,7 @@ const LectureForm = ({isShowing, showStep, steps, handleTitleChange, handleDescr
                 <CloseIconCon>
                     <CloseIcon onClick={() => navigate("/app/my-classrooms")} color={colors.white} size="1.5em"/>
                 </CloseIconCon>
+                {error ? <ErrorModal closeErrorMsg={closeErrorMsg} errorMsg="You need to add steps."></ErrorModal> : null}
             </Form>
         </Container>
     </Wrapper>) : null

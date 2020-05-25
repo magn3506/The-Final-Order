@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import {colors} from '../../../../styles/global/colors';
 import {headings, bodyText} from '../../../../styles/global/typography';
+import {breakpoints} from '../../../../styles/global/breakpoints';
 
 export const Container = styled.div`
 width: 100%;
-background: ${colors.dark_dark_purple};
+background: #25212C;
 padding: 20px 20px 30px 20px;
 `;
 
@@ -48,7 +49,7 @@ background: #FFFFFF;
 border-radius: 5px;
 border: none;
 padding: 15px 0 15px 0;
-${bodyText.normalTextReg_16px}
+${bodyText.smallTextReg_13px}
 outline: none;
 margin: 5px 0 5px 0;
 
@@ -59,11 +60,17 @@ margin: 5px 0 5px 0;
 &::placeholder{
     padding-left: 15px;
 }
+
+@media ${breakpoints.minDog} {
+flex-direction: row;
+justify-content: space-between;
+${bodyText.normalTextReg_16px}
+}
 `;
 
 export const LabelDescription = styled.p`
-color: ${colors.white};
 ${bodyText.normalTextReg_16px}
+color: ${colors.white};
 `;
 
 export const OptionCon = styled.div`
