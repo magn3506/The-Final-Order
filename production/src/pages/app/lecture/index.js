@@ -59,7 +59,9 @@ const Lecture_page = ({ location }) => {
   }
 
   // STEP DATA
-  const { theoryText, question, title, sources } = lecture.steps[step - 1]
+  const { theoryText, question, title, sources, answers } = lecture.steps[
+    step - 1
+  ]
   // PROGRESS
   const nr_of_steps = lecture.steps.length
   const progress = (tq / 2 / nr_of_steps) * 100
@@ -101,8 +103,24 @@ const Lecture_page = ({ location }) => {
             </div>
           </Slide>
           <Slide slide={slide}>
-            TQ:{tq} : STEP {step}
-            {question}
+            <div className="quiz">
+              <h2>{question}</h2>
+              <hr />
+              <form>
+                {answers.map((e, i) => {
+                  return (
+                    <label key={i}>
+                      <input
+                        type="radio"
+                        value={e.answerValue}
+                        className="answer"
+                      />
+                      {e.answerValue}
+                    </label>
+                  )
+                })}
+              </form>
+            </div>
           </Slide>
         </Slider>
         <Nav isPrevActive={step == 1 && tq == 1 ? "hide" : "show"}>

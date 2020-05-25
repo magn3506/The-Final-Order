@@ -19,6 +19,7 @@ export const Header = styled.div`
   color: ${colors.sand};
   text-align: center;
   padding: 20px 10px 10px 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   .details {
     display: flex;
@@ -78,6 +79,7 @@ export const Slide = styled.div`
   min-height: 100%;
   min-width: 100%;
   padding: 20px 10px;
+  transform: ${props => (props.slide ? "translateX(-100%)" : "translateX(0%)")};
 
   .theory {
     ${bodyText.normalTextReg_16px};
@@ -91,10 +93,20 @@ export const Slide = styled.div`
     }
   }
 
-  transform: ${props => (props.slide ? "translateX(-100%)" : "translateX(0%)")};
-
-  &:nth-child(odd) {
-    /* background: red; */
+  .quiz {
+    form {
+      display: flex;
+      flex-direction: column;
+      label {
+        background-color: ${colors.super_dark_purple};
+        color: ${colors.white};
+        padding: 20px 30px;
+        border-radius: 5px;
+        margin: 10px 0px;
+        input {
+        }
+      }
+    }
   }
 `
 export const Nav = styled.div`
