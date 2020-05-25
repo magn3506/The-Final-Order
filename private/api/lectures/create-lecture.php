@@ -57,6 +57,14 @@ try{
             $j->bindValue(':stepID', $stepID);
             $j->execute();
         }
+
+        foreach($step->source as $k => $source){
+            $k = $db->prepare('INSERT INTO `sources` (`id`, `title`, `url`, `stepID`) VALUES (NULL, :title, :url, :stepID);');
+            $k->bindValue(':title', $source->title);
+            $k->bindValue(':url', $source->url);
+            $k->bindValue(':stepID', $stepID);
+            $k->execute();
+        }
     }
 
     //COMMIT TRANSACTION

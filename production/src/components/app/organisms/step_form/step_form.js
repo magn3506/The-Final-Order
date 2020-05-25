@@ -17,18 +17,29 @@ const StepForm = ({isShowing, hide, showLecture, AddSteps}) => {
 
         const dataOBJ = {};
         const answerARR = [];
+        let sourceARR = [];
         const formData = new FormData(form.current);
         for (let name of formData.keys()) {
           const input = name;
           const value = formData.get(name);
           console.log(input,": ", value);
-          //FIND CORRECT ANSWER AND MAKE ANSWER ARR
+          //FIND CORRECT ANSWER AND ADD TO ANSWER ARR
           if(formData.get("isCorrect") == input){
                 console.log("FOUND MATCH", formData.get("isCorrect"), input);
                 answerARR.push({answerValue: formData.get(input), isCorrect: 1});
             }else if((!formData.get("isCorrect") == input) || input == "option1" || input == "option2" || input == "option3" || input == "option4"){
                 answerARR.push({answerValue: formData.get(input), isCorrect: 0});
           }
+
+          //CONVERT SOURCES INTO ARRAY
+          if(formData.get("sources")){
+            let newJson = formData.get("sources").replace(/([a-zA-Z0-9]+?):/g, '"$1":');
+            newJson = newJson.replace(/'/g, '"');
+            
+            sourceARR = JSON.parse(newJson);
+            console.log(sourceARR);
+          }
+
           dataOBJ[input] = value;
         }
         console.log(answerARR);
@@ -36,7 +47,7 @@ const StepForm = ({isShowing, hide, showLecture, AddSteps}) => {
         console.log(dataOBJ);
 
         //ADD STEP
-        AddSteps(dataOBJ, answerARR);
+        AddSteps(dataOBJ, answerARR, sourceARR);
 
         //GO BACK TO LECTURE FORM
         showLecture();

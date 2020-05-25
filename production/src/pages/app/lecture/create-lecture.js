@@ -25,7 +25,7 @@ const CreateLecture = ({ location}) => {
         toggleStep(false);
     }
 
-      const AddSteps = (formData, answerARR) => {
+      const AddSteps = (formData, answerARR, sourceARR) => {
         setSteps([
             ...steps,
             {
@@ -33,7 +33,7 @@ const CreateLecture = ({ location}) => {
               theoryText: formData.theoryText,
               question: formData.question,
               answers: answerARR,
-              source: formData.sources,
+              source: sourceARR,
               stepOrder: steps.length + 1
             }
           ]);
