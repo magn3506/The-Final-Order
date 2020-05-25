@@ -52,7 +52,7 @@ const Classroom_page = ({ location }) => {
                     <div className="card">
                       <h4 className="title">{e.title}</h4>
                       <div className="progress">100%</div>
-                      <Link to="#">
+                      <Link to={"app/lecture"} state={{ lecture_id: e.id }}>
                         <MdPlayCircleOutline size="20px" color="white" />
                         <div>Begin</div>
                       </Link>
