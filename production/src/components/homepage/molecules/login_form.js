@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import ReactDOM from "react-dom";
 import { navigate } from "gatsby";
 
@@ -8,12 +8,14 @@ import {Wrapper, Form, Text, Title, Link, GoogleButton, CloseIcon, Overlay} from
 import Input from "../atoms/input";
 import Button from "../atoms/submit_button";
 import { local_server_path } from "../../../global_variables";
+import ErrorModal from '../../app/atoms/error_modal/error_modal';
 
 const googleAlert = () => {
     alert("Not implemented yet :-)");
 }
 
 const Login = ({isShowing, hide, showSignup}) => {
+    const [error, setError] = useState(false);
     const form = useRef(null);
 
     const onSubmit = e => {
@@ -26,13 +28,23 @@ const Login = ({isShowing, hide, showSignup}) => {
         .catch(error => console.error("Error:", error))
         .then(response => {
             console.log("Success:", response);
-            document.cookie = "email=" + response.email;
-            document.cookie = "userID=" + response.id;
-            let cookieValues = document.cookie;
-            console.log('Cookie: ' + cookieValues);
-            navigate("/app/my-classrooms");
+            if(response === undefined){
+                console.log("Something did not go as planned!");
+                setError(!error);
+            }else{
+                document.cookie = "email=" + response.email;
+                document.cookie = "userID=" + response.id;
+                let cookieValues = document.cookie;
+                console.log('Cookie: ' + cookieValues);
+                navigate("/app/my-classrooms");
+            }
         });
     }
+
+    const closeErrorMsg = () => {
+        setError(!error);
+    }
+
     // https://upmostly.com/tutorials/modal-components-react-custom-hooks - createPortal reference
     return (
         isShowing ? ReactDOM.createPortal(
@@ -47,9 +59,10 @@ const Login = ({isShowing, hide, showSignup}) => {
                 <Input placeholder="Email" name="email" type="text"></Input>
                 <Input placeholder="Password" name="password" type="password"></Input>
                 <Button type="submit" name="Login"/>
-                <Link linkColor="#8C4A6E" href="www.google.com">Forgot your password?</Link>
+                <Link linkColor="#8C4A6E" onClick={googleAlert}>Forgot your password?</Link>
                 <Text>Not a member yet? <Link onClick={showSignup}>Sign up</Link></Text>
                 <CloseIcon onClick={hide} color={colors.orange} size="1.5em"/>
+                {error ? <ErrorModal closeErrorMsg={closeErrorMsg} errorMsg="Login failed. Try again."></ErrorModal> : null}
                 </Form>
             </Wrapper>
             <Overlay /> 
