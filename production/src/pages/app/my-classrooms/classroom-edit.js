@@ -3,9 +3,10 @@ import useFetch from "../../../hooks/useFetch";
 import Layout from "../../../components/app/layout/layout";
 import {navigate} from 'gatsby';
 import ClassroomDetails from '../../../components/app/organisms/classroom-details/classroom_details';
-import {Wrapper, LecturesTitle, LecturesNumber, CreateLectureCon, CreateLectureNumber, CreateLectureButtonCon, CreateLectureButtonText} from './classroom_edit_styles';
-import { Link } from "gatsby"
-import { MdPlayCircleOutline } from "react-icons/md"
+import {Wrapper, LecturesTitle, LecturesNumber, CreateLectureCon, CreateLectureNumber, CreateLectureButtonCon, CreateLectureButtonText, CreateLectureButton, AddIcon, HelpContainer, Title, Feedback, ImgOwl} from './classroom_edit_styles';
+import { Link } from "gatsby";
+import { MdPlayCircleOutline } from "react-icons/md";
+import LectureOwlIcon from '../../../assets/icons/lecture_owl_icon.png';
 
 const ClassroomEdit = ({location}) => {
     console.log(location.state.classroom_id);
@@ -33,7 +34,7 @@ const ClassroomEdit = ({location}) => {
                     <CreateLectureNumber>1</CreateLectureNumber>
                     <CreateLectureButtonCon>
                     <CreateLectureButtonText>What will your next lecture be about?</CreateLectureButtonText>
-                    <button onClick={() => navigate("/app/lecture/create-lecture", {state: {classroom_id: res.response.id}})}>Classroom id {res.response.id}</button>
+                    <CreateLectureButton onClick={() => navigate("/app/lecture/create-lecture", {state: {classroom_id: res.response.id}})}><AddIcon size="1.5em" />{window.innerWidth >= 750 ? ("Add lecture") : null}</CreateLectureButton>
                     </CreateLectureButtonCon>
                 </CreateLectureCon>
 
@@ -52,8 +53,14 @@ const ClassroomEdit = ({location}) => {
                   </div>
                 )
               })}
+
+
+                <HelpContainer>
+                <ImgOwl src={LectureOwlIcon} />
+                <Title>Congratulations! What next?</Title>
+                <Feedback>You’ve created a classroom - the foundation for any learning environment. First thing to do is to create lectures that will be taught in your classroom!</Feedback>
+                </HelpContainer>
                 </Wrapper>
-                
                 )
             }
         </Layout>
