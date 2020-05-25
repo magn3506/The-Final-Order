@@ -1,11 +1,12 @@
 import React from 'react';
-import {Container, Message, CloseIcon, CloseIconCon, Wrapper} from './error_modal_styles';
+import {Container, Message, CloseIcon, CloseIconCon, Wrapper, Title} from './error_modal_styles';
 import {colors} from '../../../../styles/global/colors';
 
 const ErrorModal = props => {
     return (
         <Wrapper>
             <Container>
+                <Title>Whoops, something went wrong!</Title>
                 <Message>
                     {props.errorMsg}
                 </Message>

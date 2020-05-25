@@ -6,8 +6,8 @@ import LectureForm from '../../../components/app/organisms/lecture_form/lecture_
 
 const CreateLecture = ({ location}) => {
     const [steps, setSteps] = useState([]);
-    const [title, settitle] = useState("");
-    const [description, setdescription] = useState("");
+    const [title, settitle] = useState({title: ""});
+    const [description, setdescription] = useState({description: ""});
     
 
     //FOR TOGGELING BETWEEN FORMS

@@ -5,8 +5,8 @@ import { IoIosClose } from "react-icons/io";
 
 export const Container = styled.div`
 position: relative;
-width: 350px;
-height: 100px;
+width: 375px;
+height: 150px;
 
 background: ${colors.white};
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -14,12 +14,19 @@ border-radius: 5px;
 display: flex;
 justify-content: center;
 align-items: center;
+flex-direction: column;
 `;
 
 export const Wrapper = styled.div`
 position: absolute;
 top: 45%;
 left: 15%;
+`;
+
+export const Title = styled.h3`
+color: ${colors.red_error};
+${bodyText.mediumTextBold_20px};
+margin-bottom: 5px;
 `;
 
 export const Message = styled.p`
