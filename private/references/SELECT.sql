@@ -62,3 +62,9 @@ ON
 INNER JOIN users AS u
 ON
     u.id = o.userID
+
+/* SELECT VIEW */
+/* ALL ROOMS */
+SELECT * FROM `get_classrooms`
+/* SINGLE BY CLASSROOM ID */
+SELECT * FROM `get_classrooms` WHERE classromID = 1
