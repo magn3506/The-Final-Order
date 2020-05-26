@@ -5,6 +5,7 @@ import {navigate} from 'gatsby';
 import ClassroomDetails from '../../../components/app/organisms/classroom-details/classroom_details';
 import {Wrapper, LecturesTitle, RemoveLectureModalWrapper, RemoveLectureModalButton, CloseIcon, RemoveLectureModalCon, EditButtonsCon, RemoveIcon, LecturesNumber, CreateLectureCon, EditLectureButtonCon, EditLectureButtonText, EditLectureButton, CreateLectureNumber, CreateLectureButtonCon, CreateLectureButtonText, CreateLectureButton, AddIcon, HelpContainer, Title, Feedback, ImgOwl} from './classroom_edit_styles';
 import LectureOwlIcon from '../../../assets/icons/lecture_owl_icon.png';
+import {local_server_path} from '../../../global_variables';
 
 
 const ClassroomEdit = ({location}) => {
@@ -15,7 +16,17 @@ const ClassroomEdit = ({location}) => {
   const removeLecture = () => {
   setRemoveModal(false);
   console.log("LECTURE WITH ID DELETED: ", lectureToDelete);
-  setLectureToDelete(null);
+
+  fetch(local_server_path + `/private/api/lectures/delete-lecture.php?lecture_id=${lectureToDelete}`, {
+    method: 'DELETE'
+    }).then(res => res)
+    .catch(error => console.error("Error:", error))
+    .then(response => {
+      console.log("Success:", response);
+      setLectureToDelete(null);
+      window.location.reload();
+      return false;
+  });
   }
   //UI feedback and check if user is sure
   const removeLectureModal = (lectureID) => {
