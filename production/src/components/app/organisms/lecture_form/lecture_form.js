@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react'
-import { navigate } from "gatsby";
+import { navigate, Link } from "gatsby";
 import { local_server_path } from '../../../../global_variables'
 import Button from "../../atoms/submit_button";
 import {colors} from "../../../../styles/global/colors";
@@ -39,6 +39,12 @@ const LectureForm = ({isShowing, showStep, steps, handleTitleChange, handleDescr
         setError(!error);
     }
 
+    const handleCancel = () => {
+        console.log("CANCEL");
+        navigate("/app/my-classrooms");
+
+    }
+
     return (
         isShowing ? 
         (<Wrapper>
@@ -62,7 +68,9 @@ const LectureForm = ({isShowing, showStep, steps, handleTitleChange, handleDescr
                 <input value={stepsStringARR} name="steps" type="hidden"></input>
                 <input value={classroomID} name="classroom_id" type="hidden"></input>
                 <SubmitContainer>
-                    <Button type="button" onClick={() => navigate("/app/my-classrooms")} border="true" name="Cancel"/>
+                    <Link to="/app/my-classrooms">
+                        <Button type="button" border="true" name="Cancel"/>
+                    </Link>
                     <Button border="false" type="submit" name="Create"/>
                 </SubmitContainer>
                 <CloseIconCon>
