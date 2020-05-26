@@ -254,3 +254,27 @@ left: 40%;
 left: 45%;
 }
 `;
+
+export const RemoveButton = styled.div`
+position: absolute;
+top: 7px;
+right: 170px;
+background: ${colors.red_error};
+color: ${colors.white};
+padding: 5px;
+display: flex;
+align-items: center;
+border-radius: 3px;
+cursor: pointer;
+transition: .3s;
+${bodyText.smallTextBold_13px}
+
+&:hover {
+    opacity: .8;
+}
+
+`;
+
+export const ClassroomDetailsWrapper = styled.div`
+position: relative;
+`;

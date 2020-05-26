@@ -8,15 +8,13 @@ import {
   Classroom_container_laptop,
   Details,
   Owner,
-  Stats_Laptop,
-  RemoveIcon,
-  RemoveButton
+  Stats_Laptop
 } from "./classroom_details_styles"
 
 const Classroom_details_comp = props => {
   // REACIEVES AN OBJECT
-  const { title, description, owner } = props.classroomData
-
+  const { title, description, owner, userID } = props.classroomData
+console.log("USER: ", userID);
   return (
     <>
       <Classroom_container_mobile>
@@ -72,9 +70,6 @@ const Classroom_details_comp = props => {
           </div>
           <h5>{owner}</h5>
         </Owner>
-        <RemoveButton onClick={() => props.removeClassroom()}>
-          <RemoveIcon color="white" size="1em" />Delete
-        </RemoveButton>
       </Classroom_container_laptop>
     </>
   )

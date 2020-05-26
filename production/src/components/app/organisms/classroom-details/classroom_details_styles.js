@@ -146,37 +146,3 @@ export const Stats_Laptop = styled.div`
   background-color: ${colors.super_dark_purple};
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
-
-export const RemoveIcon = styled(MdDeleteForever)`
-margin-right: 0;
-cursor: pointer;
-transition: .3s;
-
-&:hover {
-    opacity: .8;
-}
-
-@media ${breakpoints.minDog} {
-    margin-right: 5px;
-}
-`;
-
-export const RemoveButton = styled.div`
-position: absolute;
-top: 7px;
-right: 170px;
-background: ${colors.red_error};
-color: ${colors.white};
-padding: 5px;
-display: flex;
-align-items: center;
-border-radius: 3px;
-cursor: pointer;
-transition: .3s;
-${bodyText.smallTextBold_13px}
-
-&:hover {
-    opacity: .8;
-}
-
-`;

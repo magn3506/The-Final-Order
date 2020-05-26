@@ -3,19 +3,45 @@ import useFetch from "../../../hooks/useFetch";
 import Layout from "../../../components/app/layout/layout";
 import {navigate} from 'gatsby';
 import ClassroomDetails from '../../../components/app/organisms/classroom-details/classroom_details';
-import {Wrapper, LecturesTitle, RemoveItemModalWrapper, RemoveItemModalButton, CloseIcon, RemoveItemModalCon, EditButtonsCon, RemoveIcon, LecturesNumber, CreateLectureCon, EditLectureButtonCon, EditLectureButtonText, EditLectureButton, CreateLectureNumber, CreateLectureButtonCon, CreateLectureButtonText, CreateLectureButton, AddIcon, HelpContainer, Title, Feedback, ImgOwl} from './classroom_edit_styles';
+import {
+  Wrapper, 
+  LecturesTitle, 
+  RemoveItemModalWrapper, 
+  RemoveItemModalButton, 
+  CloseIcon, 
+  RemoveItemModalCon, 
+  EditButtonsCon, 
+  RemoveIcon, 
+  RemoveButton,
+  ClassroomDetailsWrapper,
+  LecturesNumber, 
+  CreateLectureCon, 
+  EditLectureButtonCon, 
+  EditLectureButtonText, 
+  EditLectureButton, 
+  CreateLectureNumber, 
+  CreateLectureButtonCon, 
+  CreateLectureButtonText, 
+  CreateLectureButton, 
+  AddIcon, 
+  HelpContainer, 
+  Title, 
+  Feedback, 
+  ImgOwl} from './classroom_edit_styles';
 import LectureOwlIcon from '../../../assets/icons/lecture_owl_icon.png';
 import {local_server_path} from '../../../global_variables';
 
 
 const ClassroomEdit = ({location}) => {
-  const [removeModal, setRemoveModal] = useState(false);
+  const [removeLectureModal, setRemoveLectureModal] = useState(false);
+  const [removeClassroomModal, setRemoveClassroomModal] = useState(false);
   const [lectureToDelete, setLectureToDelete] = useState(null);
 
   //REMOVE CLASSROOM
   const removeClassroom = () => {
     console.log("CLASSROOM WITH ID DELETED: ", location.state.classroom_id);
     const classroomToDelete = location.state.classroom_id;
+    setRemoveClassroomModal(false);
 
     fetch(local_server_path + `/private/api/classrooms/delete-classroom.php?classroom_id=${classroomToDelete}`, {
       method: 'DELETE'
@@ -29,7 +55,7 @@ const ClassroomEdit = ({location}) => {
 
   //REMOVE LECTURE
   const removeLecture = () => {
-  setRemoveModal(false);
+    setRemoveLectureModal(false);
   console.log("LECTURE WITH ID DELETED: ", lectureToDelete);
 
   fetch(local_server_path + `/private/api/lectures/delete-lecture.php?lecture_id=${lectureToDelete}`, {
@@ -43,31 +69,35 @@ const ClassroomEdit = ({location}) => {
       return false;
   });
   }
-  //UI feedback and check if user is sure
-  const removeLectureModal = (lectureID) => {
+  //UI feedback and check if user is sure for lecture
+  const removeLectureModalHandler = (lectureID) => {
     console.log("DELETE LECTURE", lectureID);
     setLectureToDelete(lectureID);
-    setRemoveModal(true);
+    setRemoveLectureModal(true);
   }
 
     console.log(location.state.classroom_id);
     const url = "/private/api/classrooms/get-classroom-and-lectures.php?classroom_id=" + location.state.classroom_id;
     const res = useFetch(url, {});
-    console.log("RESPSONSE: ", res);
+    console.log("RESPSONSE test: ", res);
     return (
         <Layout page_title="Edit Classroom">
             {
                 !res.response ? <h1>Loading...</h1> : (
                 
                 <Wrapper>
+                  <ClassroomDetailsWrapper>
                     <ClassroomDetails 
                       classroomData={{
                         title: res.response.title,
                         description: res.response.description,
                         owner: res.response.owner,
                       }}
-                      removeClassroom={removeClassroom}
                     />
+                    <RemoveButton onClick={() => setRemoveClassroomModal(true)}>
+                      <RemoveIcon color="white" size="1em" />Delete
+                    </RemoveButton>
+                  </ClassroomDetailsWrapper>
                 <LecturesTitle>
                     Lectures: <LecturesNumber>0{res.response.lectures.length}</LecturesNumber>
                 </LecturesTitle>
@@ -87,7 +117,7 @@ const ClassroomEdit = ({location}) => {
                     <EditLectureButtonCon className="card">
                       <EditLectureButtonText className="title">{e.title}</EditLectureButtonText>
                       <EditButtonsCon>
-                        <RemoveIcon onClick={() => removeLectureModal(e.id)} size="1.5em" />
+                        <RemoveIcon onClick={() => removeLectureModalHandler(e.id)} size="1.5em" />
                         <EditLectureButton>Edit</EditLectureButton>
                       </EditButtonsCon>
                     </EditLectureButtonCon>
@@ -95,12 +125,22 @@ const ClassroomEdit = ({location}) => {
                 )
               })}
 
-                    {removeModal ? (
+                    {removeLectureModal ? (
                       <RemoveItemModalWrapper>
                         <RemoveItemModalCon>
                           <h2>SURE YOU WANT TO DELETE?</h2>
                           <RemoveItemModalButton onClick={() => removeLecture()}>Delete lecture</RemoveItemModalButton>
-                          <CloseIcon onClick={() => {setRemoveModal(false); setLectureToDelete(null);}} size="1.5em" />
+                          <CloseIcon onClick={() => {setRemoveLectureModal(false); setLectureToDelete(null);}} size="1.5em" />
+                        </RemoveItemModalCon>
+                      </RemoveItemModalWrapper>
+                    ) : null}
+                    
+                    {removeClassroomModal ? (
+                      <RemoveItemModalWrapper>
+                        <RemoveItemModalCon>
+                          <h2>SURE YOU WANT TO DELETE?</h2>
+                          <RemoveItemModalButton onClick={() => removeClassroom()}>Delete classroom</RemoveItemModalButton>
+                          <CloseIcon onClick={() => setRemoveClassroomModal(false)} size="1.5em" />
                         </RemoveItemModalCon>
                       </RemoveItemModalWrapper>
                     ) : null}
