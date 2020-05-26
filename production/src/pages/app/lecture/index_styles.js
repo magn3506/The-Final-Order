@@ -13,6 +13,12 @@ export const Lecture_container = styled.div`
   justify-content: space-between;
   position: fixed;
   top: 0;
+
+  @media ${breakpoints.minDog} {
+    position: relative;
+    height: 600px;
+    margin-top: 25px;
+  }
 `
 export const Header = styled.div`
   background: ${colors.super_dark_purple};
@@ -33,6 +39,12 @@ export const Header = styled.div`
       align-self: flex-end;
       position: relative;
       bottom: -2px;
+
+      @media ${breakpoints.minDog} {
+        ${headings.heading4_24px}
+        text-align: center;
+        margin-bottom: 5px;
+      }
     }
 
     .step {
@@ -94,6 +106,15 @@ export const Slide = styled.div`
   }
 
   .quiz {
+    @media ${breakpoints.minDog} {
+      hr {
+        margin-top: 50px;
+      }
+      h2 {
+        text-align: center;
+      }
+    }
+
     form {
       display: flex;
       flex-direction: column;
@@ -104,6 +125,14 @@ export const Slide = styled.div`
         border-radius: 5px;
         margin: 10px 0px;
         input {
+        }
+      }
+
+      @media ${breakpoints.minDog} {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        label {
+          margin: 10px 10px;
         }
       }
     }

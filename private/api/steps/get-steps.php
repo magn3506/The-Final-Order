@@ -38,9 +38,10 @@ try{
                 $j_sources_data = json_decode($s_sources_data);
 
                 // TJEK IK SOURCES EXISTS IF ARRAY TRUE
-                $jStep->sources = [];
                 if(is_array($j_sources_data)){
                     $jStep->sources = $j_sources_data;
+                }else{
+                    $jStep->sources = [];
                 }
                 
             }
