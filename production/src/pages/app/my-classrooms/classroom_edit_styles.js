@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import {colors} from '../../../styles/global/colors';
 import {headings, bodyText} from '../../../styles/global/typography';
 import { GrAddCircle } from "react-icons/gr";
+import { MdDeleteForever } from 'react-icons/md';
+import { IoIosCloseCircle } from 'react-icons/io';
 import {breakpoints} from '../../../styles/global/breakpoints';
 
 export const Wrapper = styled.div`
@@ -135,6 +137,78 @@ margin-right: 0;
 @media ${breakpoints.minDog} {
     margin-right: 5px;
 }
+`;
+export const CloseIcon = styled(IoIosCloseCircle)`
+margin-right: 0;
+color: ${colors.orange};
+position: absolute;
+top: 5px;
+right: 5px;
+cursor: pointer;
+transition: .3s;
+
+&:hover{
+    opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+    margin-right: 5px;
+}
+`;
+
+export const RemoveIcon = styled(MdDeleteForever)`
+margin-right: 0;
+cursor: pointer;
+transition: .3s;
+color: ${colors.red_error};
+
+&:hover {
+    opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+    margin-right: 5px;
+}
+`;
+
+export const RemoveLectureModalWrapper = styled.div`
+position: absolute;
+top: 50%;
+left: 42%;
+width: 500px;
+height: 250px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+export const RemoveLectureModalCon = styled.div`
+position: relative;
+background: ${colors.white};
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+`;
+
+export const RemoveLectureModalButton = styled.button`
+background: ${colors.orange};
+padding: 15px;
+border: none;
+border-radius: 5px;
+color: ${colors.white};
+cursor: pointer;
+transition: .3s;
+margin-top: 10px;
+
+&:hover {
+    opacity: .8;
+}
+`;
+
+export const EditButtonsCon = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
 `;
 
 export const HelpContainer = styled.div`

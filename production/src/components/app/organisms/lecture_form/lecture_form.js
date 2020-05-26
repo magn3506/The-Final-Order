@@ -31,6 +31,7 @@ const LectureForm = ({isShowing, showStep, steps, handleTitleChange, handleDescr
             .then(response => {
                 console.log(formData);
                 console.log("Success:", response);
+                navigate("/app/my-classrooms/classroom-edit", {state: {classroom_id: classroomID}});
             });
         }
     }

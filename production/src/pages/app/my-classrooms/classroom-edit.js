@@ -1,14 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import useFetch from "../../../hooks/useFetch";
 import Layout from "../../../components/app/layout/layout";
 import {navigate} from 'gatsby';
 import ClassroomDetails from '../../../components/app/organisms/classroom-details/classroom_details';
-import {Wrapper, LecturesTitle, LecturesNumber, CreateLectureCon, EditLectureButtonCon, EditLectureButtonText, EditLectureButton, CreateLectureNumber, CreateLectureButtonCon, CreateLectureButtonText, CreateLectureButton, AddIcon, HelpContainer, Title, Feedback, ImgOwl} from './classroom_edit_styles';
-import { Link } from "gatsby";
-import { MdPlayCircleOutline } from "react-icons/md";
+import {Wrapper, LecturesTitle, RemoveLectureModalWrapper, RemoveLectureModalButton, CloseIcon, RemoveLectureModalCon, EditButtonsCon, RemoveIcon, LecturesNumber, CreateLectureCon, EditLectureButtonCon, EditLectureButtonText, EditLectureButton, CreateLectureNumber, CreateLectureButtonCon, CreateLectureButtonText, CreateLectureButton, AddIcon, HelpContainer, Title, Feedback, ImgOwl} from './classroom_edit_styles';
 import LectureOwlIcon from '../../../assets/icons/lecture_owl_icon.png';
 
+
 const ClassroomEdit = ({location}) => {
+  const [removeModal, setRemoveModal] = useState(false);
+  const [lectureToDelete, setLectureToDelete] = useState(null);
+
+  //Remove lecture
+  const removeLecture = () => {
+  setRemoveModal(false);
+  console.log("LECTURE WITH ID DELETED: ", lectureToDelete);
+  setLectureToDelete(null);
+  }
+  //UI feedback and check if user is sure
+  const removeLectureModal = (lectureID) => {
+    console.log("DELETE LECTURE", lectureID);
+    setLectureToDelete(lectureID);
+    setRemoveModal(true);
+  }
+
     console.log(location.state.classroom_id);
     const url = "/private/api/classrooms/get-classroom-and-lectures.php?classroom_id=" + location.state.classroom_id;
     const res = useFetch(url, {});
@@ -44,11 +59,34 @@ const ClassroomEdit = ({location}) => {
                     <CreateLectureNumber className="index">{i + 1}</CreateLectureNumber>
                     <EditLectureButtonCon className="card">
                       <EditLectureButtonText className="title">{e.title}</EditLectureButtonText>
+                      <EditButtonsCon>
+                        <RemoveIcon onClick={() => removeLectureModal(e.id)} size="1.5em" />
                         <EditLectureButton>Edit</EditLectureButton>
+                      </EditButtonsCon>
                     </EditLectureButtonCon>
                   </CreateLectureCon>
                 )
               })}
+
+                    {removeModal ? (
+                      <RemoveLectureModalWrapper>
+                        <RemoveLectureModalCon>
+                          <h2>SURE YOU WNAT TO DELETE?</h2>
+                          <RemoveLectureModalButton onClick={() => removeLecture()}>Delete lecture</RemoveLectureModalButton>
+                          <CloseIcon onClick={() => {setRemoveModal(false); setLectureToDelete(null);}} size="1.5em" />
+                        </RemoveLectureModalCon>
+                      </RemoveLectureModalWrapper>
+                    ) : null}
+
+              {res.response.lectures.length >= 1 ? (
+                <CreateLectureCon>
+                    <CreateLectureNumber>{res.response.lectures.length + 1}</CreateLectureNumber>
+                    <CreateLectureButtonCon>
+                    <CreateLectureButtonText>What will your next lecture be about?</CreateLectureButtonText>
+                    <CreateLectureButton onClick={() => navigate("/app/lecture/create-lecture", {state: {classroom_id: res.response.id}})}><AddIcon size="1.5em" />{window.innerWidth >= 750 ? ("Add lecture") : null}</CreateLectureButton>
+                    </CreateLectureButtonCon>
+                </CreateLectureCon>
+              ) : null}
 
 
                 <HelpContainer>
