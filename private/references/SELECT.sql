@@ -22,3 +22,43 @@ SELECT * FROM answers WHERE stepID = 2
 
 /*SELECT user WITH email @A*/
 SELECT * FROM users WHERE email = "@A"
+
+
+/* JOINS */
+
+/* GET CLASSROOM */
+SELECT
+    c.id AS classroomID,
+    c.description,
+    c.title,
+    c.isPrivate,
+    c.image,
+    o.userID AS ownerID,
+    u.userName
+FROM
+    classrooms AS c
+INNER JOIN classroomownedandowners AS o
+ON
+    o.classroomID = c.id
+INNER JOIN users AS u
+ON
+    u.id = o.userID
+
+/* VIEWS */
+/* get_classrooms*/
+CREATE VIEW get_classrooms AS SELECT
+    c.id AS classroomID,
+    c.description,
+    c.title,
+    c.isPrivate,
+    c.image,
+    o.userID AS ownerID,
+    u.userName AS ownerName
+FROM
+    classrooms AS c
+INNER JOIN classroomownedandowners AS o
+ON
+    o.classroomID = c.id
+INNER JOIN users AS u
+ON
+    u.id = o.userID
