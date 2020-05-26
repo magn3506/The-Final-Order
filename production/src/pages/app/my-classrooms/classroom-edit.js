@@ -3,7 +3,7 @@ import useFetch from "../../../hooks/useFetch";
 import Layout from "../../../components/app/layout/layout";
 import {navigate} from 'gatsby';
 import ClassroomDetails from '../../../components/app/organisms/classroom-details/classroom_details';
-import {Wrapper, LecturesTitle, LecturesNumber, CreateLectureCon, CreateLectureNumber, CreateLectureButtonCon, CreateLectureButtonText, CreateLectureButton, AddIcon, HelpContainer, Title, Feedback, ImgOwl} from './classroom_edit_styles';
+import {Wrapper, LecturesTitle, LecturesNumber, CreateLectureCon, EditLectureButtonCon, EditLectureButtonText, EditLectureButton, CreateLectureNumber, CreateLectureButtonCon, CreateLectureButtonText, CreateLectureButton, AddIcon, HelpContainer, Title, Feedback, ImgOwl} from './classroom_edit_styles';
 import { Link } from "gatsby";
 import { MdPlayCircleOutline } from "react-icons/md";
 import LectureOwlIcon from '../../../assets/icons/lecture_owl_icon.png';
@@ -40,17 +40,13 @@ const ClassroomEdit = ({location}) => {
 
                 ) : res.response.lectures.map((e, i) => {
                 return (
-                  <div>
-                    <div className="index">{i + 1}</div>
-                    <div className="card">
-                      <h4 className="title">{e.title}</h4>
-                      <div className="progress">100%</div>
-                      <Link to="#">
-                        <MdPlayCircleOutline size="20px" color="white" />
-                        <div>Begin</div>
-                      </Link>
-                    </div>
-                  </div>
+                  <CreateLectureCon>
+                    <CreateLectureNumber className="index">{i + 1}</CreateLectureNumber>
+                    <EditLectureButtonCon className="card">
+                      <EditLectureButtonText className="title">{e.title}</EditLectureButtonText>
+                        <EditLectureButton>Edit</EditLectureButton>
+                    </EditLectureButtonCon>
+                  </CreateLectureCon>
                 )
               })}
 

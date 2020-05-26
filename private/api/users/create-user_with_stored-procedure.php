@@ -16,15 +16,21 @@ try{
 
     
         //Prepare SQL query
-        $q = $db->prepare('INSERT INTO users VALUES(null, :email, :password, :user_name)');
+        $q = $db->prepare('CALL `createUser`(:email, :password, :user_name, @p3);');
     
         //BIND VALUES TO POST
-        $q->bindValue(':email', $email);
-        $q->bindValue(':password', $password);
-        $q->bindValue(':user_name', $user_name);
+        $q->bindParam(':email', $email);
+        $q->bindParam(':password', $password);
+        $q->bindParam(':user_name', $user_name);
     
         //Execute SQL query
         $q->execute();
+
+        //SELECT CLASSROOM FROM STORED PROCEDURE
+        $q2 = $db->prepare('SELECT @p3 AS `userID`;');
+        $q2->execute();
+
+        $UserID = $q2->fetchAll();
     
         http_response_code(200);
 
@@ -35,7 +41,7 @@ try{
 
         $jUser = new stdClass();
         $jUser->email = $email;
-        $jUser->id = $db->lastInsertId();
+        $jUser->id = $UserID[0]->userID;
         echo json_encode($jUser);
     }else{
         echo "Missing fields";

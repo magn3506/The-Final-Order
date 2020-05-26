@@ -9,26 +9,39 @@ try{
 
     $userID = $_GET['id'];
 
-    //Prepare SQL Query - STORED PROCEDURE TRANSACTION - https://www.youtube.com/watch?v=dwVj_g3TpZ4 - REFERENCE
-    $q = $db->prepare('CALL `createClassrooms`(:title, :description, :image, :is_private, :userID, @p5);');
+    //BEGIN TRANSACTION
+    $db->beginTransaction();
+
+    //Prepare SQL Query - INSERT INTO CLASSROOMS
+    $q = $db->prepare('INSERT INTO classrooms VALUES(null, :title, :description, :image, :is_private);');
 
     //BIND VALUES
-    $q->bindParam(':title', $title);
-    $q->bindParam(':description', $description);
-    $q->bindParam(':image', $image);
-    $q->bindParam(':is_private', $is_private);
-    $q->bindParam(':userID', $userID);
+    $q->bindValue(':title', $title);
+    $q->bindValue(':description', $description);
+    $q->bindValue(':image', $image);
+    $q->bindValue(':is_private', $is_private);
 
     //Execute SQL query
     $q->execute();
 
-    //SELECT CLASSROOM FROM STORED PROCEDURE
-    $q2 = $db->prepare('SELECT @p5 AS `classroomID`;');
+    //GET clasroom id
+    $classroomID = $db->lastInsertId();
+
+    //Prepare SQL Query - INSERT INTO BRIDGE TABLE classroomownedandowners
+    $q2 = $db->prepare('INSERT INTO classroomownedandowners(userID, classroomID) VALUES (:userID, :classroomID);');
+
+    //BIND VALUES
+    $q2->bindValue(':userID', $userID);
+    $q2->bindValue(':classroomID', $classroomID);
+
+    //Execute SQL query
     $q2->execute();
 
     http_response_code(200);
-    $classroomID = $q2->fetchAll();
-    echo $classroomID[0]->classroomID;
+    echo $classroomID;
+
+    //COMMIT TRANSACTION
+    $db->commit();
     
 }catch(PDOException $ex){
     //ROLL BACK TRANSACTION

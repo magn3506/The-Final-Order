@@ -10,6 +10,17 @@ const Classroom_list_item_one = props => {
   const dim = Math.floor(Math.random() * 200)
   console.log(dim)
   const image = `http://placeimg.com/${dim}/${dim}/any`
+
+  //CHECK IF LOGGED IN USER OWNS CLASSROOM
+  let cookieEmail = document.cookie.replace(
+    /(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/,
+    "$1"
+  );
+  if(cookieEmail === owner){
+    console.log("OWNS CLASSROOM");
+  }else{
+    console.log("DOES NOT OWN CLASSROOM");
+  }
   return (
     <Li>
       <Top>
@@ -21,9 +32,7 @@ const Classroom_list_item_one = props => {
       </Top>
       <Bottom>
         <p>{description}</p>
-        <Link to={"app/classroom"} state={{ classroom_id: id }}>
-          GO TO ROOM
-        </Link>
+        {cookieEmail === "@" + owner ? <Link to={"/app/my-classrooms/classroom-edit"} state={{ classroom_id: id }}>GO TO YOUR ROOM</Link> : <Link to={"app/classroom"} state={{ classroom_id: id }}>GO TO ROOM</Link>}
       </Bottom>
     </Li>
   )

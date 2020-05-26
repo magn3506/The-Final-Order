@@ -38,6 +38,52 @@ align-items: center;
 padding: 10px;
 `;
 
+export const EditLectureButtonCon = styled.div`
+width: 100%;
+border-radius: 35px;
+background: ${colors.dark_dark_purple};
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+height: 65px;
+`;
+
+export const EditLectureButtonText = styled.h2`
+${bodyText.smallTextBold_13px};
+color: ${colors.sand};
+margin-left: 10px;
+
+@media ${breakpoints.minDog} {
+${headings.heading5_18px};
+}
+`;
+
+export const EditLectureButton = styled.button`
+background: ${colors.orange};
+border: none;
+border-radius: 25px;
+padding: 12px;
+margin-right: 5px;
+cursor: pointer;
+transition: .3s;
+${bodyText.smallTextBold_13px};
+color: ${colors.white};
+display: flex;
+justify-content: center;
+align-items: center;
+width: 50px;
+
+&:hover {
+    opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+    margin-right: 10px;
+    width: 125px;
+}
+`;
+
 export const CreateLectureButtonCon = styled.div`
 width: 100%;
 border-radius: 35px;
