@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../../../components/app/layout/layout"
+import { Link } from "gatsby"
 
 // HOOKS
 import useFetch from "../../../hooks/useFetch"
@@ -34,9 +35,20 @@ const Lecture_page = ({ location }) => {
     )
   }
 
+  // STEP DATA
+
+  const { theoryText, question, title, sources, answers } = lecture.steps[
+    step - 1
+  ]
+  // PROGRESS
+  const nr_of_steps = lecture.steps.length
+  const progress = (tq / 2 / nr_of_steps) * 100
+  //
+
   // HANDLE NEXT AND PREV
   const next = e => {
     e.preventDefault()
+
     if (tq / 2 == step) {
       setTq(tq + 1)
       setStep(step + 1)
@@ -58,18 +70,6 @@ const Lecture_page = ({ location }) => {
     }
   }
 
-  // STEP DATA
-
-  const { theoryText, question, title, sources, answers } = lecture.steps[
-    step - 1
-  ]
-  // PROGRESS
-  const nr_of_steps = lecture.steps.length
-  const progress = (tq / 2 / nr_of_steps) * 100
-  //
-  if (step == nr_of_steps) {
-    console.log("THE END")
-  }
   return (
     <Layout page_title="this is a lecture">
       <Lecture_container>
@@ -79,7 +79,14 @@ const Lecture_page = ({ location }) => {
               Step {step}/{lecture.steps.length}
             </div>
             <h2> {lecture.title}</h2>
-            <AiFillCloseCircle size="30px" />
+            <Link
+              to={"app/classroom"}
+              state={{
+                classroom_id: location.state.classroom_id,
+              }}
+            >
+              <AiFillCloseCircle size="30px" />
+            </Link>
           </div>
           <div className="progress">
             <div style={{ width: `${progress}%` }}></div>
@@ -90,7 +97,7 @@ const Lecture_page = ({ location }) => {
             <div className="theory">
               <h3>{title}</h3>
               <p>{theoryText}</p>
-              {!sources.length >= 1 ? (
+              {!sources ? (
                 ""
               ) : (
                 <div>
@@ -135,7 +142,10 @@ const Lecture_page = ({ location }) => {
           >
             <IoIosArrowDropleft size="30px" /> <div>PREV</div>
           </button>
-          <button className="next" onClick={e => next(e)}>
+          <button
+            className="next"
+            onClick={tq == nr_of_steps * 2 ? null : e => next(e)}
+          >
             <div>NEXT</div>
             <IoIosArrowDropright size="30px" />
           </button>
