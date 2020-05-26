@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { colors } from "../../../../styles/global/colors"
 import { breakpoints } from "../../../../styles/global/breakpoints"
 import { headings, bodyText } from "../../../../styles/global/typography"
+import { MdDeleteForever } from 'react-icons/md';
 
 // ###############################################
 // CLASSROOM CONTAINER MOBILE
@@ -78,6 +79,7 @@ export const Stats_mobile = styled.div`
 // CLASSROOM CONTAINER LAPTOP
 // ###############################################
 export const Classroom_container_laptop = styled.div`
+position: relative;
   display: none;
   margin-top: 50px;
   @media ${breakpoints.minDog} {
@@ -114,6 +116,7 @@ export const Details = styled.div`
     }
   }
 `
+
 export const Owner = styled.div`
   background-color: ${colors.dark_dark_purple};
   width: 200px;
@@ -143,3 +146,37 @@ export const Stats_Laptop = styled.div`
   background-color: ${colors.super_dark_purple};
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
+
+export const RemoveIcon = styled(MdDeleteForever)`
+margin-right: 0;
+cursor: pointer;
+transition: .3s;
+
+&:hover {
+    opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+    margin-right: 5px;
+}
+`;
+
+export const RemoveButton = styled.div`
+position: absolute;
+top: 7px;
+right: 170px;
+background: ${colors.red_error};
+color: ${colors.white};
+padding: 5px;
+display: flex;
+align-items: center;
+border-radius: 3px;
+cursor: pointer;
+transition: .3s;
+${bodyText.smallTextBold_13px}
+
+&:hover {
+    opacity: .8;
+}
+
+`;

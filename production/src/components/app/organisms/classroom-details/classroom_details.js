@@ -9,6 +9,8 @@ import {
   Details,
   Owner,
   Stats_Laptop,
+  RemoveIcon,
+  RemoveButton
 } from "./classroom_details_styles"
 
 const Classroom_details_comp = props => {
@@ -70,6 +72,9 @@ const Classroom_details_comp = props => {
           </div>
           <h5>{owner}</h5>
         </Owner>
+        <RemoveButton onClick={() => props.removeClassroom()}>
+          <RemoveIcon color="white" size="1em" />Delete
+        </RemoveButton>
       </Classroom_container_laptop>
     </>
   )

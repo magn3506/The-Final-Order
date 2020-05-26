@@ -171,15 +171,16 @@ color: ${colors.red_error};
 }
 `;
 
-export const RemoveLectureModalWrapper = styled.div`
+export const RemoveItemModalWrapper = styled.div`
 position: absolute;
-top: 50%;
+top: 35%;
 left: 42%;
 width: 500px;
 height: 250px;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+z-index: 1;
 `;
-export const RemoveLectureModalCon = styled.div`
+export const RemoveItemModalCon = styled.div`
 position: relative;
 background: ${colors.white};
 width: 100%;
@@ -190,7 +191,7 @@ align-items: center;
 flex-direction: column;
 `;
 
-export const RemoveLectureModalButton = styled.button`
+export const RemoveItemModalButton = styled.button`
 background: ${colors.orange};
 padding: 15px;
 border: none;
