@@ -13,8 +13,7 @@ import {
 
 const Classroom_details_comp = props => {
   // REACIEVES AN OBJECT
-  const { title, description, owner, userID } = props.classroomData
-console.log("USER: ", userID);
+  const { title, description, owner } = props.classroomData
   return (
     <>
       <Classroom_container_mobile>

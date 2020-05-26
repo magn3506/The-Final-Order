@@ -4,6 +4,7 @@ import {headings, bodyText} from '../../../styles/global/typography';
 import { GrAddCircle } from "react-icons/gr";
 import { MdDeleteForever } from 'react-icons/md';
 import { IoIosCloseCircle } from 'react-icons/io';
+import { FiEdit } from 'react-icons/fi';
 import {breakpoints} from '../../../styles/global/breakpoints';
 
 export const Wrapper = styled.div`
@@ -257,7 +258,7 @@ left: 45%;
 
 export const RemoveButton = styled.div`
 position: absolute;
-top: 7px;
+bottom: 7px;
 right: 170px;
 background: ${colors.red_error};
 color: ${colors.white};
@@ -272,9 +273,35 @@ ${bodyText.smallTextBold_13px}
 &:hover {
     opacity: .8;
 }
-
 `;
 
 export const ClassroomDetailsWrapper = styled.div`
 position: relative;
+`;
+
+export const EditClassroomIcon = styled(FiEdit)`
+margin-right: 20px;
+
+&:hover {
+    opacity: .8;
+}
+`;
+
+export const EditClassroomButton = styled.div`
+position: absolute;
+bottom: 7px;
+right: 245px;
+background: ${colors.sand};
+color: ${colors.dark_dark_purple};
+padding: 5px;
+display: flex;
+align-items: center;
+border-radius: 3px;
+cursor: pointer;
+transition: .3s;
+${bodyText.smallTextBold_13px}
+
+&:hover {
+    opacity: .8;
+}
 `;

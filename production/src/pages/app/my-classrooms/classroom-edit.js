@@ -27,7 +27,10 @@ import {
   HelpContainer, 
   Title, 
   Feedback, 
-  ImgOwl} from './classroom_edit_styles';
+  ImgOwl,
+  EditClassroomButton,
+  EditClassroomIcon
+} from './classroom_edit_styles';
 import LectureOwlIcon from '../../../assets/icons/lecture_owl_icon.png';
 import {local_server_path} from '../../../global_variables';
 
@@ -97,6 +100,9 @@ const ClassroomEdit = ({location}) => {
                     <RemoveButton onClick={() => setRemoveClassroomModal(true)}>
                       <RemoveIcon color="white" size="1em" />Delete
                     </RemoveButton>
+                    <EditClassroomButton onClick={() => navigate("/app/my-classrooms/update-classroom", {state: {classroom: res.response}})}>
+                      <EditClassroomIcon color="black" size="1em" />Edit
+                    </EditClassroomButton>
                   </ClassroomDetailsWrapper>
                 <LecturesTitle>
                     Lectures: <LecturesNumber>0{res.response.lectures.length}</LecturesNumber>
