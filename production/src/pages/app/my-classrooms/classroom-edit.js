@@ -29,7 +29,8 @@ import {
   Feedback, 
   ImgOwl,
   EditClassroomButton,
-  EditClassroomIcon
+  EditClassroomIcon,
+  RemoveItemModalTitle
 } from './classroom_edit_styles';
 import LectureOwlIcon from '../../../assets/icons/lecture_owl_icon.png';
 import {local_server_path} from '../../../global_variables';
@@ -134,7 +135,7 @@ const ClassroomEdit = ({location}) => {
                     {removeLectureModal ? (
                       <RemoveItemModalWrapper>
                         <RemoveItemModalCon>
-                          <h2>SURE YOU WANT TO DELETE?</h2>
+                          <RemoveItemModalTitle>SURE YOU WANT TO DELETE?</RemoveItemModalTitle>
                           <RemoveItemModalButton onClick={() => removeLecture()}>Delete lecture</RemoveItemModalButton>
                           <CloseIcon onClick={() => {setRemoveLectureModal(false); setLectureToDelete(null);}} size="1.5em" />
                         </RemoveItemModalCon>
@@ -144,7 +145,7 @@ const ClassroomEdit = ({location}) => {
                     {removeClassroomModal ? (
                       <RemoveItemModalWrapper>
                         <RemoveItemModalCon>
-                          <h2>SURE YOU WANT TO DELETE?</h2>
+                          <RemoveItemModalTitle>SURE YOU WANT TO DELETE?</RemoveItemModalTitle>
                           <RemoveItemModalButton onClick={() => removeClassroom()}>Delete classroom</RemoveItemModalButton>
                           <CloseIcon onClick={() => setRemoveClassroomModal(false)} size="1.5em" />
                         </RemoveItemModalCon>

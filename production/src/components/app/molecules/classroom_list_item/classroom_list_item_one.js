@@ -11,7 +11,6 @@ const Classroom_list_item_one = props => {
   console.log(dim)
   const image = `http://placeimg.com/${dim}/${dim}/any`
   console.log("CLASSROOM: ", props.classroom);
-  console.log("EMAIL: ", props.classroom.email);
 
   //GET LOGGED IN USER
   let cookieID = document.cookie.replace(

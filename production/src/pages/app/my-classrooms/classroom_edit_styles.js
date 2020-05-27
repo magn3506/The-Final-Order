@@ -175,11 +175,21 @@ color: ${colors.red_error};
 export const RemoveItemModalWrapper = styled.div`
 position: absolute;
 top: 35%;
-left: 42%;
-width: 500px;
+left: 0;
+width: 100%;
 height: 250px;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 z-index: 1;
+
+@media ${breakpoints.minDog} {
+left: 20%;
+width: 500px;
+}
+
+@media ${breakpoints.minWolf} {
+left: 42%;
+width: 500px;
+}
 `;
 export const RemoveItemModalCon = styled.div`
 position: relative;
@@ -190,6 +200,17 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+`;
+
+export const RemoveItemModalTitle = styled.h2`
+text-align: center;
+${headings.heading5_18px};
+
+@media ${breakpoints.minDog} {
+left: 42%;
+width: 500px;
+${headings.heading4_24px};
+}
 `;
 
 export const RemoveItemModalButton = styled.button`
@@ -259,7 +280,7 @@ left: 45%;
 export const RemoveButton = styled.div`
 position: absolute;
 bottom: 7px;
-right: 170px;
+right: 5px;
 background: ${colors.red_error};
 color: ${colors.white};
 padding: 5px;
@@ -272,6 +293,10 @@ ${bodyText.smallTextBold_13px}
 
 &:hover {
     opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+right: 170px;
 }
 `;
 
@@ -290,7 +315,7 @@ margin-right: 20px;
 export const EditClassroomButton = styled.div`
 position: absolute;
 bottom: 7px;
-right: 245px;
+right: 75px;
 background: ${colors.sand};
 color: ${colors.dark_dark_purple};
 padding: 5px;
@@ -303,5 +328,9 @@ ${bodyText.smallTextBold_13px}
 
 &:hover {
     opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+right: 245px;
 }
 `;
