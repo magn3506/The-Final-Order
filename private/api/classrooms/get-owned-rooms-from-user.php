@@ -31,6 +31,7 @@ if(isset($_GET['user_id'])
                 $j_classroom_data = json_decode($s_classroom_data);
                 // ADD CLASSROOM DETAILS TO OWNED ROOMS OBJECT
                 $jOwnedRoom->classroom = $j_classroom_data;
+                $jOwnedRoom->classroom->userID = $user_id;
             }
 
             // RESPONSE CODE & HEADER

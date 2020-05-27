@@ -27,6 +27,7 @@ try{
                $j_user = json_decode($s_user);
                // ADD USER DETAILTS TO CLASROOM OBJ
                $jRooom->owner = $j_user->userName;
+               $jRooom->userID = $j_user->id;
         }
 
         // RESPONSE CODE & HEADER
