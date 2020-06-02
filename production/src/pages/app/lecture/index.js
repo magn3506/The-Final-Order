@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../../../components/app/layout/layout"
-import { Link } from "gatsby"
 
 // HOOKS
 import useFetch from "../../../hooks/useFetch"
@@ -10,7 +9,7 @@ import Header from "./components/header/header"
 import Theory from "./components/theory_and_quiz/theory"
 import Quiz from "./components/theory_and_quiz/quiz"
 import Navigation from "./components/navigation/navigation"
-
+import The_end from "./components/the-end/the_end"
 // STYLED
 import { Lecture_container, Slider, Slide } from "./index_styles"
 
@@ -80,8 +79,9 @@ const Lecture_page = ({ location }) => {
       alert("Wrong Answer Try againg")
       return null
     }
-    // if (isCorrectAnswer == 1 && tq % 2 == 0) {
-    // }
+    if (isCorrectAnswer == 1 && tq % 2 == 0) {
+      setIsCorrectAnswer(null)
+    }
 
     //INCREAS STEP
     if (tq / 2 == step) {
@@ -124,15 +124,7 @@ const Lecture_page = ({ location }) => {
         {lectureEnd ? (
           <Slider>
             <Slide slide={false}>
-              <h2>THE END</h2>
-              <Link
-                to={"app/classroom"}
-                state={{
-                  classroom_id: location.state.classroom_id,
-                }}
-              >
-                GO BACK TO CLASSROOM
-              </Link>
+              <The_end location={location} />
             </Slide>
           </Slider>
         ) : (

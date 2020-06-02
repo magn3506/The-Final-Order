@@ -7,8 +7,6 @@ export const Lecture_container = styled.div`
   width: 100%;
   height: 100vh;
   /* min-height: 100vh; */
-  border: 1px solid ${colors.light_grey};
-  box-shadow: 4px 4px 4px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,6 +17,9 @@ export const Lecture_container = styled.div`
     position: relative;
     height: 600px;
     margin-top: 25px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
   }
 `
 

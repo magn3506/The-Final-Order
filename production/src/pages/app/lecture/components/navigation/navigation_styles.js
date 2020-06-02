@@ -1,13 +1,18 @@
 import styled, { css } from "styled-components"
 import { caption } from "../../../../../styles/global/typography"
 import { colors } from "../../../../../styles/global/colors"
+import { breakpoints } from "../../../../../styles/global/breakpoints"
 
 export const Navigation_con = styled.div`
   height: 50px;
   width: 100%;
   align-self: flex-end;
-  display: flex;
-
+  display: ${props => (!props.isLectureEnd ? "flex" : "none")};
+  @media ${breakpoints.minDog} {
+    height: 50px;
+    background-color: white;
+    justify-content: flex-end;
+  }
   button {
     align-self: center;
     margin: 0 auto;
@@ -26,6 +31,22 @@ export const Navigation_con = styled.div`
       align-self: center;
       margin: 0 5px;
     }
+
+    @media ${breakpoints.minDog} {
+      width: 120px;
+      align-self: flex-end;
+      margin: 10px 5px;
+      border-radius: 1000px;
+      justify-content: space-between;
+      
+
+      div {
+      }
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
   }
 
   .prev {
@@ -43,6 +64,10 @@ export const Navigation_con = styled.div`
             cursor: pointer;
           `}
 
+
+    @media ${breakpoints.minDog} {
+      padding-right: 20px;
+    }
     svg {
       fill: ${colors.dark_dark_purple};
     }
@@ -50,6 +75,9 @@ export const Navigation_con = styled.div`
   .next {
     background-color: ${colors.dark_dark_purple};
     color: ${colors.sand};
+    @media ${breakpoints.minDog} {
+      padding-left: 20px;
+    }
     div {
     }
     svg {

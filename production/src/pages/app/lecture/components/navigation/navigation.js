@@ -16,7 +16,7 @@ const Navigation = props => {
   const handleSetLectureEnd = props.handleSetLectureEnd
 
   return (
-    <Navigation_con isPrevActive={isPrevActive}>
+    <Navigation_con isPrevActive={isPrevActive} isLectureEnd={props.lectureEnd}>
       <button
         className="prev"
         onClick={step == 1 && tq == 1 ? null : e => prev(e)} // INACTIVE WHEN FIRST STEP 1
