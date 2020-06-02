@@ -31,12 +31,9 @@ const StepForm = ({isShowing, hide, showLecture, AddSteps}) => {
                 answerARR.push({answerValue: formData.get(input), isCorrect: 0});
           }
 
-          //CONVERT SOURCES INTO ARRAY
+          //CONVERT SOURCES INTO JSON ARRAY
           if(formData.get("sources")){
-            let newJson = formData.get("sources").replace(/([a-zA-Z0-9]+?):/g, '"$1":');
-            newJson = newJson.replace(/'/g, '"');
-            
-            sourceARR = JSON.parse(newJson);
+            sourceARR = JSON.parse(formData.get("sources"));
             console.log(sourceARR);
           }
 

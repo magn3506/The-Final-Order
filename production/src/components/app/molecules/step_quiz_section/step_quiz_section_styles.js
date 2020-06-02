@@ -54,7 +54,8 @@ outline: none;
 margin: 5px 0 5px 0;
 
 &:valid {
-  outline: 2px solid ${colors.green_succes};
+  border: 2px solid ${colors.green_succes};
+  border-radius: 5px;
 }
 
 &::placeholder{

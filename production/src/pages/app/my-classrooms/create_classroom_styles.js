@@ -91,7 +91,8 @@ outline: none;
 margin: 5px 0 5px 0;
 
 &:valid {
-  outline: 2px solid ${colors.green_succes};
+  border: 2px solid ${colors.green_succes};
+  border-radius: 5px;
 }
 
 &::placeholder{
@@ -134,6 +135,11 @@ padding: 5px 5px 5px 5px;
 width: 100%;
 outline: none;
 border-radius: 5px;
+
+&:valid {
+  border: 2px solid ${colors.green_succes};
+  border-radius: 5px;
+}
 
 @media ${breakpoints.minDog} {
     width: 100%;

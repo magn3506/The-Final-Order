@@ -9,7 +9,7 @@ const Con = styled.div`
 `
 
 export default {
-  title: "Search Bar",
+  title: "Atoms",
   component: Search,
 }
 
