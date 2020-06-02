@@ -5,7 +5,6 @@ const Theory = props => {
   const { title, theoryText, sources } = props.step
   return (
     <>
-      <div>HELLO</div>
       <Theory_con>
         <h3>{title}</h3>
         <p>{theoryText}</p>

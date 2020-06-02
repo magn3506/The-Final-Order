@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { Quiz_con, Answer_con } from "./quiz_styles"
 import checkedIcon from "../../../../../assets/icons/checked.png"
 import unCheckedIcon from "../../../../../assets/icons/unChecked.png"
-// import unCheckedIcon from "../../../../../assets/icons/unCheckedIcon.png"
 
 const Quiz = props => {
   // STATE
@@ -22,17 +21,19 @@ const Quiz = props => {
   return (
     <Quiz_con>
       <h2>{question}</h2>
-      <p>{value}</p>
       <hr />
       <form>
         {answers.map((e, i) => {
           return (
-            <Answer_con checked={value == e.answerValue}>
+            <Answer_con
+              checked={value == e.answerValue}
+              isCorrect={e.isCorrect}
+            >
               <label key={i} for={`id${i}`}>
                 <input
                   id={`id${i}`}
                   type="radio"
-                  name="answer"
+                  name={`answer${props.step}`}
                   value={e.answerValue}
                   className="answer"
                   onChange={e => handleSetValue(e)}
@@ -45,8 +46,7 @@ const Quiz = props => {
                     alt="checked or unchecked"
                   />
                 </div>
-
-                {e.answerValue}
+                <p>{e.answerValue}</p>
               </label>
             </Answer_con>
           )

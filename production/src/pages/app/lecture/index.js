@@ -20,6 +20,7 @@ const Lecture_page = ({ location }) => {
   const [step, setStep] = useState(1)
   const [slide, setSlide] = useState(false)
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(null)
+  const [lectureEnd, setlectureEnd] = useState(false)
 
   // TODO: WHAT HAPPENS IF LOCATION.state.lecture_id is not provided
   // FETCH CLASSROOM
@@ -50,10 +51,39 @@ const Lecture_page = ({ location }) => {
     console.dir(val)
   }
 
+  // SET LECTURE END
+  const handleSetLectureEnd = e => {
+    // VALIDATE ANSWER IF ON EVERY SECOND PAGE (QUIZ)
+    if (isCorrectAnswer == null && tq % 2 == 0) {
+      alert("Please choose an answer")
+      return null
+    }
+    if (isCorrectAnswer == 0 && tq % 2 == 0) {
+      alert("Wrong Answer Try againg")
+      return null
+    }
+
+    e.preventDefault()
+    setlectureEnd(true)
+  }
+
   // HANDLE NEXT AND PREV NAVIGATION
   const next = e => {
     e.preventDefault()
 
+    // VALIDATE ANSWER IF ON EVERY SECOND PAGE (QUIZ)
+    if (isCorrectAnswer == null && tq % 2 == 0) {
+      alert("Please choose an answer")
+      return null
+    }
+    if (isCorrectAnswer == 0 && tq % 2 == 0) {
+      alert("Wrong Answer Try againg")
+      return null
+    }
+    // if (isCorrectAnswer == 1 && tq % 2 == 0) {
+    // }
+
+    //INCREAS STEP
     if (tq / 2 == step) {
       setTq(tq + 1)
       setStep(step + 1)
@@ -63,7 +93,12 @@ const Lecture_page = ({ location }) => {
       setSlide(true)
     }
   }
+  // PREV STEP
   const prev = e => {
+    if (lectureEnd) {
+      setlectureEnd(false)
+    }
+
     e.preventDefault()
     if ((step - 1) * 2 == tq - 1) {
       setTq(tq - 1)
@@ -83,20 +118,39 @@ const Lecture_page = ({ location }) => {
           step={step}
           lecture={lecture}
           progress={progress}
+          lectureEnd={lectureEnd}
         />
         {/* SLIDER COMP and SLIDE CONTROLLING THE IMAGE SLDIER */}
-        <Slider>
-          <Slide slide={slide}>
-            <Theory step={lecture.steps[step - 1]} />
-          </Slide>
-          <Slide slide={slide}>
-            <Quiz
-              question={question}
-              answers={answers}
-              handleSetCorrectAnswer={handleSetCorrectAnswer}
-            />
-          </Slide>
-        </Slider>
+        {lectureEnd ? (
+          <Slider>
+            <Slide slide={false}>
+              <h2>THE END</h2>
+              <Link
+                to={"app/classroom"}
+                state={{
+                  classroom_id: location.state.classroom_id,
+                }}
+              >
+                GO BACK TO CLASSROOM
+              </Link>
+            </Slide>
+          </Slider>
+        ) : (
+          <Slider>
+            <Slide slide={slide}>
+              <Theory step={lecture.steps[step - 1]} />
+            </Slide>
+            <Slide slide={slide}>
+              <Quiz
+                step={step}
+                question={question}
+                answers={answers}
+                handleSetCorrectAnswer={handleSetCorrectAnswer}
+              />
+            </Slide>
+          </Slider>
+        )}
+
         <Navigation // PREV AND NEXT BTN
           isPrevActive={step == 1 && tq == 1 ? "hide" : "show"}
           tq={tq}
@@ -104,6 +158,8 @@ const Lecture_page = ({ location }) => {
           nr_of_steps={nr_of_steps}
           next={next}
           prev={prev}
+          lectureEnd={lectureEnd}
+          handleSetLectureEnd={handleSetLectureEnd}
         />
       </Lecture_container>
     </Layout>

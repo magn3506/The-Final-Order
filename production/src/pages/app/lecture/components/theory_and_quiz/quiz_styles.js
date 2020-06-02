@@ -33,23 +33,25 @@ export const Answer_con = styled.div`
   margin: 10px 0px;
   display: flex;
   label {
-    padding: 20px 30px;
+    padding: 20px 10px;
     cursor: pointer;
     display: flex;
 
     input[type="radio"] {
       display: none;
     }
+    p {
+      align-self: center;
+    }
     div {
-      position: relative;
-      width: 0px;
-      height: 0px;
+      align-self: center;
+      margin-right: 5px;
+      width: 50px;
+      height: 50px;
+
       img {
         width: 50px;
         height: 50px;
-        position: absolute;
-        left: -40px;
-        top: -25px;
       }
     }
   }
@@ -62,4 +64,16 @@ export const Answer_con = styled.div`
       : css`
           color: ${colors.white};
         `}
+  ${props =>
+    props.checked && props.isCorrect == 1
+      ? css`
+          border: 3px solid ${colors.green_succes};
+        `
+      : css``}
+        ${props =>
+          props.checked && props.isCorrect == 0
+            ? css`
+                border: 3px solid ${colors.red_error};
+              `
+            : css``}
 `

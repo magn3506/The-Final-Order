@@ -13,6 +13,7 @@ const Navigation = props => {
   // HANDLE CLICK
   const next = props.next
   const prev = props.prev
+  const handleSetLectureEnd = props.handleSetLectureEnd
 
   return (
     <Navigation_con isPrevActive={isPrevActive}>
@@ -24,7 +25,9 @@ const Navigation = props => {
       </button>
       <button
         className="next"
-        onClick={tq == nr_of_steps * 2 ? null : e => next(e)} // INACTIVE WHEN LaST STEP
+        onClick={
+          tq == nr_of_steps * 2 ? e => handleSetLectureEnd(e) : e => next(e)
+        } // INACTIVE WHEN LaST STEP 1
       >
         <div>NEXT</div>
         <IoIosArrowDropright size="30px" />

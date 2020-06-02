@@ -5,7 +5,7 @@ import { AiFillCloseCircle } from "react-icons/ai"
 
 const Slider_header = props => {
   return (
-    <Header>
+    <Header lectureEnd={props.lectureEnd}>
       <div className="details">
         <div className="step">
           Step {props.step}/{props.lecture.steps.length}

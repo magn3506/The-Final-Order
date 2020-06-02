@@ -60,7 +60,8 @@ export const Header = styled.div`
     overflow: hidden;
     div {
       height: 100%;
-      background: ${colors.orange};
+      background: ${props =>
+        props.lectureEnd ? colors.green_succes : colors.orange};
       border-radius: 1000px;
     }
   }
