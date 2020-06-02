@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { colors } from "../../../../styles/global/colors"
 import { breakpoints } from "../../../../styles/global/breakpoints"
 import { headings, bodyText } from "../../../../styles/global/typography"
+import { MdDeleteForever } from 'react-icons/md';
 
 // ###############################################
 // CLASSROOM CONTAINER MOBILE
@@ -78,6 +79,7 @@ export const Stats_mobile = styled.div`
 // CLASSROOM CONTAINER LAPTOP
 // ###############################################
 export const Classroom_container_laptop = styled.div`
+position: relative;
   display: none;
   margin-top: 50px;
   @media ${breakpoints.minDog} {
@@ -114,6 +116,7 @@ export const Details = styled.div`
     }
   }
 `
+
 export const Owner = styled.div`
   background-color: ${colors.dark_dark_purple};
   width: 200px;

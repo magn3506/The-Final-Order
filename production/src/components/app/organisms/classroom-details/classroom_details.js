@@ -8,13 +8,12 @@ import {
   Classroom_container_laptop,
   Details,
   Owner,
-  Stats_Laptop,
+  Stats_Laptop
 } from "./classroom_details_styles"
 
 const Classroom_details_comp = props => {
   // REACIEVES AN OBJECT
   const { title, description, owner } = props.classroomData
-
   return (
     <>
       <Classroom_container_mobile>

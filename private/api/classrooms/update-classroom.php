@@ -1,12 +1,12 @@
 <?php
 require_once('../db-connection/root-connection.php');
 try{
-    if(isset($_POST['classroom_id'])){ //!!ADD other post values
+    if(isset($_GET['classroom_id'])){ //!!ADD other post values
         // ! #########################################
         // TODO: CREATE VALIDATION -------------------
         // ! #########################################
         //GET POST values & id
-        $classroom_id = $_POST['classroom_id'];
+        $classroom_id = $_GET['classroom_id'];
         $title = $_POST['title'];
         $description = $_POST['description'];
         $image = $_POST['image'];

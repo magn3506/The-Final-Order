@@ -6,21 +6,18 @@ import { colors } from "../../../../styles/global/colors"
 import { Li, Top, Bottom } from "./classroom_list_item_one_styles"
 
 const Classroom_list_item_one = props => {
-  const { title, description, owner, id } = props.classroom
+  const { title, description, owner, id, userID } = props.classroom
   const dim = Math.floor(Math.random() * 200)
   console.log(dim)
   const image = `http://placeimg.com/${dim}/${dim}/any`
+  console.log("CLASSROOM: ", props.classroom);
 
-  //CHECK IF LOGGED IN USER OWNS CLASSROOM
-  let cookieEmail = document.cookie.replace(
-    /(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/,
+  //GET LOGGED IN USER
+  let cookieID = document.cookie.replace(
+    /(?:(?:^|.*;\s*)userID\s*\=\s*([^;]*).*$)|^.*$/,
     "$1"
   );
-  if(cookieEmail === owner){
-    console.log("OWNS CLASSROOM");
-  }else{
-    console.log("DOES NOT OWN CLASSROOM");
-  }
+
   return (
     <Li>
       <Top>
@@ -32,7 +29,7 @@ const Classroom_list_item_one = props => {
       </Top>
       <Bottom>
         <p>{description}</p>
-        {cookieEmail === "@" + owner ? <Link to={"/app/my-classrooms/classroom-edit"} state={{ classroom_id: id }}>GO TO YOUR ROOM</Link> : <Link to={"app/classroom"} state={{ classroom_id: id }}>GO TO ROOM</Link>}
+        {cookieID === userID ? <Link to={"/app/my-classrooms/classroom-edit"} state={{ classroom_id: id }}>GO TO YOUR ROOM</Link> : <Link to={"app/classroom"} state={{ classroom_id: id }}>GO TO ROOM</Link>}
       </Bottom>
     </Li>
   )

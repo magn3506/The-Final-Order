@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import {colors} from '../../../styles/global/colors';
 import {headings, bodyText} from '../../../styles/global/typography';
 import { GrAddCircle } from "react-icons/gr";
+import { MdDeleteForever } from 'react-icons/md';
+import { IoIosCloseCircle } from 'react-icons/io';
+import { FiEdit } from 'react-icons/fi';
 import {breakpoints} from '../../../styles/global/breakpoints';
 
 export const Wrapper = styled.div`
@@ -136,6 +139,100 @@ margin-right: 0;
     margin-right: 5px;
 }
 `;
+export const CloseIcon = styled(IoIosCloseCircle)`
+margin-right: 0;
+color: ${colors.orange};
+position: absolute;
+top: 5px;
+right: 5px;
+cursor: pointer;
+transition: .3s;
+
+&:hover{
+    opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+    margin-right: 5px;
+}
+`;
+
+export const RemoveIcon = styled(MdDeleteForever)`
+margin-right: 0;
+cursor: pointer;
+transition: .3s;
+color: ${colors.red_error};
+
+&:hover {
+    opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+    margin-right: 5px;
+}
+`;
+
+export const RemoveItemModalWrapper = styled.div`
+position: absolute;
+top: 35%;
+left: 0;
+width: 100%;
+height: 250px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+z-index: 1;
+
+@media ${breakpoints.minDog} {
+left: 20%;
+width: 500px;
+}
+
+@media ${breakpoints.minWolf} {
+left: 42%;
+width: 500px;
+}
+`;
+export const RemoveItemModalCon = styled.div`
+position: relative;
+background: ${colors.white};
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+`;
+
+export const RemoveItemModalTitle = styled.h2`
+text-align: center;
+${headings.heading5_18px};
+
+@media ${breakpoints.minDog} {
+left: 42%;
+width: 500px;
+${headings.heading4_24px};
+}
+`;
+
+export const RemoveItemModalButton = styled.button`
+background: ${colors.orange};
+padding: 15px;
+border: none;
+border-radius: 5px;
+color: ${colors.white};
+cursor: pointer;
+transition: .3s;
+margin-top: 10px;
+
+&:hover {
+    opacity: .8;
+}
+`;
+
+export const EditButtonsCon = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+`;
 
 export const HelpContainer = styled.div`
 background: ${colors.dark_dark_purple};
@@ -177,5 +274,63 @@ left: 40%;
 
 @media ${breakpoints.minDog} {
 left: 45%;
+}
+`;
+
+export const RemoveButton = styled.div`
+position: absolute;
+bottom: 7px;
+right: 5px;
+background: ${colors.red_error};
+color: ${colors.white};
+padding: 5px;
+display: flex;
+align-items: center;
+border-radius: 3px;
+cursor: pointer;
+transition: .3s;
+${bodyText.smallTextBold_13px}
+
+&:hover {
+    opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+right: 170px;
+}
+`;
+
+export const ClassroomDetailsWrapper = styled.div`
+position: relative;
+`;
+
+export const EditClassroomIcon = styled(FiEdit)`
+margin-right: 20px;
+
+&:hover {
+    opacity: .8;
+}
+`;
+
+export const EditClassroomButton = styled.div`
+position: absolute;
+bottom: 7px;
+right: 75px;
+background: ${colors.sand};
+color: ${colors.dark_dark_purple};
+padding: 5px;
+display: flex;
+align-items: center;
+border-radius: 3px;
+cursor: pointer;
+transition: .3s;
+${bodyText.smallTextBold_13px}
+
+&:hover {
+    opacity: .8;
+}
+
+@media ${breakpoints.minDog} {
+right: 245px;
 }
 `;
