@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../../../components/app/layout/layout"
-import { Link } from "gatsby"
 
 // HOOKS
 import useFetch from "../../../hooks/useFetch"
-// ICONS
-import { AiFillCloseCircle } from "react-icons/ai"
-import { IoIosArrowDropleft } from "react-icons/io"
-import { IoIosArrowDropright } from "react-icons/io"
 
+// COMPONENTS
+import Header from "./components/header/header"
+import Theory from "./components/theory_and_quiz/theory"
+import Quiz from "./components/theory_and_quiz/quiz"
+import Navigation from "./components/navigation/navigation"
+import The_end from "./components/the-end/the_end"
 // STYLED
-import { Lecture_container, Header, Slider, Slide, Nav } from "./index_styles"
+import { Lecture_container, Slider, Slide } from "./index_styles"
 
 const Lecture_page = ({ location }) => {
   // STATE
   const [tq, setTq] = useState(1)
   const [step, setStep] = useState(1)
   const [slide, setSlide] = useState(false)
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState(null)
+  const [lectureEnd, setlectureEnd] = useState(false)
 
   // TODO: WHAT HAPPENS IF LOCATION.state.lecture_id is not provided
   // FETCH CLASSROOM
@@ -36,19 +39,51 @@ const Lecture_page = ({ location }) => {
   }
 
   // STEP DATA
-
-  const { theoryText, question, title, sources, answers } = lecture.steps[
-    step - 1
-  ]
+  const { question, answers } = lecture.steps[step - 1]
   // PROGRESS
   const nr_of_steps = lecture.steps.length
   const progress = (tq / 2 / nr_of_steps) * 100
-  //
 
-  // HANDLE NEXT AND PREV
+  // SETT CORRECT ANSWER
+  const handleSetCorrectAnswer = val => {
+    setIsCorrectAnswer(val)
+    console.dir(val)
+  }
+
+  // SET LECTURE END
+  const handleSetLectureEnd = e => {
+    // VALIDATE ANSWER IF ON EVERY SECOND PAGE (QUIZ)
+    if (isCorrectAnswer == null && tq % 2 == 0) {
+      alert("Please choose an answer")
+      return null
+    }
+    if (isCorrectAnswer == 0 && tq % 2 == 0) {
+      alert("Wrong Answer Try againg")
+      return null
+    }
+
+    e.preventDefault()
+    setlectureEnd(true)
+  }
+
+  // HANDLE NEXT AND PREV NAVIGATION
   const next = e => {
     e.preventDefault()
 
+    // VALIDATE ANSWER IF ON EVERY SECOND PAGE (QUIZ)
+    if (isCorrectAnswer == null && tq % 2 == 0) {
+      alert("Please choose an answer")
+      return null
+    }
+    if (isCorrectAnswer == 0 && tq % 2 == 0) {
+      alert("Wrong Answer Try againg")
+      return null
+    }
+    if (isCorrectAnswer == 1 && tq % 2 == 0) {
+      setIsCorrectAnswer(null)
+    }
+
+    //INCREAS STEP
     if (tq / 2 == step) {
       setTq(tq + 1)
       setStep(step + 1)
@@ -58,7 +93,12 @@ const Lecture_page = ({ location }) => {
       setSlide(true)
     }
   }
+  // PREV STEP
   const prev = e => {
+    if (lectureEnd) {
+      setlectureEnd(false)
+    }
+
     e.preventDefault()
     if ((step - 1) * 2 == tq - 1) {
       setTq(tq - 1)
@@ -73,83 +113,46 @@ const Lecture_page = ({ location }) => {
   return (
     <Layout page_title="this is a lecture">
       <Lecture_container>
-        <Header>
-          <div className="details">
-            <div className="step">
-              Step {step}/{lecture.steps.length}
-            </div>
-            <h2> {lecture.title}</h2>
-            <Link
-              to={"app/classroom"}
-              state={{
-                classroom_id: location.state.classroom_id,
-              }}
-            >
-              <AiFillCloseCircle size="30px" />
-            </Link>
-          </div>
-          <div className="progress">
-            <div style={{ width: `${progress}%` }}></div>
-          </div>
-        </Header>
-        <Slider>
-          <Slide slide={slide}>
-            <div className="theory">
-              <h3>{title}</h3>
-              <p>{theoryText}</p>
-              {!sources ? (
-                ""
-              ) : (
-                <div>
-                  <h4>Sources</h4>
-                  <hr />
-                  {sources.map((e, i) => {
-                    return (
-                      <a key={i} href={e.url} target="_blank">
-                        {e.title}
-                      </a>
-                    )
-                  })}
-                </div>
-              )}
-            </div>
-          </Slide>
-          <Slide slide={slide}>
-            <div className="quiz">
-              <h2>{question}</h2>
-              <hr />
-              <form>
-                {answers.map((e, i) => {
-                  return (
-                    <label key={i}>
-                      <input
-                        type="radio"
-                        value={e.answerValue}
-                        className="answer"
-                      />
-                      {e.answerValue}
-                    </label>
-                  )
-                })}
-              </form>
-            </div>
-          </Slide>
-        </Slider>
-        <Nav isPrevActive={step == 1 && tq == 1 ? "hide" : "show"}>
-          <button
-            className="prev"
-            onClick={step == 1 && tq == 1 ? null : e => prev(e)} // INACTIVE WHEN FIRST STEP 1
-          >
-            <IoIosArrowDropleft size="30px" /> <div>PREV</div>
-          </button>
-          <button
-            className="next"
-            onClick={tq == nr_of_steps * 2 ? null : e => next(e)}
-          >
-            <div>NEXT</div>
-            <IoIosArrowDropright size="30px" />
-          </button>
-        </Nav>
+        <Header // PROGRESS INFORMATION AND STEP TITLE
+          location={location}
+          step={step}
+          lecture={lecture}
+          progress={progress}
+          lectureEnd={lectureEnd}
+        />
+        {/* SLIDER COMP and SLIDE CONTROLLING THE IMAGE SLDIER */}
+        {lectureEnd ? (
+          <Slider>
+            <Slide slide={false}>
+              <The_end location={location} />
+            </Slide>
+          </Slider>
+        ) : (
+          <Slider>
+            <Slide slide={slide}>
+              <Theory step={lecture.steps[step - 1]} />
+            </Slide>
+            <Slide slide={slide}>
+              <Quiz
+                step={step}
+                question={question}
+                answers={answers}
+                handleSetCorrectAnswer={handleSetCorrectAnswer}
+              />
+            </Slide>
+          </Slider>
+        )}
+
+        <Navigation // PREV AND NEXT BTN
+          isPrevActive={step == 1 && tq == 1 ? "hide" : "show"}
+          tq={tq}
+          step={step}
+          nr_of_steps={nr_of_steps}
+          next={next}
+          prev={prev}
+          lectureEnd={lectureEnd}
+          handleSetLectureEnd={handleSetLectureEnd}
+        />
       </Lecture_container>
     </Layout>
   )
