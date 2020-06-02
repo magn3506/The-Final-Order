@@ -18,6 +18,7 @@ export const Top_container = styled.div`
   /* ! MAKE EFFECTS GLOBALS*/
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: fixed;
+  z-index: 1;
 
   @media ${breakpoints.minDog} {
     background-color: ${colors.dark_dark_purple};
@@ -79,6 +80,7 @@ export const Nav = styled.nav`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1;
 
   display: ${props => (props.menuOpen ? "block" : "none")};
 

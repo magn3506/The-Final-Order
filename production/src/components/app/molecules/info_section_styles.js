@@ -36,8 +36,8 @@ ${bodyText.normalTextReg_16px}
 `;
 
 export const LogoIcon = styled.img`
-width: 75px;
-height: 75px;
+width: 90px;
+height: 66px;
 `;
 
 export const LogoCon = styled.div`
@@ -45,4 +45,6 @@ width: 100%;
 display: flex;
 justify-content: center;
 margin-bottom: 10px;
+margin-left: 5px;
+margin-top: 15px;
 `;
