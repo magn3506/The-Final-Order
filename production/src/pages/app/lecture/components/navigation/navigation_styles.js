@@ -23,6 +23,7 @@ export const Navigation_con = styled.div`
     border: none;
     justify-content: center;
     cursor: pointer;
+    outline: none;
 
     div {
       align-self: center;

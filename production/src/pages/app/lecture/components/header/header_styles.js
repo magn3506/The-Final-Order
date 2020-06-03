@@ -48,6 +48,7 @@ export const Header = styled.div`
       position: absolute;
       top: 5px;
       right: 5px;
+      fill: ${colors.orange};
     }
   }
 
