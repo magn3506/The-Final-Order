@@ -69,5 +69,5 @@ yarn-error.log
 .yarn-integrity
 
 #Global variables
-global_variables.js
-local_server_path.php
+# global_variables.js
+# local_server_path.php
