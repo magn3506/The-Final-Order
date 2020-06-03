@@ -58,7 +58,7 @@ const Lecture_page = ({ location }) => {
       return null
     }
     if (isCorrectAnswer == 0 && tq % 2 == 0) {
-      alert("Wrong Answer Try againg")
+      alert("Wrong Answer. Try again!")
       return null
     }
 
@@ -76,10 +76,11 @@ const Lecture_page = ({ location }) => {
       return null
     }
     if (isCorrectAnswer == 0 && tq % 2 == 0) {
-      alert("Wrong Answer Try againg")
+      alert("Wrong Answer. Try again!")
       return null
     }
     if (isCorrectAnswer == 1 && tq % 2 == 0) {
+      alert("Succes! You chose the right answer.")
       setIsCorrectAnswer(null)
     }
 

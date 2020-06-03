@@ -64,7 +64,7 @@ export const Answer_con = styled.div`
       : css`
           color: ${colors.white};
         `}
-  ${props =>
+/*   ${props =>
     props.checked && props.isCorrect == 1
       ? css`
           border: 3px solid ${colors.green_succes};
@@ -75,5 +75,5 @@ export const Answer_con = styled.div`
             ? css`
                 border: 3px solid ${colors.red_error};
               `
-            : css``}
+            : css``} */
 `

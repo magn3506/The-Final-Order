@@ -47,6 +47,7 @@ ON
 /* VIEWS */
 /* get_classrooms*/
 CREATE VIEW get_classrooms AS SELECT
+    c.id,
     c.id AS classroomID,
     c.description,
     c.title,
@@ -67,4 +68,4 @@ ON
 /* ALL ROOMS */
 SELECT * FROM `get_classrooms`
 /* SINGLE BY CLASSROOM ID */
-SELECT * FROM `get_classrooms` WHERE classromID = 1
+SELECT * FROM `get_classrooms` WHERE classroomID = 1

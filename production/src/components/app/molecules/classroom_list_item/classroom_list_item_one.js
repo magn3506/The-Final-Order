@@ -6,7 +6,7 @@ import { colors } from "../../../../styles/global/colors"
 import { Li, Top, Bottom } from "./classroom_list_item_one_styles"
 
 const Classroom_list_item_one = props => {
-  const { title, description, owner, id, userID } = props.classroom
+  const { title, description, owner, id, userID, ownerID } = props.classroom
   const dim = Math.floor(Math.random() * 200)
   console.log(dim)
   const image = `http://placeimg.com/${dim}/${dim}/any`
@@ -29,7 +29,7 @@ const Classroom_list_item_one = props => {
       </Top>
       <Bottom>
         <p>{description}</p>
-        {cookieID === userID ? <Link to={"/app/my-classrooms/classroom-edit"} state={{ classroom_id: id }}>GO TO YOUR ROOM</Link> : <Link to={"app/classroom"} state={{ classroom_id: id }}>GO TO ROOM</Link>}
+        {cookieID === ownerID ? <Link to={"/app/my-classrooms/classroom-edit"} state={{ classroom_id: id }}>GO TO YOUR ROOM</Link> : <Link to={"app/classroom"} state={{ classroom_id: id }}>GO TO ROOM</Link>}
       </Bottom>
     </Li>
   )
