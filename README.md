@@ -1,11 +1,12 @@
 # The-Final-Order
-This is an exam project at KEA's Web development education.
 
+This is an exam project at KEA's Web development education.
+An active installation requires node.js
 
 🚀 Database installation
 
 1. Install Xampp to your computer.
-   Provided is a link to a download page: 
+   Provided is a link to a download page:
    https://www.apachefriends.org/index.html
 
 2. Open Xampp and start apache server as well as MySQL server.
@@ -31,7 +32,9 @@ This is an exam project at KEA's Web development education.
    4.1 The first file is located inside private/local_server_path.php. Change the path to your local host path.
    4.2 The second file is located inside production/global_variables.js. Again change the path to your local server path.
 
-5. In the terminal run gatsby develop. 
+5. In the terminal run gatsby develop.
    If you experience any trouble. Try running in the terminal npm install -g gatsby-cli
 
 6. Open your chrome browser on localhost/8000 and you are ready. Enjoy.
+
+Github repo: https://github.com/magn3506/The-Final-Order.git
